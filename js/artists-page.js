@@ -12,16 +12,17 @@ async function main() {
 
   host.innerHTML = data.artists.map((a, i) => {
     const place = data.byId.place[a.placeId];
+    const meta = [a.discipline, place?.name].filter(Boolean).join(" · ");
     return `
       <a class="index-row" href="artist.html?slug=${a.id}">
         <span class="index-row__n t-meta">${String(i + 1).padStart(2, "0")}</span>
         <span>
           <span class="index-row__name">${a.name}</span>
-          <span class="index-row__meta">${a.discipline} · ${place.name}</span>
+          ${meta ? `<span class="index-row__meta">${meta}</span>` : ""}
         </span>
         <span class="index-row__thumb media-plate" style="--plate-ratio: 4/5; view-transition-name: ${vtName("artist", a.id)};">
           ${plateImg(a.id, "portrait", a.photoUrl)}
-          <span class="plate-caption">${a.portraitCaption}</span>
+          ${a.portraitCaption ? `<span class="plate-caption">${a.portraitCaption}</span>` : ""}
         </span>
       </a>`;
   }).join("");

@@ -24,6 +24,7 @@ async function main() {
   document.title = `${artist.name} — Memory Library`;
 
   const place = data.byId.place[artist.placeId];
+  const meta = [artist.discipline, place?.name].filter(Boolean).join(" · ");
   const featuredWork = data.events.filter((e) => e.mode === "ongoing" && e.artistIds.includes(artist.id));
   const expanded = expandOccurrences(data).filter((x) => x.artists.some((a) => a.id === artist.id));
 
@@ -34,11 +35,11 @@ async function main() {
           <div style="grid-column: 1 / span 4;">
             <div class="media-plate" style="--plate-ratio: 4/5; view-transition-name: ${vtName("artist", artist.id)};">
               ${plateImg(artist.id, "portrait", artist.photoUrl)}
-              <span class="plate-caption">${artist.portraitCaption}</span>
+              ${artist.portraitCaption ? `<span class="plate-caption">${artist.portraitCaption}</span>` : ""}
             </div>
           </div>
           <div style="grid-column: 6 / span 7;">
-            <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-3);">${artist.discipline} · ${place.name}</p>
+            ${meta ? `<p class="t-meta" style="opacity:.55; margin-bottom: var(--space-3);">${meta}</p>` : ""}
             <h1 class="t-display" style="font-size: clamp(2.25rem, 1.6rem + 4vw, 5.5rem); margin-bottom: var(--space-6);">${artist.name}</h1>
             <p class="t-intro measure" style="opacity:.85;">${artist.bio}</p>
             ${artist.portfolioUrl || artist.instagramUrl ? `

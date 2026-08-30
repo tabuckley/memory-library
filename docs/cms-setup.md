@@ -50,9 +50,15 @@ the `SHEET_CSV_URLS` entries falls that table back to its bundled JSON.
 
 Just edit the sheet. A few things to know:
 
-- **`id` is required and must be unique** within its tab (e.g. `artist-jane-doe`,
-  `ev-new-workshop`). Nothing else references a row by anything but this id,
-  so once you've picked one for a real event, don't change it — anything
+- **`id` is required, must be unique within its tab, and must never contain
+  a space** — lowercase-with-hyphens only, e.g. `thomas-buckley`,
+  `ev-new-workshop`. Not the person's or event's actual name/title (that's
+  what the `name`/`title` column is for) — a separate, plain, url-safe
+  slug. A space in an id breaks any list field referencing it (e.g. an
+  event's `artistIds`), since ids separated by spaces in a list cell are
+  otherwise indistinguishable from one id that happens to contain a
+  space. Nothing else references a row by anything but this id, so once
+  you've picked one for a real artist/event, don't change it — anything
   linking to it (occurrences, an artist's `artistIds`) would break.
 - **List fields** (`artistIds`, `locationIds`) take multiple ids in a
   single cell, separated by commas, spaces, or both — e.g.
