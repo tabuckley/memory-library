@@ -55,7 +55,7 @@ async function main() {
 
     <section class="section-pad-sm">
       <div class="wrap">
-        <div class="media-plate media-plate--hero" style="--plate-ratio: 21/9;">
+        <div class="media-plate media-plate--hero" style="--plate-ratio: 21/9; view-transition-name: pmf-hero;">
           ${plateImg("past-makes-future")}
         </div>
         <p class="media-plate--hero-caption">Placeholder — event photography to follow</p>
