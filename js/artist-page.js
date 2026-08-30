@@ -61,7 +61,7 @@ async function main() {
             <a href="project.html?slug=${p.id}" style="grid-column: 1 / span 12;" class="grid">
               <div style="grid-column: 1 / span 4;">
                 <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("proj", p.id)};">
-                  ${plateImg(p.id)}
+                  ${plateImg(p.id, "landscape", p.mediaUrl)}
                   <span class="plate-caption">${p.mediaCaption}</span>
                 </div>
               </div>

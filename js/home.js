@@ -58,7 +58,7 @@ function renderSelectedWork(data) {
       <a href="project.html?slug=${feature.id}" class="grid reveal" style="align-items:center; text-decoration:none;">
         <div style="grid-column: 1 / span 7;">
           <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("proj", feature.id)};">
-            ${plateImg(feature.id)}
+            ${plateImg(feature.id, "landscape", feature.mediaUrl)}
             <span class="plate-caption">${feature.mediaCaption}</span>
           </div>
         </div>

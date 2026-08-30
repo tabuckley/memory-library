@@ -34,7 +34,7 @@ async function main() {
     <section class="section-pad-sm">
       <div class="wrap">
         <div class="media-plate media-plate--hero" style="--plate-ratio: 21/9; view-transition-name: ${vtName("proj", project.id)};">
-          ${plateImg(project.id)}
+          ${plateImg(project.id, "landscape", project.mediaUrl)}
         </div>
         <p class="media-plate--hero-caption">${project.mediaCaption}</p>
       </div>
@@ -68,7 +68,7 @@ async function main() {
           ${related.map((p, i) => `
             <a href="project.html?slug=${p.id}" style="grid-column: ${i === 0 ? "1 / span 5" : "7 / span 5"};">
               <div class="media-plate" style="--plate-ratio: 4/3;">
-                ${plateImg(p.id)}
+                ${plateImg(p.id, "landscape", p.mediaUrl)}
                 <span class="plate-caption">${p.mediaCaption}</span>
               </div>
               <p class="t-intro" style="margin-top: var(--space-3);">${p.title}</p>

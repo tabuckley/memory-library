@@ -1,15 +1,16 @@
 // Memory Library — data layer.
-// Structural content (projects, places, strands, locations, opening hours)
-// ships as bundled JSON, since it barely changes and defines how the rest
-// of the model fits together.
+// Structural content (places, strands, locations, opening hours) ships as
+// bundled JSON, since it barely changes and defines how the rest of the
+// model fits together.
 //
-// Artists, events and occurrences change often and are edited by non-
-// developers, so they instead come from a Google Sheet (one tab per
-// table, fetched as CSV — see docs/cms-setup.md for how that's wired up).
-// If a tab's URL isn't configured yet, or the fetch fails for any reason
-// (offline, sharing revoked, Google unreachable), each table falls back
-// to its last-known-good bundled JSON copy in data/*.json — the site
-// never depends on Google Sheets being up to render.
+// Artists, projects, events, occurrences and the Past Makes Future running
+// order change often and are edited by non-developers, so they instead
+// come from a Google Sheet (one tab per table, fetched as CSV — see
+// docs/cms-setup.md for how that's wired up). If a tab's URL isn't
+// configured yet, or the fetch fails for any reason (offline, sharing
+// revoked, Google unreachable), each table falls back to its last-known-
+// good bundled JSON copy in data/*.json — the site never depends on
+// Google Sheets being up to render.
 import { parseCSV } from "./csv.js";
 
 // Sheet "Memory Library CMS" — shared as "Anyone with the link: Viewer",
@@ -20,6 +21,7 @@ const SHEET_ID = "1JD9vrjS9WqepJdaBktEzZmq_x4CteULc3xacCfyEuno";
 const sheetTabUrl = (tab) => `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${tab}`;
 const SHEET_CSV_URLS = {
   artists: sheetTabUrl("artists"),
+  projects: sheetTabUrl("projects"),
   events: sheetTabUrl("events"),
   occurrences: sheetTabUrl("occurrences"),
   "pmf-sessions": sheetTabUrl("pmf-sessions"),
@@ -34,7 +36,7 @@ export async function loadData() {
 
   const [artists, projects, events, occurrences, pmfSessions, locations, strands, places, openingHours] = await Promise.all([
     loadSheetTable("artists", normalizeArtist, "artists", "discipline"),
-    fetchJSON("projects"),
+    loadSheetTable("projects", normalizeProject, "projects", "mediaCaption"),
     loadSheetTable("events", normalizeEvent, "events", "bookingStatus"),
     loadSheetTable("occurrences", normalizeOccurrence, "occurrences", "startTime"),
     loadSheetTable("pmf-sessions", normalizePmfSession, "past-makes-future", "section"),
@@ -113,8 +115,12 @@ async function loadSheetTable(name, normalize, localName = name, expectedField) 
 // types the bundled JSON already uses, so every page renders identically
 // regardless of which source the data came from.
 
+// Splits a multi-id cell on commas and/or whitespace — ids are always
+// hyphenated slugs with no spaces of their own, so "a, b", "a b" and
+// "a,b" are all unambiguous and safe to treat the same way. Sheet editors
+// won't always remember the comma.
 function list(value) {
-  return value ? value.split(",").map((s) => s.trim()).filter(Boolean) : [];
+  return value ? value.split(/[,\s]+/).map((s) => s.trim()).filter(Boolean) : [];
 }
 
 function bool(value) {
@@ -160,6 +166,24 @@ function normalizeArtist(row) {
     photoUrl: driveImageUrl(row.photoUrl),
     portfolioUrl: orNull(row.portfolioUrl),
     instagramUrl: orNull(row.instagramUrl),
+  };
+}
+
+function normalizeProject(row) {
+  if (!row.id) return null;
+  return {
+    id: row.id,
+    title: row.title,
+    year: row.year,
+    artistIds: list(row.artistIds),
+    strandId: row.strandId,
+    placeId: row.placeId,
+    type: row.type,
+    intro: row.intro,
+    body: row.body,
+    mediaCaption: row.mediaCaption,
+    mediaUrl: driveImageUrl(row.mediaUrl),
+    confirmed: bool(row.confirmed),
   };
 }
 
