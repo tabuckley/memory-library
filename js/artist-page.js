@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName } from "./data.js";
+import { loadData, plateImg, vtName, resolveIfAllIds } from "./data.js";
 import { expandOccurrences, dateLabel, timeRange } from "./programme.js";
 
 async function main() {
@@ -27,6 +27,10 @@ async function main() {
   const meta = [artist.discipline, place?.name].filter(Boolean).join(" · ");
   const featuredWork = data.events.filter((e) => e.mode === "ongoing" && e.artistIds.includes(artist.id));
   const expanded = expandOccurrences(data).filter((x) => x.artists.some((a) => a.id === artist.id));
+  const pmfAppearances = data.pmfSessions.filter((s) => {
+    const who = resolveIfAllIds(s.who, data.byId.artist);
+    return who && who.some((a) => a.id === artist.id);
+  });
 
   host.innerHTML = `
     <section class="section-pad-sm">
@@ -80,11 +84,18 @@ async function main() {
       <div class="wrap grid">
         <div style="grid-column: 1 / span 6;">
           <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-4);">On the programme</p>
-          ${expanded.length ? `<div class="related-list">${expanded.map((x) => `
+          ${(expanded.length || pmfAppearances.length) ? `<div class="related-list">
+            ${expanded.map((x) => `
             <a class="related-item" href="programme.html?date=${x.occ.date}">
               <span>${x.event.title}</span>
               <span class="t-meta" style="opacity:.6;">${dateLabel(x.occ.date)} · ${x.occ.startTime}</span>
-            </a>`).join("")}</div>` : `<p class="t-small" style="opacity:.6;">No scheduled sessions yet — see the exhibition for this artist's work.</p>`}
+            </a>`).join("")}
+            ${pmfAppearances.map((s) => `
+            <a class="related-item" href="past-makes-future.html${s.section === "pageant" ? "#pageant" : ""}">
+              <span>${s.title} — Past Makes Future</span>
+              <span class="t-meta" style="opacity:.6;">Sat 14 Nov · ${s.time}</span>
+            </a>`).join("")}
+          </div>` : `<p class="t-small" style="opacity:.6;">No scheduled sessions yet — see the exhibition for this artist's work.</p>`}
         </div>
       </div>
     </section>
