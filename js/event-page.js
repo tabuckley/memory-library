@@ -1,6 +1,11 @@
 import { loadData, plateImg, vtName, resolveRefs } from "./data.js";
 import { expandOccurrences, dateLabel } from "./programme.js";
 
+function ongoingRunNote(event) {
+  if (!event.dateStart || !event.dateEnd) return "Part of the continuous programme — see Programme for opening hours.";
+  return `Showing daily, ${dateLabel(event.dateStart)} – ${dateLabel(event.dateEnd)} — see Programme for opening hours.`;
+}
+
 async function main() {
   const data = await loadData();
   const params = new URLSearchParams(location.search);
@@ -54,7 +59,7 @@ async function main() {
             <a class="related-item" href="programme.html?date=${x.occ.date}">
               <span>${x.event.title}</span>
               <span class="t-meta" style="opacity:.6;">${dateLabel(x.occ.date)} · ${x.occ.startTime}</span>
-            </a>`).join("")}</div>` : `<p class="t-small" style="opacity:.6;">Part of the continuous programme — see Programme for opening hours.</p>`}
+            </a>`).join("")}</div>` : `<p class="t-small" style="opacity:.6;">${ongoingRunNote(event)}</p>`}
         </div>
       </div>
     </section>

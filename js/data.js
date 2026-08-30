@@ -131,6 +131,19 @@ function list(value) {
   return value ? value.split(/[,\s]+/).map((s) => s.trim()).filter(Boolean) : [];
 }
 
+// Tries to read a free-text field (e.g. a pmf-sessions "who" cell) as one
+// or more artist ids, so a sheet editor *can* opt into a real linked name
+// by typing an id instead of typing text — but silently, and only when
+// every token resolves. A cell that's genuinely free text ("TB hosts",
+// "Judges: CP, Mistly & TBC") never matches all-real-ids, so it's left
+// exactly as typed with no warning noise and no partial/garbled linking.
+export function resolveIfAllIds(value, map) {
+  const ids = list(value);
+  if (!ids.length) return null;
+  const resolved = ids.map((id) => map[id]).filter(Boolean);
+  return resolved.length === ids.length ? resolved : null;
+}
+
 function bool(value) {
   return String(value).trim().toUpperCase() === "TRUE";
 }

@@ -1,23 +1,149 @@
 [
-  { "section": "conference", "time": "13:00", "title": "Open", "purpose": "", "who": "" },
-  { "section": "conference", "time": "14:00", "title": "Welcome", "purpose": "Outline of the day and housekeeping, TB presentation, intro Slido Q1", "who": "TB" },
-  { "section": "conference", "time": "14:15", "title": "Bangladesh Presentation", "purpose": "", "who": "Zihan Karim & Shohrab Jahan" },
-  { "section": "conference", "time": "14:30", "title": "Bangladesh Panel", "purpose": "Q&A", "who": "TB hosts" },
-  { "section": "conference", "time": "14:45", "title": "Cairo Presentation", "purpose": "", "who": "Raneem Elhaddad & Ahmed Nader" },
-  { "section": "conference", "time": "15:00", "title": "Cairo Panel", "purpose": "Q&A", "who": "TB hosts" },
-  { "section": "conference", "time": "15:15", "title": "Lebanon Presentation", "purpose": "", "who": "Lara Kobeissi & TBC" },
-  { "section": "conference", "time": "15:30", "title": "Lebanon Panel", "purpose": "Q&A", "who": "TB hosts" },
-  { "section": "conference", "time": "15:45", "title": "Artist Profile Round Up", "purpose": "Curated round-up and Slido Q2, Pageant reminder", "who": "Lisa BC & TB" },
-  { "section": "conference", "time": "16:00", "title": "Break", "purpose": "", "who": "" },
-  { "section": "conference", "time": "16:45", "title": "Resonate Artists Panel", "purpose": "Profiling artworks shown in the room", "who": "Three Resonate artists & TB" },
-  { "section": "conference", "time": "17:15", "title": "Jersey Artist", "purpose": "Presentation", "who": "" },
-  { "section": "conference", "time": "17:30", "title": "Portsmouth as an Engine for Creativity", "purpose": "Sector value and infrastructure", "who": "Gemma Nichols, Steve Pitt, Arts Council England & University of Portsmouth" },
-  { "section": "conference", "time": "17:45", "title": "Reflections & Close", "purpose": "Slido Q3", "who": "TB" },
-  { "section": "conference", "time": "18:00", "title": "Networking & Dinner", "purpose": "", "who": "" },
-  { "section": "pageant", "time": "19:30", "title": "Doors Open", "purpose": "", "who": "Misha" },
-  { "section": "pageant", "time": "20:00", "title": "Pageant Begins", "purpose": "", "who": "" },
-  { "section": "pageant", "time": "20:45", "title": "Break", "purpose": "", "who": "Misha · Judges: CP, Mistly & TBC" },
-  { "section": "pageant", "time": "21:30", "title": "KLONN — Headline", "purpose": "", "who": "" },
-  { "section": "pageant", "time": "22:00", "title": "Ends", "purpose": "", "who": "" },
-  { "section": "pageant", "time": "22:30", "title": "Close", "purpose": "", "who": "" }
+  {
+    "section": "conference",
+    "time": "13:00",
+    "title": "Open",
+    "purpose": "",
+    "who": ""
+  },
+  {
+    "section": "conference",
+    "time": "14:00",
+    "title": "Welcome",
+    "purpose": "Outline of the day and housekeeping, TB presentation, intro Slido Q1",
+    "who": "TB"
+  },
+  {
+    "section": "conference",
+    "time": "14:15",
+    "title": "Bangladesh Presentation",
+    "purpose": "",
+    "who": "Zihan Karim & Shohrab Jahan"
+  },
+  {
+    "section": "conference",
+    "time": "14:30",
+    "title": "Bangladesh Panel",
+    "purpose": "Q&A",
+    "who": "TB hosts"
+  },
+  {
+    "section": "conference",
+    "time": "14:45",
+    "title": "Cairo Presentation",
+    "purpose": "",
+    "who": "Raneem Elhaddad & Ahmed Nader"
+  },
+  {
+    "section": "conference",
+    "time": "15:00",
+    "title": "Cairo Panel",
+    "purpose": "Q&A",
+    "who": "TB hosts"
+  },
+  {
+    "section": "conference",
+    "time": "15:15",
+    "title": "Lebanon Presentation",
+    "purpose": "",
+    "who": "Lara Kobeissi & TBC"
+  },
+  {
+    "section": "conference",
+    "time": "15:30",
+    "title": "Lebanon Panel",
+    "purpose": "Q&A",
+    "who": "TB hosts"
+  },
+  {
+    "section": "conference",
+    "time": "15:45",
+    "title": "Artist Profile Round Up",
+    "purpose": "Curated round-up and Slido Q2, Pageant reminder",
+    "who": "Lisa BC & TB"
+  },
+  {
+    "section": "conference",
+    "time": "16:00",
+    "title": "Break",
+    "purpose": "",
+    "who": ""
+  },
+  {
+    "section": "conference",
+    "time": "16:45",
+    "title": "Resonate Artists Panel",
+    "purpose": "Profiling artworks shown in the room",
+    "who": "Three Resonate artists & TB"
+  },
+  {
+    "section": "conference",
+    "time": "17:15",
+    "title": "Jersey Artist",
+    "purpose": "Presentation",
+    "who": ""
+  },
+  {
+    "section": "conference",
+    "time": "17:30",
+    "title": "Portsmouth as an Engine for Creativity",
+    "purpose": "Sector value and infrastructure",
+    "who": "Gemma Nichols, Steve Pitt, Arts Council England & University of Portsmouth"
+  },
+  {
+    "section": "conference",
+    "time": "17:45",
+    "title": "Reflections & Close",
+    "purpose": "Slido Q3",
+    "who": "TB"
+  },
+  {
+    "section": "conference",
+    "time": "18:00",
+    "title": "Networking & Dinner",
+    "purpose": "",
+    "who": ""
+  },
+  {
+    "section": "pageant",
+    "time": "19:30",
+    "title": "Doors Open",
+    "purpose": "",
+    "who": "Misha"
+  },
+  {
+    "section": "pageant",
+    "time": "20:00",
+    "title": "Pageant Begins",
+    "purpose": "",
+    "who": ""
+  },
+  {
+    "section": "pageant",
+    "time": "20:45",
+    "title": "Break",
+    "purpose": "",
+    "who": "Misha · Judges: CP, Mistly & TBC"
+  },
+  {
+    "section": "pageant",
+    "time": "21:30",
+    "title": "KLONN — Headline",
+    "purpose": "",
+    "who": ""
+  },
+  {
+    "section": "pageant",
+    "time": "22:00",
+    "title": "Ends",
+    "purpose": "",
+    "who": ""
+  },
+  {
+    "section": "pageant",
+    "time": "22:30",
+    "title": "Close",
+    "purpose": "",
+    "who": ""
+  }
 ]
