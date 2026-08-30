@@ -1,7 +1,7 @@
-# Follow-up task: add image/link columns, a new tab, verify schedule
+# Follow-up task: add image/link columns, two new tabs, verify schedule
 
 This is a follow-up to the sheet you already set up ("Memory Library CMS",
-with `artists`, `events` and `occurrences` tabs). Four changes needed.
+with `artists`, `events` and `occurrences` tabs). Five changes needed.
 
 ## 1. Add columns to the `artists` tab
 
@@ -110,6 +110,39 @@ Nov, Egypt workshop 20 Nov, Lebanon workshop 21 Nov (all still
 provisional, `confirmed: FALSE`, hence unconfirmed times). We Shine
 evening opening runs 19–21 Nov, 17:00–21:00, exterior location.
 
-No reply needed beyond confirming all four changes are done (the three
-artist columns, the events column, the new pmf-sessions tab, and that
-occurrences matches) — or noting what you had to correct, if anything.
+## 5. Add a new `projects` tab
+
+Projects are exhibitions/artworks (distinct from `events`, which are
+schedule listings — see the note at the very end about the difference).
+Add a fifth tab named exactly `projects`, header row
+`id,title,year,artistIds,strandId,placeId,type,intro,body,mediaCaption,mediaUrl,confirmed`,
+with this one real row so far:
+
+```csv
+id,title,year,artistIds,strandId,placeId,type,intro,body,mediaCaption,mediaUrl,confirmed
+queer-at-sea,Queer at Sea,2026,,resonate,portsmouth,Exhibition,"An exhibition exploring queerness, coastal space and belonging.","Queer at Sea runs throughout Memory Library's daily programme, part of the ongoing exhibition in the Main Space.",STILL — Queer at Sea,,FALSE
+```
+
+`mediaUrl` works the same as `photoUrl`/`imageUrl` elsewhere (a Drive
+share link, blank for the placeholder image). `artistIds` is blank here —
+fill it in with an artist's `id` (comma-separated if more than one) once
+a specific artist is confirmed for this project.
+
+---
+
+**One thing worth flagging back to whoever's editing this sheet day to
+day**: an artist's `projectIds` field should only ever contain ids from
+the `projects` tab (exhibitions/artworks) — not ids from `events` or
+`occurrences`. Those are a different, separate kind of link: to connect
+an artist to something on the schedule (a talk, a workshop, a screening),
+add that artist's id to the **event's own `artistIds` column** instead —
+the artist's page automatically shows everything scheduled that way under
+"On the programme," no need to edit anything on the artist row for that.
+Putting an event/occurrence id into an artist's `projectIds` cell won't
+crash the site (that's now handled gracefully), but it also won't do
+anything — it'll just be ignored.
+
+No reply needed beyond confirming all five changes are done (the three
+artist columns, the events column, the new pmf-sessions tab, the new
+projects tab, and that occurrences matches) — or noting what you had to
+correct, if anything.
