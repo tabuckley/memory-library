@@ -4,21 +4,25 @@
 // of the model fits together.
 //
 // Artists, events and occurrences change often and are edited by non-
-// developers, so they instead come from a published Google Sheet (one tab
-// per table, published as CSV — see docs/cms-setup.md for how that's wired
-// up). If a tab's URL isn't configured yet, or the fetch fails for any
-// reason (offline, sheet unpublished, Google unreachable), each table
-// falls back to its last-known-good bundled JSON copy in data/*.json —
-// the site never depends on Google Sheets being up to render.
+// developers, so they instead come from a Google Sheet (one tab per
+// table, fetched as CSV — see docs/cms-setup.md for how that's wired up).
+// If a tab's URL isn't configured yet, or the fetch fails for any reason
+// (offline, sharing revoked, Google unreachable), each table falls back
+// to its last-known-good bundled JSON copy in data/*.json — the site
+// never depends on Google Sheets being up to render.
 import { parseCSV } from "./csv.js";
 
-// Paste the "Publish to web" CSV link for each tab here once the sheet is
-// set up (Sheet > File > Share > Publish to web > select tab > CSV).
-// Leave empty to use the bundled JSON for that table.
+// Sheet "Memory Library CMS" — shared as "Anyone with the link: Viewer",
+// fetched by tab name via Google's gviz CSV export (works for any tab
+// without needing to know its gid, and keeps working if tabs are
+// reordered). Leave a URL empty to use the bundled JSON for that table.
+const SHEET_ID = "1JD9vrjS9WqepJdaBktEzZmq_x4CteULc3xacCfyEuno";
+const sheetTabUrl = (tab) => `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${tab}`;
 const SHEET_CSV_URLS = {
-  artists: "",
-  events: "",
-  occurrences: "",
+  artists: sheetTabUrl("artists"),
+  events: sheetTabUrl("events"),
+  occurrences: sheetTabUrl("occurrences"),
+  "pmf-sessions": sheetTabUrl("pmf-sessions"),
 };
 
 const FETCH_TIMEOUT_MS = 6000;
@@ -28,11 +32,12 @@ let _cache = null;
 export async function loadData() {
   if (_cache) return _cache;
 
-  const [artists, projects, events, occurrences, locations, strands, places, openingHours] = await Promise.all([
-    loadSheetTable("artists", normalizeArtist),
+  const [artists, projects, events, occurrences, pmfSessions, locations, strands, places, openingHours] = await Promise.all([
+    loadSheetTable("artists", normalizeArtist, "artists", "discipline"),
     fetchJSON("projects"),
-    loadSheetTable("events", normalizeEvent),
-    loadSheetTable("occurrences", normalizeOccurrence),
+    loadSheetTable("events", normalizeEvent, "events", "bookingStatus"),
+    loadSheetTable("occurrences", normalizeOccurrence, "occurrences", "startTime"),
+    loadSheetTable("pmf-sessions", normalizePmfSession, "past-makes-future", "section"),
     fetchJSON("locations"),
     fetchJSON("strands"),
     fetchJSON("places"),
@@ -40,7 +45,7 @@ export async function loadData() {
   ]);
 
   _cache = {
-    artists, projects, events, occurrences, locations, strands, places, openingHours,
+    artists, projects, events, occurrences, pmfSessions, locations, strands, places, openingHours,
     byId: {
       artist: indexBy(artists, "id"),
       project: indexBy(projects, "id"),
@@ -67,11 +72,22 @@ function fetchJSON(name) {
 }
 
 // Fetches a published-CSV tab and normalizes it into the same shape the
-// bundled JSON uses. Falls back to data/<name>.json if the sheet URL is
-// blank, unreachable, or times out.
-async function loadSheetTable(name, normalize) {
+// bundled JSON uses. Falls back to data/<localName ?? name>.json if the
+// sheet URL is blank, unreachable, times out, or — importantly — doesn't
+// look like the right tab at all. `normalize` should return null/undefined
+// for a row that should be skipped (e.g. blank id, blank title); those are
+// filtered out here.
+//
+// `expectedField` guards against a real gotcha in Google's gviz CSV
+// endpoint: requesting a `sheet=` name that doesn't exist on the
+// spreadsheet does NOT fail — it silently returns the first tab's data
+// instead, with a normal 200 status. Without this check, a typo'd or
+// renamed tab would serve some other table's content with no error at
+// all. Pick a column name unique to this table (present in its header
+// row) and every fetch is checked against it before being trusted.
+async function loadSheetTable(name, normalize, localName = name, expectedField) {
   const url = SHEET_CSV_URLS[name];
-  if (!url) return fetchJSON(name);
+  if (!url) return fetchJSON(localName);
 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
@@ -79,10 +95,14 @@ async function loadSheetTable(name, normalize) {
     const res = await fetch(url, { signal: controller.signal });
     if (!res.ok) throw new Error(`Sheet fetch failed for ${name}: ${res.status}`);
     const text = await res.text();
-    return parseCSV(text).map(normalize).filter((row) => row.id);
+    const rows = parseCSV(text);
+    if (expectedField && rows.length && !(expectedField in rows[0])) {
+      throw new Error(`Sheet response for "${name}" doesn't look like that tab (missing "${expectedField}" column) — wrong/renamed tab?`);
+    }
+    return rows.map(normalize).filter(Boolean);
   } catch (err) {
-    console.warn(`[data] Falling back to bundled ${name}.json —`, err.message);
-    return fetchJSON(name);
+    console.warn(`[data] Falling back to bundled ${localName}.json —`, err.message);
+    return fetchJSON(localName);
   } finally {
     clearTimeout(timer);
   }
@@ -105,7 +125,30 @@ function orNull(value) {
   return value && value.trim() ? value.trim() : null;
 }
 
+// Resolves a pasted Google Drive share link (any of the common formats, or
+// a bare file id) into a direct, embeddable image URL. Non-Drive URLs
+// (e.g. a link to some other image host) pass through unchanged, so this
+// is safe to run on any photoUrl/imageUrl cell regardless of where the
+// image is actually hosted.
+function extractDriveFileId(value) {
+  const patterns = [/\/file\/d\/([a-zA-Z0-9_-]{15,})/, /[?&]id=([a-zA-Z0-9_-]{15,})/];
+  for (const p of patterns) {
+    const m = value.match(p);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+function driveImageUrl(value, size = 1600) {
+  const url = orNull(value);
+  if (!url) return null;
+  const id = extractDriveFileId(url);
+  if (!id) return url;
+  return `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`;
+}
+
 function normalizeArtist(row) {
+  if (!row.id) return null;
   return {
     id: row.id,
     name: row.name,
@@ -114,10 +157,14 @@ function normalizeArtist(row) {
     bio: row.bio,
     portraitCaption: orNull(row.portraitCaption),
     projectIds: list(row.projectIds),
+    photoUrl: driveImageUrl(row.photoUrl),
+    portfolioUrl: orNull(row.portfolioUrl),
+    instagramUrl: orNull(row.instagramUrl),
   };
 }
 
 function normalizeEvent(row) {
+  if (!row.id) return null;
   return {
     id: row.id,
     title: row.title,
@@ -130,6 +177,7 @@ function normalizeEvent(row) {
     blurb: row.blurb,
     bookingStatus: row.bookingStatus,
     bookingUrl: orNull(row.bookingUrl),
+    imageUrl: driveImageUrl(row.imageUrl),
     ageGuidance: orNull(row.ageGuidance),
     mode: row.mode,
     dateStart: orNull(row.dateStart),
@@ -139,6 +187,7 @@ function normalizeEvent(row) {
 }
 
 function normalizeOccurrence(row) {
+  if (!row.id) return null;
   return {
     id: row.id,
     eventId: row.eventId,
@@ -148,6 +197,17 @@ function normalizeOccurrence(row) {
     locationId: row.locationId,
     note: orNull(row.note),
     confirmed: bool(row.confirmed),
+  };
+}
+
+function normalizePmfSession(row) {
+  if (!row.section || !row.title) return null;
+  return {
+    section: row.section.trim().toLowerCase(),
+    time: row.time,
+    title: row.title,
+    purpose: row.purpose || "",
+    who: row.who || "",
   };
 }
 
@@ -189,8 +249,9 @@ export function placeholderSrc(seed, orientation = "landscape") {
   return `assets/img/placeholder/${name}.jpg`;
 }
 
-export function plateImg(seed, orientation = "landscape") {
-  return `<img class="plate-photo" src="${placeholderSrc(seed, orientation)}" alt="" loading="lazy" />`;
+export function plateImg(seed, orientation = "landscape", realUrl = null) {
+  const src = realUrl || placeholderSrc(seed, orientation);
+  return `<img class="plate-photo" src="${src}" alt="" loading="lazy" />`;
 }
 
 // A shared name lets the browser's cross-document View Transition morph

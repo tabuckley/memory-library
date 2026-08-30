@@ -20,7 +20,7 @@ async function main() {
           <span class="index-row__meta">${a.discipline} · ${place.name}</span>
         </span>
         <span class="index-row__thumb media-plate" style="--plate-ratio: 4/5; view-transition-name: ${vtName("artist", a.id)};">
-          ${plateImg(a.id, "portrait")}
+          ${plateImg(a.id, "portrait", a.photoUrl)}
           <span class="plate-caption">${a.portraitCaption}</span>
         </span>
       </a>`;

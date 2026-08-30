@@ -13,6 +13,7 @@
     "blurb": "Resonate artist commissions.",
     "bookingStatus": "FREE",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "ongoing",
     "dateStart": "2026-11-13",
@@ -33,6 +34,7 @@
     "blurb": "Moving-image screenings.",
     "bookingStatus": "FREE",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "ongoing",
     "dateStart": "2026-11-13",
@@ -55,6 +57,7 @@
     "blurb": "Exhibition on queerness and coastal life.",
     "bookingStatus": "FREE",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "ongoing",
     "dateStart": "2026-11-13",
@@ -75,6 +78,7 @@
     "blurb": "Conference and international presentations.",
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true
@@ -93,6 +97,7 @@
     "blurb": "Artist presentation.",
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true
@@ -111,6 +116,7 @@
     "blurb": "Artist presentation.",
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true
@@ -129,6 +135,7 @@
     "blurb": "Panel discussion.",
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true
@@ -147,6 +154,7 @@
     "blurb": "Evening performance.",
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": "18+",
     "mode": "timed",
     "confirmed": true
@@ -165,6 +173,7 @@
     "blurb": "Borrow a person, not a book.",
     "bookingStatus": "DROP IN",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true
@@ -183,6 +192,7 @@
     "blurb": "Workshop connected to Bangladesh.",
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true
@@ -201,6 +211,7 @@
     "blurb": "Screening connected to Bangladesh.",
     "bookingStatus": "FREE",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true
@@ -219,6 +230,7 @@
     "blurb": "Workshop connected to Egypt.",
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true
@@ -237,6 +249,7 @@
     "blurb": "Workshop connected to Lebanon.",
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true
@@ -257,6 +270,7 @@
     "blurb": "Evening opening for We Shine.",
     "bookingStatus": "FREE",
     "bookingUrl": null,
+    "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": false

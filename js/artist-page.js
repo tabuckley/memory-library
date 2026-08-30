@@ -33,7 +33,7 @@ async function main() {
         <div class="grid" style="align-items:end;">
           <div style="grid-column: 1 / span 4;">
             <div class="media-plate" style="--plate-ratio: 4/5; view-transition-name: ${vtName("artist", artist.id)};">
-              ${plateImg(artist.id, "portrait")}
+              ${plateImg(artist.id, "portrait", artist.photoUrl)}
               <span class="plate-caption">${artist.portraitCaption}</span>
             </div>
           </div>
@@ -41,6 +41,12 @@ async function main() {
             <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-3);">${artist.discipline} · ${place.name}</p>
             <h1 class="t-display" style="font-size: clamp(2.25rem, 1.6rem + 4vw, 5.5rem); margin-bottom: var(--space-6);">${artist.name}</h1>
             <p class="t-intro measure" style="opacity:.85;">${artist.bio}</p>
+            ${artist.portfolioUrl || artist.instagramUrl ? `
+            <p class="t-meta" style="margin-top: var(--space-4);">
+              ${artist.portfolioUrl ? `<a class="link-underline" href="${artist.portfolioUrl}" target="_blank" rel="noopener">Portfolio →</a>` : ""}
+              ${artist.portfolioUrl && artist.instagramUrl ? `<span style="opacity:.4;"> · </span>` : ""}
+              ${artist.instagramUrl ? `<a class="link-underline" href="${artist.instagramUrl}" target="_blank" rel="noopener">Instagram →</a>` : ""}
+            </p>` : ""}
           </div>
         </div>
       </div>

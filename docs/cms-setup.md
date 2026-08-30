@@ -1,40 +1,42 @@
 # Editing content via Google Sheets
 
-Artists, events and occurrences (dates/times) can be edited in a Google Sheet
-instead of the JSON files in `data/`. Everything else — projects, places,
-strands, locations, opening hours — stays in `data/*.json`, since it barely
-changes and defines how the rest of the model fits together.
+Artists, events, occurrences (dates/times) and the Past Makes Future running
+order can be edited in a Google Sheet instead of the JSON files in `data/`.
+Everything else — projects, places, strands, locations, opening hours —
+stays in `data/*.json`, since it barely changes and defines how the rest of
+the model fits together.
 
 ## One-time setup
 
-1. **Create the sheet.** Make a new Google Sheet with three tabs named
-   `artists`, `events` and `occurrences`. Import the matching file from
-   `cms-template/` into each tab (File → Import → Upload → Insert new
-   sheet(s)) — `events.csv` and `occurrences.csv` already contain the real
-   current programme, so the sheet starts pre-filled instead of empty.
-   `artists.csv` has one example row — overwrite it with real artists as
-   they're confirmed.
+1. **Create the sheet.** Make a new Google Sheet with four tabs named
+   `artists`, `events`, `occurrences` and `pmf-sessions`. Import the
+   matching file from `cms-template/` into each tab (File → Import →
+   Upload → Insert new sheet(s)) — `events.csv`, `occurrences.csv` and
+   `pmf-sessions.csv` already contain the real current programme, so the
+   sheet starts pre-filled instead of empty. `artists.csv` has one example
+   row — overwrite it with real artists as they're confirmed.
 
-2. **Publish each tab as CSV.** For each of the three tabs: File → Share →
-   Publish to web → in the first dropdown choose the tab (not "Entire
-   document") → in the second dropdown choose **Comma-separated values
-   (.csv)** → tick **Automatically republish when changes are made** →
-   Publish. Copy the URL it gives you.
+2. **Share the sheet by link.** Click **Share** (top right) → change
+   "General access" to **Anyone with the link**, role **Viewer** → Done.
+   (Publish-to-web would also work, but it's a manual UI-only action with
+   no API behind it — link-sharing is the one that a Drive-connected
+   assistant can also do on your behalf, and both produce a live CSV link
+   that updates instantly as you edit.)
 
-3. **Paste the three URLs into the site.** Open `js/data.js` and fill in
-   `SHEET_CSV_URLS` near the top:
+3. **Point the site at it.** Open `js/data.js` and set `SHEET_ID` near the
+   top to the sheet's file id (the long string in its URL, between `/d/`
+   and `/edit`):
 
    ```js
-   const SHEET_CSV_URLS = {
-     artists: "https://docs.google.com/…/pub?gid=…&single=true&output=csv",
-     events: "https://docs.google.com/…/pub?gid=…&single=true&output=csv",
-     occurrences: "https://docs.google.com/…/pub?gid=…&single=true&output=csv",
-   };
+   const SHEET_ID = "your-spreadsheet-id-here";
    ```
 
-That's it — from then on, editing a row in the Sheet updates the live site
-within a few minutes (however long Google takes to republish), with no
-redeploy needed. Leaving a URL blank keeps that table on the bundled JSON.
+   The three tab URLs (`SHEET_CSV_URLS`) are built from `SHEET_ID`
+   automatically by tab name — nothing else to configure.
+
+That's it — from then on, editing a cell in the sheet updates the live
+site immediately (no republish delay, no redeploy). Blanking out one of
+the `SHEET_CSV_URLS` entries falls that table back to its bundled JSON.
 
 ## Editing day-to-day
 
@@ -52,24 +54,39 @@ Just edit the sheet. A few things to know:
 - **`bookingUrl`** — paste a full link (e.g. an Eventbrite page) and a
   "Book →" link appears on the programme automatically; leave it blank for
   free/drop-in events.
+- **`photoUrl` (artists) / `imageUrl` (events)** — upload the photo to a
+  Google Drive folder, get its shareable link (Share → "Anyone with the
+  link"), paste that link straight into the cell. Leave blank and that
+  artist/event just keeps showing the site's placeholder image — nothing
+  breaks. Any of Drive's usual link formats works
+  (`.../file/d/FILE_ID/view?usp=sharing` or `.../open?id=FILE_ID`).
 - A row missing an `id` is skipped entirely, so it's safe to leave a blank
   row at the bottom of a tab for typing into.
 
 ## If something looks wrong on the site
 
-Open the browser console (F12). If a sheet fetch fails or times out, you'll
-see a line like `[data] Falling back to bundled events.json — …` and the
-site will keep showing the last version saved in `data/events.json` instead
-of breaking. Re-publishing the tab (or just waiting a few minutes) usually
-fixes it; if not, check the tab's Publish-to-web setting is still on.
+Open the browser console (F12). If a sheet fetch fails, times out, or comes
+back looking like the wrong tab entirely (a real Google quirk: asking for a
+tab name that doesn't exist silently returns the *first* tab's data instead
+of an error), you'll see a line like `[data] Falling back to bundled
+events.json — …` and the site will keep showing the last version saved in
+`data/events.json` instead of breaking or showing wrong content. This
+usually means either the sheet's general access got changed back to
+restricted (check Share → General access is still "Anyone with the link"),
+or a tab got renamed (tab names must stay exactly `artists`, `events`,
+`occurrences`, `pmf-sessions`).
 
 ## Column reference
 
-**artists** — `id, name, discipline, placeId, bio, portraitCaption, projectIds`
+**artists** — `id, name, discipline, placeId, bio, portraitCaption, projectIds, photoUrl, portfolioUrl, instagramUrl`
 
-**events** — `id, title, type, strandId, locationIds, artistIds, projectIds, summary, blurb, bookingStatus, bookingUrl, ageGuidance, mode, dateStart, dateEnd, confirmed`
+**events** — `id, title, type, strandId, locationIds, artistIds, projectIds, summary, blurb, bookingStatus, bookingUrl, imageUrl, ageGuidance, mode, dateStart, dateEnd, confirmed`
 
 **occurrences** — `id, eventId, date, startTime, endTime, locationId, note, confirmed`
+
+**pmf-sessions** — `section, time, title, purpose, who` — drives the Past
+Makes Future page's conference and pageant running order. `section` must
+be exactly `conference` or `pageant`; row order is display order.
 
 `placeId`, `strandId`, `locationIds` must match an `id` in `data/places.json`,
 `data/strands.json` and `data/locations.json` respectively — those are the

@@ -14,10 +14,9 @@ function agendaRow(s) {
 }
 
 async function main() {
-  const [data, pmf] = await Promise.all([
-    loadData(),
-    fetch("data/past-makes-future.json").then((r) => r.json()),
-  ]);
+  const data = await loadData();
+  const conferenceSessions = data.pmfSessions.filter((s) => s.section === "conference");
+  const pageantSessions = data.pmfSessions.filter((s) => s.section === "pageant");
 
   const strand = data.byId.strand["past-makes-future"];
   const confEvent = data.byId.event["ev-past-makes-future"];
@@ -58,7 +57,7 @@ async function main() {
           <p class="t-title" style="grid-column: 1 / span 6;">Conference</p>
           <p class="t-meta" style="grid-column: 8 / span 5; opacity:.6; justify-self:end;">${confEvent.bookingStatus} · 13:00–18:00${confEvent.bookingUrl ? ` · <a class="link-underline" href="${confEvent.bookingUrl}" target="_blank" rel="noopener">Book →</a>` : ""}</p>
         </div>
-        <div>${pmf.conference.sessions.map(agendaRow).join("")}</div>
+        <div>${conferenceSessions.map(agendaRow).join("")}</div>
       </div>
     </section>
 
@@ -68,7 +67,7 @@ async function main() {
           <p class="t-title" style="grid-column: 1 / span 6;"><img src="assets/logo/pmf-star-white.png" alt="" style="display:inline-block; height:0.75em; width:auto; margin-right:0.3em; vertical-align:baseline;" />Pageant</p>
           <p class="t-meta" style="grid-column: 8 / span 5; opacity:.6; justify-self:end;">${pageantEvent.bookingStatus}${pageantEvent.ageGuidance ? " · " + pageantEvent.ageGuidance : ""} · Doors 19:30${pageantEvent.bookingUrl ? ` · <a class="link-underline" href="${pageantEvent.bookingUrl}" target="_blank" rel="noopener">Book →</a>` : ""}</p>
         </div>
-        <div>${pmf.pageant.sessions.map(agendaRow).join("")}</div>
+        <div>${pageantSessions.map(agendaRow).join("")}</div>
       </div>
     </section>
 

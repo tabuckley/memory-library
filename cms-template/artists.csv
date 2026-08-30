@@ -1,2 +1,2 @@
-id,name,discipline,placeId,bio,portraitCaption,projectIds
-artist-example,Example Artist,Visual artist,portsmouth,"A short biography goes here. It can contain commas, like this, and it will still work.","Portrait, 2026",queer-at-sea
+id,name,discipline,placeId,bio,portraitCaption,projectIds,photoUrl,portfolioUrl,instagramUrl
+artist-example,Example Artist,Visual artist,portsmouth,"A short biography goes here. It can contain commas, like this, and it will still work.","Portrait, 2026",queer-at-sea,,,
