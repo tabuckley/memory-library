@@ -1,0 +1,286 @@
+/* Memory Library — base: reset, typography, grid, primitives */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-fg);
+  font-family: var(--font-editorial);
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video { max-width: 100%; display: block; }
+
+h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+
+a, a:link, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+input, select {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---- focus ---- */
+:focus { outline: none; }
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+}
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--c-library-black);
+  color: var(--c-archive-white);
+  padding: var(--space-3) var(--space-4);
+  z-index: 100;
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+}
+.skip-link:focus {
+  left: var(--space-4);
+  top: var(--space-4);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- typography ---- */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--size-display);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.t-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--size-title);
+  line-height: var(--leading-title);
+}
+
+.t-intro {
+  font-family: var(--font-editorial);
+  font-weight: 400;
+  font-size: var(--size-intro);
+  line-height: var(--leading-title);
+}
+
+.t-body {
+  font-family: var(--font-editorial);
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
+}
+
+.t-small {
+  font-family: var(--font-editorial);
+  font-size: var(--size-small);
+  line-height: var(--leading-body);
+}
+
+.t-meta {
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  line-height: var(--leading-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+.measure { max-width: var(--measure); }
+
+/* ---- layout ---- */
+.wrap {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  gap: var(--grid-gap);
+}
+
+/* Ad-hoc editorial layouts place explicit inline grid-column spans on
+   .grid children. Below 760px those always stack full-width — inline
+   styles need !important to be overridden here. */
+@media (max-width: 760px) {
+  .grid > * { grid-column: 1 / -1 !important; grid-row: auto !important; }
+}
+
+section { position: relative; }
+
+.section-pad { padding-block: var(--space-24); }
+.section-pad-sm { padding-block: var(--space-12); }
+
+/* ---- tone backgrounds: "different paper stocks" ---- */
+.tone-paper { background: var(--c-paper-white); }
+.tone-foxed { background: var(--c-foxed-paper); }
+.tone-blue { background: var(--c-faded-blue); }
+.tone-mint { background: var(--c-desat-mint); }
+.tone-black { background: var(--c-library-black); color: var(--c-archive-white); }
+
+/* ---- rule ---- */
+.rule {
+  border: 0;
+  border-top: 1px solid var(--c-line);
+}
+.rule-strong { border-top: 1px solid var(--c-line-strong); }
+
+/* ---- media plate: placeholder for media not yet supplied ----
+   A high-resolution toned placeholder photograph stands in for real
+   photography/film. It is deliberately abstract (a soft gradient field,
+   not a representational stock photo) so it cannot be mistaken for real
+   documentation — but it is a genuine photographic image, not a flat
+   colour swatch, so scale/crop/hover behaviour can be judged for real. */
+.media-plate {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--plate-ratio, 4 / 3);
+  background: var(--plate-bg, var(--c-paper-white));
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.media-plate .plate-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.0001); /* establishes a GPU layer so the hover scale below is smooth */
+  transition: transform var(--dur-slow) var(--ease);
+}
+.media-plate:hover .plate-photo,
+.media-plate:focus-within .plate-photo {
+  transform: scale(1.018);
+}
+.media-plate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(17,17,17,0.45) 0%, rgba(17,17,17,0.08) 40%, transparent 65%);
+  opacity: 0.55;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.media-plate:hover::after,
+.media-plate:focus-within::after {
+  opacity: 0.85;
+}
+.media-plate .plate-caption {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  color: var(--c-archive-white);
+  opacity: 0.7;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.media-plate:hover .plate-caption,
+.media-plate:focus-within .plate-caption {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .media-plate .plate-photo { transition: none; }
+  .media-plate:hover .plate-photo, .media-plate:focus-within .plate-photo { transform: none; }
+}
+
+/* Hero variant: full-bleed image, caption sits below as plain text
+   rather than overlaid — used for the largest, most important images. */
+.media-plate--hero {
+  align-items: stretch;
+}
+.media-plate--hero::after { display: none; }
+.media-plate--hero .plate-caption { display: none; }
+.media-plate--hero-caption {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* ---- media figure with real photography ---- */
+figure.photo { margin: 0; }
+figure.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+figure.photo figcaption {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  color: var(--c-charcoal);
+  opacity: 0.7;
+}
+
+/* ---- scroll-entry choreography ----
+   Applied selectively (see comments in each page) — not every section
+   moves. Respects prefers-reduced-motion; JS adds .is-visible once, on
+   first intersection, so this never re-triggers on scroll-back. */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- links within body copy ---- */
+.link-underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--c-line-strong);
+}
+.link-underline:hover { text-decoration-color: currentColor; }

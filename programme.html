@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <title>Programme — Memory Library</title>
+  <meta name="description" content="What's on at Memory Library: exhibitions, talks, workshops, screenings and performances at Boathouse 5, Portsmouth, 13–21 November 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/motion.css" />
+</head>
+<body data-page="programme">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="section-pad-sm">
+      <div class="wrap">
+        <div class="grid" style="align-items:baseline;">
+          <h1 class="t-display" style="grid-column: 1 / span 8; font-size: clamp(2.25rem, 1.8rem + 3vw, 4.5rem);">Programme</h1>
+          <p class="t-body measure" style="grid-column: 9 / span 4; opacity:.8;">Exhibitions, talks, workshops, screenings and performances. 13–21 November 2026, Boathouse 5.</p>
+        </div>
+      </div>
+    </section>
+
+    <div id="live-strip"></div>
+
+    <nav class="date-nav" id="date-nav" aria-label="Select date">
+      <div class="date-nav__inner" id="date-nav-inner"></div>
+    </nav>
+
+    <section class="section-pad-sm">
+      <div class="wrap">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: var(--space-4); margin-bottom: var(--space-6);">
+          <div class="view-toggle" id="view-toggle" role="tablist" aria-label="Programme view">
+            <button type="button" role="tab" data-view="list" aria-pressed="true">What's On</button>
+            <button type="button" role="tab" data-view="timetable" aria-pressed="false">Timetable</button>
+          </div>
+          <details id="filters-disclosure">
+            <summary class="btn-line" style="cursor:pointer;">Filters</summary>
+            <div class="grid" style="margin-top: var(--space-4); gap: var(--space-6);">
+              <div class="filter-group" style="grid-column: 1 / span 6;">
+                <span class="filter-group__label">Type</span>
+                <div class="filter-bar" id="filter-type"></div>
+              </div>
+              <div class="filter-group" style="grid-column: 7 / span 6;">
+                <span class="filter-group__label">Strand</span>
+                <div class="filter-bar" id="filter-strand"></div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div id="opening-hours-note" class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);"></div>
+
+        <div id="view-list"></div>
+        <div id="view-timetable" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="js/nav.js"></script>
+  <script type="module" src="js/reveal.js"></script>
+  <script type="module" src="js/programme-page.js"></script>
+</body>
+</html>

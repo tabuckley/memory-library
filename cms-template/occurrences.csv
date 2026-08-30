@@ -1,0 +1,21 @@
+id,eventId,date,startTime,endTime,locationId,note,confirmed
+occ-people-library-1,ev-people-library,2026-11-13,18:00,22:00,main,,TRUE
+occ-pmf-open,ev-past-makes-future,2026-11-14,13:00,18:00,main,Full running order on the Past Makes Future page,TRUE
+occ-bangladesh,ev-bangladesh-presentation,2026-11-14,14:15,14:45,main,,TRUE
+occ-cairo,ev-cairo-presentation,2026-11-14,14:45,15:15,main,,TRUE
+occ-engine-creativity,ev-engine-creativity,2026-11-14,17:30,18:15,main,,TRUE
+occ-pageant,ev-pageant,2026-11-14,20:00,22:30,main,,TRUE
+occ-people-library-2,ev-people-library,2026-11-15,11:00,13:00,main,,TRUE
+occ-bangladesh-workshop,ev-bangladesh-workshop,2026-11-15,14:00,15:30,main,,FALSE
+occ-bangladesh-screening,ev-bangladesh-screening,2026-11-15,16:00,17:00,cinema,,FALSE
+occ-people-library-16,ev-people-library,2026-11-16,11:00,13:00,main,,TRUE
+occ-people-library-17,ev-people-library,2026-11-17,11:00,13:00,main,,TRUE
+occ-people-library-18,ev-people-library,2026-11-18,11:00,13:00,main,,TRUE
+occ-people-library-3,ev-people-library,2026-11-19,11:00,13:00,main,,TRUE
+occ-we-shine-1,ev-we-shine-lates,2026-11-19,17:00,21:00,exterior,,FALSE
+occ-people-library-4,ev-people-library,2026-11-20,11:00,13:00,main,,TRUE
+occ-egypt-workshop,ev-egypt-workshop,2026-11-20,14:00,15:30,main,,FALSE
+occ-we-shine-2,ev-we-shine-lates,2026-11-20,17:00,21:00,exterior,,FALSE
+occ-people-library-5,ev-people-library,2026-11-21,11:00,13:00,main,,TRUE
+occ-lebanon-workshop,ev-lebanon-workshop,2026-11-21,14:00,15:30,main,,FALSE
+occ-we-shine-3,ev-we-shine-lates,2026-11-21,17:00,21:00,exterior,,FALSE

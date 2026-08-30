@@ -1,0 +1,50 @@
+[
+  {
+    "id": "portsmouth",
+    "name": "Portsmouth",
+    "country": "United Kingdom",
+    "role": "Host city",
+    "description": "Home of Play Office and Boathouse 5. Memory Library begins from Portsmouth's own overlooked and everyday heritage.",
+    "confirmed": true
+  },
+  {
+    "id": "bangladesh",
+    "name": "Bangladesh",
+    "country": "Bangladesh",
+    "role": "Exchange",
+    "description": "International exchange partner city, connected through artist presentation and collaboration.",
+    "confirmed": true
+  },
+  {
+    "id": "cairo",
+    "name": "Cairo",
+    "country": "Egypt",
+    "role": "Exchange",
+    "description": "International exchange partner city, connected through artist presentation and collaboration.",
+    "confirmed": true
+  },
+  {
+    "id": "lebanon",
+    "name": "Lebanon",
+    "country": "Lebanon",
+    "role": "Exchange",
+    "description": "International exchange partner, part of Memory Library's wider network of places.",
+    "confirmed": true
+  },
+  {
+    "id": "malta",
+    "name": "Malta",
+    "country": "Malta",
+    "role": "Exchange",
+    "description": "International exchange partner, part of Memory Library's wider network of places.",
+    "confirmed": true
+  },
+  {
+    "id": "jersey",
+    "name": "Jersey",
+    "country": "Channel Islands",
+    "role": "Exchange",
+    "description": "International exchange partner, part of Memory Library's wider network of places.",
+    "confirmed": true
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "name": "memory-library",
+  "version": "0.1.0",
+  "description": "Memory Library — public programme, exhibition and archive site. Produced by Play Office, Boathouse 5, Portsmouth, November 2026.",
+  "private": true,
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "license": "UNLICENSED"
+}

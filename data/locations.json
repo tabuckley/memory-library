@@ -1,0 +1,30 @@
+[
+  {
+    "id": "entrance-bar",
+    "name": "Entrance & Bar",
+    "shortName": "Entrance",
+    "description": "Arrival, ticketing, bar and the first encounter with the programme.",
+    "confirmed": false
+  },
+  {
+    "id": "main",
+    "name": "Main Space",
+    "shortName": "Main Space",
+    "description": "Boathouse 5's main hall — exhibition, talks, presentations and performance.",
+    "confirmed": false
+  },
+  {
+    "id": "cinema",
+    "name": "Cinema",
+    "shortName": "Cinema",
+    "description": "Screenings and moving-image work.",
+    "confirmed": false
+  },
+  {
+    "id": "exterior",
+    "name": "Exterior",
+    "shortName": "Exterior",
+    "description": "The dock frontage outside Boathouse 5 — evening projection and We Shine activity.",
+    "confirmed": false
+  }
+]

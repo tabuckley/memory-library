@@ -1,0 +1,11 @@
+[
+  { "date": "2026-11-13", "open": "10:00", "close": "22:00", "note": null, "confirmed": false },
+  { "date": "2026-11-14", "open": "10:00", "close": "23:00", "note": "Past Makes Future", "confirmed": false },
+  { "date": "2026-11-15", "open": "10:00", "close": "17:00", "note": null, "confirmed": false },
+  { "date": "2026-11-16", "open": "10:00", "close": "17:00", "note": null, "confirmed": false },
+  { "date": "2026-11-17", "open": "10:00", "close": "17:00", "note": null, "confirmed": false },
+  { "date": "2026-11-18", "open": "10:00", "close": "17:00", "note": null, "confirmed": false },
+  { "date": "2026-11-19", "open": "10:00", "close": "21:00", "note": "We Shine", "confirmed": false },
+  { "date": "2026-11-20", "open": "10:00", "close": "21:00", "note": "We Shine", "confirmed": false },
+  { "date": "2026-11-21", "open": "10:00", "close": "21:00", "note": "We Shine — closing night", "confirmed": false }
+]

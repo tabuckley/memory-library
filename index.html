@@ -1,13 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Library</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <title>Memory Library — Boathouse 5, Portsmouth, November 2026</title>
+  <meta name="description" content="Memory Library is a programme of exhibitions, artworks, talks, workshops and international exchange exploring memory, place, heritage and technology. Boathouse 5, Portsmouth Historic Dockyard, November 2026. Produced by Play Office." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/motion.css" />
 </head>
-<body>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
 
-    <script src="script.js"></script>
+  <main id="main">
+
+    <!-- ================= HERO ================= -->
+    <!-- The scroll-stage/sticky wrapper only does anything in browsers that
+         support CSS view() timelines (current Chromium) — see the
+         @supports block in components.css. Elsewhere this collapses to a
+         plain static hero, identical to before. -->
+    <div class="hero-scroll-stage">
+      <section class="hero-scroll-sticky">
+        <div class="wrap">
+          <div class="hero-frame__media">
+            <video class="hero-photo" poster="assets/img/boathouse-night-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+              <source src="assets/video/boathouse-night.mp4" type="video/mp4" />
+            </video>
+            <h1 class="hero-frame__logo">
+              <img src="assets/logo/ml-logo-white.png" alt="Memory Library" />
+            </h1>
+            <div class="hero-frame__meta t-meta">
+              <p>Portsmouth<br />2026</p>
+              <p>Boathouse 5<br />Portsmouth Historic Dockyard</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= STATEMENT ================= -->
+    <section class="section-pad-sm">
+      <div class="wrap">
+        <div class="grid">
+          <div class="statement-mark" style="grid-column: 1 / span 3; grid-row: 1 / 3;">
+            <img src="assets/logo/ml-logo-black.png" alt="Memory Library" />
+          </div>
+          <p class="t-intro measure" style="grid-column: 4 / span 7; grid-row: 1;">
+            An evolving programme of exhibitions, artworks, talks, workshops, screenings, performances, artist development and international exchange exploring memory, place, heritage, technology and connection.
+          </p>
+          <div style="grid-column: 4 / span 4; grid-row: 2; margin-top: var(--space-12);">
+            <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-1);">Where</p>
+            <p class="t-body">Boathouse 5, Portsmouth Historic Dockyard</p>
+          </div>
+          <div style="grid-column: 8 / span 2; grid-row: 2; margin-top: var(--space-12);">
+            <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-1);">When</p>
+            <p class="t-body">November 2026</p>
+          </div>
+          <div style="grid-column: 10 / span 3; grid-row: 2; margin-top: var(--space-12);">
+            <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-1);">Produced by</p>
+            <p class="t-body">Play Office</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NOW / NEXT (dynamic) ================= -->
+    <section id="live-programme" aria-live="polite"></section>
+
+    <!-- ================= STATEMENT 2 ================= -->
+    <section class="section-pad-sm reveal">
+      <div class="wrap">
+        <div class="grid" style="align-items: start;">
+          <p class="t-title" style="grid-column: 1 / span 5;">A new public space for memory</p>
+          <div style="grid-column: 7 / span 6;">
+            <p class="t-body measure" style="opacity: .85;">
+              Memory Library brings heritage, creative technology, artist development and international exchange into one visible, accessible programme — asking how a city can use digital culture to remember, care and connect.
+            </p>
+            <p style="margin-top: var(--space-6);"><a class="btn-line" href="about.html">About the programme →</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FULL-BLEED IMAGE MOMENT ================= -->
+    <div class="full-bleed-media reveal">
+      <img src="assets/img/placeholder/ph-blue.jpg" alt="" loading="lazy" />
+      <p class="full-bleed-media__caption">Placeholder — commissioned photography and film to follow</p>
+    </div>
+
+    <!-- ================= SELECTED WORK (dynamic) ================= -->
+    <section id="selected-work" class="section-pad tone-paper"></section>
+
+    <!-- ================= PAST MAKES FUTURE TEASER ================= -->
+    <section class="section-pad-sm tone-foxed reveal">
+      <div class="wrap">
+        <div class="grid" style="align-items:center;">
+          <div style="grid-column: 1 / span 7;">
+            <p class="t-meta" style="opacity:.6; margin-bottom: var(--space-3);">Sat 14 Nov 2026</p>
+            <img src="assets/logo/pmf-logo-black.png" alt="Past Makes Future" style="width: 100%; max-width: 340px; height: auto; display:block; margin-bottom: var(--space-4);" />
+            <p class="t-body measure" style="opacity:.85;">A one-day conference and gathering, with international artist presentations by day and Pageant by night.</p>
+          </div>
+          <div style="grid-column: 9 / span 4;">
+            <p style="margin-top: var(--space-4);"><a class="btn-line" href="past-makes-future.html">See the full running order →</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ARTISTS TEASER ================= -->
+    <section class="section-pad-sm reveal">
+      <div class="wrap">
+        <div class="grid" style="align-items:baseline;">
+          <p class="t-title" style="grid-column: 1 / span 6;">Artists &amp; exchange</p>
+          <p class="t-body measure" style="grid-column: 7 / span 5; opacity:.8;">
+            Memory Library brings together artists and collaborators from Portsmouth, Bangladesh, Cairo, Lebanon, Malta and Jersey through Resonate, Play Office's artist development programme.
+          </p>
+        </div>
+        <p style="margin-top: var(--space-8);"><a class="btn-line" href="artists.html">View all artists →</a></p>
+      </div>
+    </section>
+
+    <!-- ================= LEAVE A MEMORY TEASER ================= -->
+    <section class="section-pad tone-black reveal">
+      <div class="wrap">
+        <div class="grid" style="align-items:end;">
+          <p class="t-title" style="grid-column: 1 / span 7;">Have a memory, object or photograph connected to Portsmouth?</p>
+          <div style="grid-column: 9 / span 4;">
+            <p class="t-body" style="opacity:.85;">Memory Library is built from the everyday stories of the people who make up this city. Bring yours with you, or get in touch ahead of time.</p>
+            <p style="margin-top: var(--space-6);"><a class="btn-line" href="memory.html">Leave a memory →</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SUPPORTED BY ================= -->
+    <section class="section-pad-sm reveal">
+      <div class="wrap">
+        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-8);">Supported by</p>
+        <div class="partner-strip">
+          <img src="assets/logo/partners/arts-council-england.png" alt="Arts Council England — Supported using public funding by Arts Council England, Lottery Funded" />
+          <img src="assets/logo/partners/british-council.png" alt="British Council" />
+          <img src="assets/logo/partners/portsmouth-creates.png" alt="Portsmouth Creates" />
+          <img src="assets/logo/partners/phq.png" alt="Portsmouth Historic Quarter" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="js/nav.js"></script>
+  <script type="module" src="js/reveal.js"></script>
+  <script type="module" src="js/home.js"></script>
 </body>
 </html>

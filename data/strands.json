@@ -1,0 +1,52 @@
+[
+  {
+    "id": "memory-library",
+    "name": "Memory Library",
+    "kind": "umbrella",
+    "tone": "none",
+    "description": "The full programme: exhibitions, artworks, talks, workshops, screenings, performances and exchange exploring memory, place, heritage, technology and connection.",
+    "dateStart": "2026-11-13",
+    "dateEnd": "2026-11-21",
+    "confirmed": true
+  },
+  {
+    "id": "resonate",
+    "name": "Resonate",
+    "kind": "strand",
+    "tone": "blue",
+    "description": "Play Office's artist development programme. Work made through Resonate runs throughout Memory Library.",
+    "dateStart": "2026-11-13",
+    "dateEnd": "2026-11-21",
+    "confirmed": true
+  },
+  {
+    "id": "past-makes-future",
+    "name": "Past Makes Future",
+    "kind": "special-day",
+    "tone": "ochre",
+    "description": "A one-day conference and gathering, with international artist presentations by day and Pageant by night.",
+    "dateStart": "2026-11-14",
+    "dateEnd": "2026-11-14",
+    "confirmed": true
+  },
+  {
+    "id": "we-shine",
+    "name": "We Shine",
+    "kind": "special-days",
+    "tone": "mint",
+    "description": "Memory Library becomes a new hub within We Shine, Portsmouth's light festival — the daytime exhibition continues while Boathouse 5 opens into the evening.",
+    "dateStart": "2026-11-19",
+    "dateEnd": "2026-11-21",
+    "confirmed": true
+  },
+  {
+    "id": "people-library",
+    "name": "People Library",
+    "kind": "strand",
+    "tone": "none",
+    "description": "A recurring participatory strand — people, not books, are the collection. Drop in and listen.",
+    "dateStart": "2026-11-13",
+    "dateEnd": "2026-11-21",
+    "confirmed": false
+  }
+]

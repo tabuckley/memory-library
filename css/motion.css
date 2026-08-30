@@ -1,0 +1,30 @@
+/* Memory Library — cross-document View Transitions.
+
+   Opts every same-origin navigation on the site into the browser's native
+   View Transition. Where a teaser image and its detail-page hero share a
+   `view-transition-name` (set inline per item — see js/data.js `vtName`),
+   the browser morphs that exact element across the navigation instead of
+   hard-cutting; everything else gets a quiet default cross-fade.
+
+   No JS required — this is the newer cross-document view-transition spec,
+   triggered by the browser itself on navigation. Unsupported browsers
+   (anything outside current Chromium) simply navigate normally; nothing
+   here is load-bearing for functionality. */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

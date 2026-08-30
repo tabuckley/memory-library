@@ -1,0 +1,95 @@
+/*
+  Memory Library — design tokens.
+
+  Typography note: the identity face is Futura PT Medium (see /assets/logo).
+  Futura PT is a licensed Monotype face and is not bundled with this
+  prototype. --font-display below uses Jost (Google Fonts) as a structurally
+  close, freely-licensed stand-in so display type reads correctly ahead of
+  licensing. Swap the @import in fonts.css + this variable when the licensed
+  font is available. Do not substitute it in the logo itself — that is a
+  fixed image asset (/assets/logo/ml-logo-black.png, ml-logo-white.png).
+*/
+
+:root {
+  /* ---- colour: core ---- */
+  --c-archive-white: #FAFAF7;
+  --c-library-black: #111111;
+  --c-paper-white: #F3F0E8;
+  --c-charcoal: #292927;
+
+  /* ---- colour: foxed / archival tones ---- */
+  --c-foxed-paper: #E6DDCA;
+  --c-faded-ochre: #C8B38C;
+  --c-dust: #D2C9BA;
+  --c-old-label: #B9AC96;
+
+  /* ---- colour: faded institutional tones ---- */
+  --c-faded-blue: #B8CAD0;
+  --c-desat-mint: #B9C8BC;
+
+  /* ---- colour: functional aliases ---- */
+  --c-bg: var(--c-archive-white);
+  --c-fg: var(--c-library-black);
+  --c-line: #D8D5CC;
+  --c-line-strong: #B7B3A8;
+
+  /* ---- type families ---- */
+  --font-display: 'Jost', 'Futura PT', 'Century Gothic', 'Avenir Next', sans-serif;
+  --font-editorial: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', 'Courier New', monospace;
+
+  /* ---- type scale (fluid) ---- */
+  --size-display: clamp(2.75rem, 2.1rem + 5.2vw, 7.5rem);
+  --size-title: clamp(1.75rem, 1.4rem + 1.8vw, 3rem);
+  --size-intro: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+  --size-body: clamp(1rem, 0.94rem + 0.25vw, 1.15rem);
+  --size-small: clamp(0.875rem, 0.84rem + 0.15vw, 0.95rem);
+  --size-meta: clamp(0.6875rem, 0.66rem + 0.1vw, 0.8125rem);
+
+  --leading-tight: 1.05;
+  --leading-title: 1.15;
+  --leading-body: 1.6;
+  --leading-meta: 1.4;
+
+  --tracking-meta: 0.08em;
+  --tracking-wide: 0.02em;
+
+  /* ---- spacing ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  --gutter: clamp(1.25rem, 1rem + 1.5vw, 3rem);
+  --margin: clamp(1.25rem, 0.5rem + 3.5vw, 6rem);
+  --content-max: 1560px;
+  --measure: 38em;
+
+  /* ---- grid ---- */
+  --grid-cols: 12;
+  --grid-gap: clamp(0.875rem, 0.6rem + 0.9vw, 1.5rem);
+
+  /* ---- motion ---- */
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+
+  /* ---- misc ---- */
+  --radius: 2px;
+  --focus-ring: 2px solid var(--c-library-black);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}
