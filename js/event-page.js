@@ -12,6 +12,13 @@ function openDaysFor(event, data) {
   return data.openingHours.filter((h) => h.date >= event.dateStart && h.date <= event.dateEnd);
 }
 
+// A handful of events carry their own wordmark (matching the treatment
+// Past Makes Future already gets on its dedicated page) rather than
+// rendering the title as plain text.
+const EVENT_LOGOS = {
+  "ev-exhibition": "assets/logo/resonate-logo-black.png",
+};
+
 async function main() {
   const data = await loadData();
   const params = new URLSearchParams(location.search);
@@ -31,7 +38,9 @@ async function main() {
       <div class="wrap">
         <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-4);">${event.type}${strand ? ` · ${strand.name}` : ""}${place ? ` · ${place.name}` : ""}</p>
         <div class="grid" style="align-items:start;">
-          <h1 class="t-display" style="grid-column: 1 / span 9; font-size: clamp(2.25rem, 1.5rem + 4.5vw, 6rem); margin-bottom: var(--space-6);">${event.title}</h1>
+          <h1 class="t-display" style="grid-column: 1 / span 9; font-size: clamp(2.25rem, 1.5rem + 4.5vw, 6rem); margin-bottom: var(--space-6);">
+            ${EVENT_LOGOS[event.id] ? `<img src="${EVENT_LOGOS[event.id]}" alt="${event.title}" style="width: 100%; max-width: 320px; height: auto; display: block;" />` : event.title}
+          </h1>
           <div style="grid-column: 10 / span 3;" class="t-meta">
             ${artists.length ? `
             <p style="opacity:.55; margin-bottom: var(--space-1);">Artist</p>

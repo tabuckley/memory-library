@@ -1,4 +1,4 @@
-import { loadData, plateImg, resolveIfAllIds } from "./data.js";
+import { loadData, resolveIfAllIds } from "./data.js";
 
 // The "who" column is normally free text (a name, "TB hosts", "Judges: CP,
 // Mistly & TBC"). It can also carry real artist ids instead — if every
@@ -40,7 +40,7 @@ async function main() {
         <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-4);"><a class="link-underline" href="programme.html">Programme</a> · Special Event</p>
         <div class="grid" style="align-items:start;">
           <h1 style="grid-column: 1 / span 8; margin: 0 0 var(--space-6);">
-            <img src="assets/logo/pmf-logo-black.png" alt="${strand.name}" style="width: 100%; max-width: 520px; height: auto; display:block;" />
+            <img src="assets/logo/pmf-logo-black.png" alt="${strand.name}" style="width: 100%; max-width: 300px; height: auto; display:block;" />
           </h1>
           <div style="grid-column: 10 / span 3;" class="t-meta">
             <p style="opacity:.55; margin-bottom: var(--space-1);">Date</p>
@@ -56,9 +56,8 @@ async function main() {
     <section class="section-pad-sm">
       <div class="wrap">
         <div class="media-plate media-plate--hero" style="--plate-ratio: 21/9; view-transition-name: pmf-hero;">
-          ${plateImg("past-makes-future")}
+          <img class="plate-photo" src="assets/img/past-makes-future.jpg" alt="Audience members listening intently at a past Play Office artist development conference." loading="lazy" />
         </div>
-        <p class="media-plate--hero-caption">Placeholder — event photography to follow</p>
       </div>
     </section>
 

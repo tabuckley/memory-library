@@ -24,42 +24,51 @@ function festivalRunLabel(data) {
   return `${ordinal(start.getDate())}–${ordinal(end.getDate())} ${month} ${end.getFullYear()}`;
 }
 
+// Past Makes Future's conference and pageant share a page rather than
+// getting their own event.html entries — same routing programme-page.js
+// uses for these two ids.
+function eventHref(event) {
+  if (!event) return null;
+  if (event.id === "ev-past-makes-future") return "past-makes-future.html";
+  if (event.id === "ev-pageant") return "past-makes-future.html#pageant";
+  return `event.html?slug=${event.id}`;
+}
+
 function renderLive(data, now) {
   const host = document.getElementById("live-programme");
   const result = computeNowNext(data, now);
   let cellA, cellB;
 
   if (result.phase === "before") {
-    cellA = { label: "Open", title: festivalRunLabel(data), body: "Boathouse 5, Portsmouth Historic Dockyard." };
+    cellA = { label: "Open", title: festivalRunLabel(data), body: "Boathouse 5, Portsmouth Historic Dockyard.", href: "programme.html" };
     cellB = result.next
-      ? { label: "What's next", title: result.next.event.title, body: occTeaser(result.next) }
+      ? { label: "What's next", title: result.next.event.title, body: occTeaser(result.next), href: eventHref(result.next.event) }
       : { label: "Programme", title: "Coming soon", body: "" };
   } else if (result.phase === "during") {
     const nowItem = (result.now && result.now[0]) || (result.ongoing && result.ongoing[0] && { event: result.ongoing[0].event, isOngoing: true });
     cellA = nowItem
-      ? { label: "Happening now", title: nowItem.event.title, body: nowItem.isOngoing ? "Open now · see Programme for full listing" : occTeaser(nowItem) }
-      : { label: "Happening now", title: "Between events", body: "See what's next." };
+      ? { label: "Happening now", title: nowItem.event.title, body: nowItem.isOngoing ? "Open now · see Programme for full listing" : occTeaser(nowItem), href: eventHref(nowItem.event) }
+      : { label: "Happening now", title: "Between events", body: "See what's next.", href: "programme.html" };
     cellB = result.next
-      ? { label: "Next", title: result.next.event.title, body: occTeaser(result.next) }
+      ? { label: "Next", title: result.next.event.title, body: occTeaser(result.next), href: eventHref(result.next.event) }
       : { label: "Next", title: "That's the day", body: "" };
   } else {
     cellA = { label: "Memory Library", title: "This edition has closed", body: "Thank you to everyone who took part." };
     cellB = { label: "Archive", title: "The programme lives on", body: "Browse what was made, said and collected." };
   }
 
-  host.innerHTML = `
-    <div class="now-next">
-      <div class="now-next__cell">
-        <p class="now-next__label">${cellA.label}</p>
-        <p class="now-next__title">${cellA.title}</p>
-        <p class="t-small" style="opacity:.75;">${cellA.body}</p>
-      </div>
-      <div class="now-next__cell">
-        <p class="now-next__label">${cellB.label}</p>
-        <p class="now-next__title">${cellB.title}</p>
-        <p class="t-small" style="opacity:.75;">${cellB.body}</p>
-      </div>
-    </div>`;
+  const cell = (c) => {
+    const tag = c.href ? "a" : "div";
+    const hrefAttr = c.href ? ` href="${c.href}"` : "";
+    return `
+      <${tag} class="now-next__cell"${hrefAttr}>
+        <p class="now-next__label">${c.label}</p>
+        <p class="now-next__title">${c.title}</p>
+        <p class="t-small" style="opacity:.75;">${c.body}</p>
+      </${tag}>`;
+  };
+
+  host.innerHTML = `<div class="now-next">${cell(cellA)}${cell(cellB)}</div>`;
 }
 
 function renderSelectedWork(data) {
