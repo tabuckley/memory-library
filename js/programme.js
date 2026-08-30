@@ -53,9 +53,8 @@ export function expandOccurrences(data) {
     const strand = data.byId.strand[event.strandId];
     if (!strand) { console.warn(`[programme] event "${event.id}" references missing strand id "${event.strandId}" — skipping its occurrence "${occ.id}".`); return null; }
     const artists = resolveRefs(event.artistIds, data.byId.artist, "artist");
-    const projects = resolveRefs(event.projectIds, data.byId.project, "project");
     return {
-      occ, event, location, strand, artists, projects,
+      occ, event, location, strand, artists,
       start: new Date(`${occ.date}T${occ.startTime}:00`),
       end: new Date(`${occ.date}T${occ.endTime}:00`),
       doors: occ.doorsTime ? new Date(`${occ.date}T${occ.doorsTime}:00`) : null,
@@ -74,7 +73,6 @@ export function ongoingForDate(data, dateStr) {
         event,
         strand,
         locations: resolveRefs(event.locationIds, data.byId.location, "location"),
-        projects: resolveRefs(event.projectIds, data.byId.project, "project"),
       };
     })
     .filter(Boolean);

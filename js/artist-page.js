@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName, resolveRefs } from "./data.js";
+import { loadData, plateImg, vtName } from "./data.js";
 import { expandOccurrences, dateLabel, timeRange } from "./programme.js";
 
 async function main() {
@@ -24,7 +24,7 @@ async function main() {
   document.title = `${artist.name} — Memory Library`;
 
   const place = data.byId.place[artist.placeId];
-  const projects = resolveRefs(artist.projectIds, data.byId.project, "project");
+  const featuredWork = data.events.filter((e) => e.mode === "ongoing" && e.artistIds.includes(artist.id));
   const expanded = expandOccurrences(data).filter((x) => x.artists.some((a) => a.id === artist.id));
 
   host.innerHTML = `
@@ -52,23 +52,23 @@ async function main() {
       </div>
     </section>
 
-    ${projects.length ? `
+    ${featuredWork.length ? `
     <section class="section-pad-sm tone-paper reveal">
       <div class="wrap">
-        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">Project</p>
+        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">${featuredWork.length > 1 ? "Work" : "Project"}</p>
         <div class="grid">
-          ${projects.map((p) => `
-            <a href="project.html?slug=${p.id}" style="grid-column: 1 / span 12;" class="grid">
+          ${featuredWork.map((e) => `
+            <a href="event.html?slug=${e.id}" style="grid-column: 1 / span 12;" class="grid">
               <div style="grid-column: 1 / span 4;">
-                <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("proj", p.id)};">
-                  ${plateImg(p.id, "landscape", p.mediaUrl)}
-                  <span class="plate-caption">${p.mediaCaption}</span>
+                <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("event", e.id)};">
+                  ${plateImg(e.id, "landscape", e.imageUrl)}
+                  ${e.mediaCaption ? `<span class="plate-caption">${e.mediaCaption}</span>` : ""}
                 </div>
               </div>
               <div style="grid-column: 6 / span 7;">
-                <p class="t-title">${p.title}</p>
-                <p class="t-body" style="opacity:.8; margin-top: var(--space-2);">${p.intro}</p>
-                <p class="t-meta" style="opacity:.6; margin-top: var(--space-3);">${p.type} · ${p.year}</p>
+                <p class="t-title">${e.title}</p>
+                <p class="t-body" style="opacity:.8; margin-top: var(--space-2);">${e.summary}</p>
+                <p class="t-meta" style="opacity:.6; margin-top: var(--space-3);">${e.type}${e.year ? " · " + e.year : ""}</p>
               </div>
             </a>`).join("")}
         </div>

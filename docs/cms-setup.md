@@ -1,21 +1,28 @@
 # Editing content via Google Sheets
 
-Artists, projects, events, occurrences (dates/times) and the Past Makes
-Future running order can be edited in a Google Sheet instead of the JSON
-files in `data/`. Everything else — places, strands, locations, opening
-hours — stays in `data/*.json`, since it barely changes and defines how
-the rest of the model fits together.
+Artists, events, occurrences (dates/times) and the Past Makes Future
+running order can be edited in a Google Sheet instead of the JSON files
+in `data/`. Everything else — places, strands, locations, opening hours —
+stays in `data/*.json`, since it barely changes and defines how the rest
+of the model fits together.
+
+There's no separate "projects" table. Exhibitions/artworks live as rows
+in the same `events` tab as talks and workshops — every project needs a
+date range, a location and a booking status to be useful to a visitor
+anyway, so it's just an event with richer content (`imageUrl`, `body`,
+`year`) and `mode` set to `ongoing`. Link an artist to anything — a talk,
+a workshop, an exhibited work — the same way: add their id to that
+event's `artistIds` column.
 
 ## One-time setup
 
-1. **Create the sheet.** Make a new Google Sheet with five tabs named
-   `artists`, `projects`, `events`, `occurrences` and `pmf-sessions`.
-   Import the matching file from `cms-template/` into each tab (File →
-   Import → Upload → Insert new sheet(s)) — `projects.csv`, `events.csv`,
-   `occurrences.csv` and `pmf-sessions.csv` already contain the real
-   current programme, so the sheet starts pre-filled instead of empty.
-   `artists.csv` has one example row — overwrite it with real artists as
-   they're confirmed.
+1. **Create the sheet.** Make a new Google Sheet with four tabs named
+   `artists`, `events`, `occurrences` and `pmf-sessions`. Import the
+   matching file from `cms-template/` into each tab (File → Import →
+   Upload → Insert new sheet(s)) — `events.csv`, `occurrences.csv` and
+   `pmf-sessions.csv` already contain the real current programme, so the
+   sheet starts pre-filled instead of empty. `artists.csv` has one
+   example row — overwrite it with real artists as they're confirmed.
 
 2. **Share the sheet by link.** Click **Share** (top right) → change
    "General access" to **Anyone with the link**, role **Viewer** → Done.
@@ -32,8 +39,8 @@ the rest of the model fits together.
    const SHEET_ID = "your-spreadsheet-id-here";
    ```
 
-   The three tab URLs (`SHEET_CSV_URLS`) are built from `SHEET_ID`
-   automatically by tab name — nothing else to configure.
+   The tab URLs (`SHEET_CSV_URLS`) are built from `SHEET_ID` automatically
+   by tab name — nothing else to configure.
 
 That's it — from then on, editing a cell in the sheet updates the live
 site immediately (no republish delay, no redeploy). Blanking out one of
@@ -46,28 +53,29 @@ Just edit the sheet. A few things to know:
 - **`id` is required and must be unique** within its tab (e.g. `artist-jane-doe`,
   `ev-new-workshop`). Nothing else references a row by anything but this id,
   so once you've picked one for a real event, don't change it — anything
-  linking to it (occurrences, artist project links) would break.
-- **List fields** (`projectIds`, `artistIds`, `locationIds`) take multiple
-  ids in a single cell, separated by commas, spaces, or both — e.g.
-  `queer-at-sea, salt-line` or `queer-at-sea salt-line` both work.
-- **`projectIds` on an artist must be ids from the `projects` tab only** —
-  not `events` or `occurrences` ids. To connect an artist to something on
-  the schedule instead (a talk, workshop, screening), add that artist's id
-  to the **event's own `artistIds` column** — their page picks it up
-  automatically under "On the programme." A mismatched id here won't break
-  the site, but it also won't do anything.
+  linking to it (occurrences, an artist's `artistIds`) would break.
+- **List fields** (`artistIds`, `locationIds`) take multiple ids in a
+  single cell, separated by commas, spaces, or both — e.g.
+  `artist-jane-doe, artist-sam-lee` or `artist-jane-doe artist-sam-lee`
+  both work.
 - **`confirmed`** takes `TRUE` or `FALSE`.
 - **Leave a cell empty** for anything optional (`bookingUrl`, `ageGuidance`,
-  `note`, `portraitCaption`, `dateStart`/`dateEnd` for timed events).
+  `note`, `portraitCaption`, `year`, `placeId`, `mediaCaption`,
+  `dateStart`/`dateEnd` for timed events).
 - **`bookingUrl`** — paste a full link (e.g. an Eventbrite page) and a
-  "Book →" link appears on the programme automatically; leave it blank for
-  free/drop-in events.
+  "Book →" link appears automatically; leave it blank for free/drop-in
+  events.
 - **`photoUrl` (artists) / `imageUrl` (events)** — upload the photo to a
   Google Drive folder, get its shareable link (Share → "Anyone with the
   link"), paste that link straight into the cell. Leave blank and that
   artist/event just keeps showing the site's placeholder image — nothing
   breaks. Any of Drive's usual link formats works
   (`.../file/d/FILE_ID/view?usp=sharing` or `.../open?id=FILE_ID`).
+- **Giving an event its own fuller page**: any event automatically gets a
+  detail page at `event.html?slug=<id>` — the programme links to it
+  already. Fill in `imageUrl`, `body` (a longer paragraph) and `year` to
+  make that page worth visiting; leave them blank and it still works,
+  just sparser (title, type, summary, booking info).
 - A row missing an `id` is skipped entirely, so it's safe to leave a blank
   row at the bottom of a tab for typing into.
 
@@ -81,16 +89,14 @@ events.json — …` and the site will keep showing the last version saved in
 `data/events.json` instead of breaking or showing wrong content. This
 usually means either the sheet's general access got changed back to
 restricted (check Share → General access is still "Anyone with the link"),
-or a tab got renamed (tab names must stay exactly `artists`, `projects`,
-`events`, `occurrences`, `pmf-sessions`).
+or a tab got renamed (tab names must stay exactly `artists`, `events`,
+`occurrences`, `pmf-sessions`).
 
 ## Column reference
 
-**artists** — `id, name, discipline, placeId, bio, portraitCaption, projectIds, photoUrl, portfolioUrl, instagramUrl`
+**artists** — `id, name, discipline, placeId, bio, portraitCaption, photoUrl, portfolioUrl, instagramUrl`
 
-**projects** — `id, title, year, artistIds, strandId, placeId, type, intro, body, mediaCaption, mediaUrl, confirmed`
-
-**events** — `id, title, type, strandId, locationIds, artistIds, projectIds, summary, blurb, bookingStatus, bookingUrl, imageUrl, ageGuidance, mode, dateStart, dateEnd, confirmed`
+**events** — `id, title, type, strandId, locationIds, placeId, artistIds, year, summary, blurb, body, mediaCaption, bookingStatus, bookingUrl, imageUrl, ageGuidance, mode, dateStart, dateEnd, confirmed`
 
 **occurrences** — `id, eventId, date, startTime, endTime, locationId, note, confirmed`
 

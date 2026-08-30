@@ -169,9 +169,7 @@ async function main() {
   function detailHref(x) {
     if (x.event.id === "ev-past-makes-future") return "past-makes-future.html";
     if (x.event.id === "ev-pageant") return "past-makes-future.html#pageant";
-    if (x.projects[0]) return `project.html?slug=${x.projects[0].id}`;
-    if (x.artists[0]) return `artist.html?slug=${x.artists[0].id}`;
-    return null;
+    return `event.html?slug=${x.event.id}`;
   }
 
   function renderList() {
@@ -186,7 +184,7 @@ async function main() {
 
     const ongoingHtml = ongoing.map((o, i) => {
       const id = `ongoing-${i}`;
-      const href = o.projects?.[0] ? `project.html?slug=${o.projects[0].id}` : null;
+      const href = `event.html?slug=${o.event.id}`;
       const body = `
           <span class="prog-row__time t-meta">All day</span>
           <span class="prog-row__body">
@@ -195,9 +193,6 @@ async function main() {
             <span class="prog-row__sub">${o.event.type} · ${o.locations.map((l) => l.shortName).join(" · ")}</span>
           </span>
           <span class="prog-row__status"><span class="status">${o.event.bookingStatus}</span></span>`;
-      if (!href && !o.event.bookingUrl && !o.event.imageUrl) {
-        return `<div class="prog-row prog-row--ongoing"><div class="prog-row__trigger" style="cursor:default;">${body}</div></div>`;
-      }
       return `
       <div class="prog-row prog-row--ongoing">
         <button class="prog-row__trigger" type="button" aria-expanded="false" aria-controls="detail-${id}">
@@ -208,8 +203,9 @@ async function main() {
           <div class="prog-row__detail-inner">
             <div class="prog-row__detail-content">
               ${o.event.imageUrl ? `<div class="media-plate" style="--plate-ratio: 16/10; max-width: 320px; margin-bottom: var(--space-3);">${plateImg(o.event.id, "landscape", o.event.imageUrl)}</div>` : ""}
-              ${href ? `<p style="margin-top: 0;"><a class="btn-line" href="${href}">More detail →</a></p>` : ""}
-              ${o.event.bookingUrl ? `<p style="margin-top: ${href ? "var(--space-3)" : "0"};"><a class="btn-line" href="${o.event.bookingUrl}" target="_blank" rel="noopener">Book →</a></p>` : ""}
+              ${o.event.body ? `<p class="t-body" style="opacity:.85; margin-bottom: var(--space-3);">${o.event.body}</p>` : ""}
+              <p style="margin-top: 0;"><a class="btn-line" href="${href}">More detail →</a></p>
+              ${o.event.bookingUrl ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${o.event.bookingUrl}" target="_blank" rel="noopener">Book →</a></p>` : ""}
             </div>
           </div>
         </div>
@@ -236,6 +232,7 @@ async function main() {
           <div class="prog-row__detail-inner">
             <div class="prog-row__detail-content">
               ${x.event.imageUrl ? `<div class="media-plate" style="--plate-ratio: 16/10; max-width: 320px; margin-bottom: var(--space-3);">${plateImg(x.event.id, "landscape", x.event.imageUrl)}</div>` : ""}
+              ${x.event.body ? `<p class="t-body" style="opacity:.85; margin-bottom: var(--space-3);">${x.event.body}</p>` : ""}
               ${x.occ.note ? `<p class="t-meta" style="opacity:.6;">${x.occ.note}</p>` : ""}
               ${x.artists.length ? `<p class="t-meta" style="opacity:.6; margin-top: var(--space-3);">${x.artists.map((a) => a.name).join(", ")}</p>` : ""}
               ${href ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${href}">More detail →</a></p>` : ""}

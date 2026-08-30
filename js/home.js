@@ -46,26 +46,26 @@ function renderLive(data, now) {
 
 function renderSelectedWork(data) {
   const host = document.getElementById("selected-work");
-  const feature = data.byId.project["queer-at-sea"];
+  const feature = data.byId.event["ev-queer-at-sea"];
   if (!feature) { host.innerHTML = ""; return; }
 
-  const artistName = (p) => (p.artistIds || []).map((id) => data.byId.artist[id]?.name).filter(Boolean).join(", ");
-  const placeName = (p) => data.byId.place[p.placeId]?.name || "";
+  const artistName = (e) => (e.artistIds || []).map((id) => data.byId.artist[id]?.name).filter(Boolean).join(", ");
+  const placeName = (e) => (e.placeId && data.byId.place[e.placeId]?.name) || "";
 
   host.innerHTML = `
     <div class="wrap">
       <p class="t-meta reveal" style="opacity:.55; margin-bottom: var(--space-8);">02 — Selected work</p>
-      <a href="project.html?slug=${feature.id}" class="grid reveal" style="align-items:center; text-decoration:none;">
+      <a href="event.html?slug=${feature.id}" class="grid reveal" style="align-items:center; text-decoration:none;">
         <div style="grid-column: 1 / span 7;">
-          <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("proj", feature.id)};">
-            ${plateImg(feature.id, "landscape", feature.mediaUrl)}
-            <span class="plate-caption">${feature.mediaCaption}</span>
+          <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("event", feature.id)};">
+            ${plateImg(feature.id, "landscape", feature.imageUrl)}
+            ${feature.mediaCaption ? `<span class="plate-caption">${feature.mediaCaption}</span>` : ""}
           </div>
         </div>
         <div style="grid-column: 9 / span 4;">
-          <p class="t-meta" style="opacity:.6; margin-bottom: var(--space-2);">${feature.type} · ${placeName(feature)}</p>
+          <p class="t-meta" style="opacity:.6; margin-bottom: var(--space-2);">${feature.type}${placeName(feature) ? " · " + placeName(feature) : ""}</p>
           <p class="t-title" style="margin-bottom: var(--space-3);">${feature.title}</p>
-          <p class="t-body" style="opacity:.8;">${feature.intro}</p>
+          <p class="t-body" style="opacity:.8;">${feature.summary}</p>
           ${artistName(feature) ? `<p class="t-meta" style="margin-top: var(--space-4); opacity:.6;">${artistName(feature)}</p>` : ""}
         </div>
       </a>

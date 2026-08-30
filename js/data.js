@@ -3,14 +3,25 @@
 // bundled JSON, since it barely changes and defines how the rest of the
 // model fits together.
 //
-// Artists, projects, events, occurrences and the Past Makes Future running
-// order change often and are edited by non-developers, so they instead
-// come from a Google Sheet (one tab per table, fetched as CSV — see
-// docs/cms-setup.md for how that's wired up). If a tab's URL isn't
-// configured yet, or the fetch fails for any reason (offline, sharing
-// revoked, Google unreachable), each table falls back to its last-known-
-// good bundled JSON copy in data/*.json — the site never depends on
-// Google Sheets being up to render.
+// Everything a visitor actually browses — artists, events (which now also
+// carry a project's worth of content: image, body copy, year — anything
+// on the programme can have its own real detail page), occurrences and
+// the Past Makes Future running order — changes often and is edited by
+// non-developers, so it instead comes from a Google Sheet (one tab per
+// table, fetched as CSV — see docs/cms-setup.md for how that's wired up).
+// If a tab's URL isn't configured yet, or the fetch fails for any reason
+// (offline, sharing revoked, Google unreachable), each table falls back
+// to its last-known-good bundled JSON copy in data/*.json — the site
+// never depends on Google Sheets being up to render.
+//
+// There used to be a separate "projects" table for exhibitions/artworks,
+// distinct from "events" for schedule listings. It was merged into events
+// because in practice every project was also inherently schedulable (it
+// needs a date range, a location, a booking status to be useful to a
+// visitor) — keeping them apart just meant duplicating title/artist/image
+// across two rows that were kept in sync by hand. One row per thing now:
+// link artists via an event's own `artistIds`, and give it `imageUrl`/
+// `body`/`year` if it deserves a fuller page (see event-page.js).
 import { parseCSV } from "./csv.js";
 
 // Sheet "Memory Library CMS" — shared as "Anyone with the link: Viewer",
@@ -21,7 +32,6 @@ const SHEET_ID = "1JD9vrjS9WqepJdaBktEzZmq_x4CteULc3xacCfyEuno";
 const sheetTabUrl = (tab) => `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${tab}`;
 const SHEET_CSV_URLS = {
   artists: sheetTabUrl("artists"),
-  projects: sheetTabUrl("projects"),
   events: sheetTabUrl("events"),
   occurrences: sheetTabUrl("occurrences"),
   "pmf-sessions": sheetTabUrl("pmf-sessions"),
@@ -34,9 +44,8 @@ let _cache = null;
 export async function loadData() {
   if (_cache) return _cache;
 
-  const [artists, projects, events, occurrences, pmfSessions, locations, strands, places, openingHours] = await Promise.all([
+  const [artists, events, occurrences, pmfSessions, locations, strands, places, openingHours] = await Promise.all([
     loadSheetTable("artists", normalizeArtist, "artists", "discipline"),
-    loadSheetTable("projects", normalizeProject, "projects", "mediaCaption"),
     loadSheetTable("events", normalizeEvent, "events", "bookingStatus"),
     loadSheetTable("occurrences", normalizeOccurrence, "occurrences", "startTime"),
     loadSheetTable("pmf-sessions", normalizePmfSession, "past-makes-future", "section"),
@@ -47,10 +56,9 @@ export async function loadData() {
   ]);
 
   _cache = {
-    artists, projects, events, occurrences, pmfSessions, locations, strands, places, openingHours,
+    artists, events, occurrences, pmfSessions, locations, strands, places, openingHours,
     byId: {
       artist: indexBy(artists, "id"),
-      project: indexBy(projects, "id"),
       event: indexBy(events, "id"),
       location: indexBy(locations, "id"),
       strand: indexBy(strands, "id"),
@@ -162,28 +170,9 @@ function normalizeArtist(row) {
     placeId: row.placeId,
     bio: row.bio,
     portraitCaption: orNull(row.portraitCaption),
-    projectIds: list(row.projectIds),
     photoUrl: driveImageUrl(row.photoUrl),
     portfolioUrl: orNull(row.portfolioUrl),
     instagramUrl: orNull(row.instagramUrl),
-  };
-}
-
-function normalizeProject(row) {
-  if (!row.id) return null;
-  return {
-    id: row.id,
-    title: row.title,
-    year: row.year,
-    artistIds: list(row.artistIds),
-    strandId: row.strandId,
-    placeId: row.placeId,
-    type: row.type,
-    intro: row.intro,
-    body: row.body,
-    mediaCaption: row.mediaCaption,
-    mediaUrl: driveImageUrl(row.mediaUrl),
-    confirmed: bool(row.confirmed),
   };
 }
 
@@ -195,10 +184,13 @@ function normalizeEvent(row) {
     type: row.type,
     strandId: row.strandId,
     locationIds: list(row.locationIds),
+    placeId: orNull(row.placeId),
     artistIds: list(row.artistIds),
-    projectIds: list(row.projectIds),
+    year: orNull(row.year),
     summary: row.summary,
     blurb: row.blurb,
+    body: orNull(row.body),
+    mediaCaption: orNull(row.mediaCaption),
     bookingStatus: row.bookingStatus,
     bookingUrl: orNull(row.bookingUrl),
     imageUrl: driveImageUrl(row.imageUrl),
@@ -256,9 +248,9 @@ export function occurrenceDateTime(date, time) {
 // Resolves a list of ids (e.g. an event's artistIds) against a byId map,
 // dropping — rather than crashing on — any id that doesn't match a real
 // record. Sheet-entered ids are hand-typed, so a typo or a reference to
-// the wrong table (an event id pasted into a projectIds cell, say) is
-// expected to happen occasionally; that should quietly omit the broken
-// reference, not take down the whole page. Logs a console warning so it's
+// the wrong table is expected to happen occasionally; that should quietly
+// omit the broken reference, not take down the whole page. Logs a
+// console warning so it's
 // still easy to spot and fix in the sheet.
 export function resolveRefs(ids, map, kind) {
   return (ids || [])

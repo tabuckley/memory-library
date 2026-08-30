@@ -8,9 +8,9 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "New commissions from Resonate, Play Office's artist development programme, shown continuously throughout Memory Library.",
     "blurb": "Resonate artist commissions.",
+    "body": null,
     "bookingStatus": "FREE",
     "bookingUrl": null,
     "imageUrl": null,
@@ -18,7 +18,10 @@
     "mode": "ongoing",
     "dateStart": "2026-11-13",
     "dateEnd": "2026-11-21",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-film-programme",
@@ -29,9 +32,9 @@
       "cinema"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "A continuous programme of moving-image work, showing throughout the day in the Cinema.",
     "blurb": "Moving-image screenings.",
+    "body": null,
     "bookingStatus": "FREE",
     "bookingUrl": null,
     "imageUrl": null,
@@ -39,7 +42,10 @@
     "mode": "ongoing",
     "dateStart": "2026-11-13",
     "dateEnd": "2026-11-21",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-queer-at-sea",
@@ -50,11 +56,132 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [
-      "queer-at-sea"
-    ],
     "summary": "An exhibition exploring queerness, coastal space and belonging, shown throughout the daily programme.",
     "blurb": "Exhibition on queerness and coastal life.",
+    "body": "Queer at Sea runs throughout Memory Library's daily programme, part of the ongoing exhibition in the Main Space.",
+    "bookingStatus": "FREE",
+    "bookingUrl": null,
+    "imageUrl": null,
+    "ageGuidance": null,
+    "mode": "ongoing",
+    "dateStart": "2026-11-13",
+    "dateEnd": "2026-11-21",
+    "confirmed": false,
+    "placeId": "portsmouth",
+    "year": "2026",
+    "mediaCaption": "STILL — Queer at Sea"
+  },
+  {
+    "id": "ev-memory-bar",
+    "title": "Memory Bar",
+    "type": "Sensory participatory artwork",
+    "strandId": "memory-library",
+    "locationIds": [
+      "main"
+    ],
+    "placeId": "portsmouth",
+    "artistIds": [],
+    "year": "2026",
+    "summary": "A sensory artwork using taste, smell, storytelling and participation to explore memory.",
+    "blurb": "A sensory artwork using taste, smell, storytelling and participation to explore memory.",
+    "body": "Memory Bar returns as part of Memory Library, creating an intimate participatory space where sensory experiences, drinks and stories become prompts for remembering and sharing personal histories.",
+    "mediaCaption": "STILL — Memory Bar",
+    "bookingStatus": "FREE",
+    "bookingUrl": null,
+    "imageUrl": null,
+    "ageGuidance": null,
+    "mode": "ongoing",
+    "dateStart": "2026-11-13",
+    "dateEnd": "2026-11-21",
+    "confirmed": true
+  },
+  {
+    "id": "ev-empathy-index",
+    "title": "Empathy Index",
+    "type": "Digital artwork",
+    "strandId": "memory-library",
+    "locationIds": [
+      "main"
+    ],
+    "placeId": "portsmouth",
+    "artistIds": [],
+    "year": "2026",
+    "summary": "A digital commission exploring empathy, connection and the ways technology can make relationships between people visible.",
+    "blurb": "A digital commission exploring empathy, connection and the ways technology can make relationships between people visible.",
+    "body": "Empathy Index is being developed as a digital artwork within the wider Memory Library programme, using creative technology to explore connection, social relationships and empathy.",
+    "mediaCaption": "STILL — Empathy Index",
+    "bookingStatus": "FREE",
+    "bookingUrl": null,
+    "imageUrl": null,
+    "ageGuidance": null,
+    "mode": "ongoing",
+    "dateStart": "2026-11-13",
+    "dateEnd": "2026-11-21",
+    "confirmed": false
+  },
+  {
+    "id": "ev-international-open-studio",
+    "title": "International Open Studio",
+    "type": "Exhibition / open studio",
+    "strandId": "past-makes-future",
+    "locationIds": [
+      "main"
+    ],
+    "placeId": "portsmouth",
+    "artistIds": [],
+    "year": "2026",
+    "summary": "An open studio bringing together visiting artists from international exchange programmes with Portsmouth audiences and artists.",
+    "blurb": "An open studio bringing together visiting artists from international exchange programmes with Portsmouth audiences and artists.",
+    "body": "International Open Studio presents work, process and research by visiting artists from Bangladesh, Cairo and Lebanon through informal showings and public exchange, connecting international practices with Portsmouth's cultural community.",
+    "mediaCaption": "STILL — International Open Studio",
+    "bookingStatus": "FREE",
+    "bookingUrl": null,
+    "imageUrl": null,
+    "ageGuidance": null,
+    "mode": "ongoing",
+    "dateStart": "2026-11-13",
+    "dateEnd": "2026-11-21",
+    "confirmed": false
+  },
+  {
+    "id": "ev-memory-donation",
+    "title": "Memory Donation",
+    "type": "Participatory artwork",
+    "strandId": "memory-library",
+    "locationIds": [
+      "main"
+    ],
+    "placeId": "portsmouth",
+    "artistIds": [],
+    "year": "2026",
+    "summary": "A participatory project inviting people to contribute memories to the evolving Memory Library archive.",
+    "blurb": "A participatory project inviting people to contribute memories to the evolving Memory Library archive.",
+    "body": "Memory Donation creates a route for audiences and communities to contribute their own memories, stories and fragments to Memory Library, treating participation itself as part of the artwork and archive.",
+    "mediaCaption": "STILL — Memory Donation",
+    "bookingStatus": "FREE",
+    "bookingUrl": null,
+    "imageUrl": null,
+    "ageGuidance": null,
+    "mode": "ongoing",
+    "dateStart": "2026-11-13",
+    "dateEnd": "2026-11-21",
+    "confirmed": false
+  },
+  {
+    "id": "ev-memory-box",
+    "title": "Memory Box",
+    "type": "Interactive installation",
+    "strandId": "memory-library",
+    "locationIds": [
+      "main"
+    ],
+    "placeId": "portsmouth",
+    "artistIds": [],
+    "year": "2026",
+    "summary": "An interactive installation exploring how memories can be collected, held, encountered and shared.",
+    "blurb": "An interactive installation exploring how memories can be collected, held, encountered and shared.",
+    "body": "Memory Box forms part of Memory Library's wider exploration of personal archives and shared memory, using an installation format to turn acts of remembering and collecting into a public experience.",
+    "mediaCaption": "STILL — Memory Box",
     "bookingStatus": "FREE",
     "bookingUrl": null,
     "imageUrl": null,
@@ -73,15 +200,18 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "A one-day conference and gathering bringing together international delegates, artists and heritage partners.",
     "blurb": "Conference and international presentations.",
+    "body": null,
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-bangladesh-presentation",
@@ -92,15 +222,18 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "A presentation from Zihan Karim and Shohrab Jahan, part of Past Makes Future.",
     "blurb": "Artist presentation.",
+    "body": null,
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-cairo-presentation",
@@ -111,15 +244,18 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "A presentation from Raneem Elhaddad and Ahmed Nader, part of Past Makes Future.",
     "blurb": "Artist presentation.",
+    "body": null,
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-engine-creativity",
@@ -130,15 +266,18 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "A panel with Gemma Nichols, Steve Pitt, Arts Council England and University of Portsmouth, on sector value and infrastructure.",
     "blurb": "Panel discussion.",
+    "body": null,
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-pageant",
@@ -149,15 +288,18 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "An evening performance closing Past Makes Future. Doors 19:30, performance from 20:00.",
     "blurb": "Evening performance.",
+    "body": null,
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": "18+",
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-people-library",
@@ -168,15 +310,18 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "People, not books, as a browsable living collection. Drop in and borrow a person for twenty minutes.",
     "blurb": "Borrow a person, not a book.",
+    "body": "People Library is a participatory Memory Library project centred on personal and community memories. Audiences can meet and borrow a person for a conversation, turning lived experience into a shared, temporary archive.",
     "bookingStatus": "DROP IN",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": "portsmouth",
+    "year": "2026",
+    "mediaCaption": "STILL — People Library"
   },
   {
     "id": "ev-bangladesh-workshop",
@@ -187,15 +332,18 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "A workshop connected to Bangladesh, part of Memory Library's international exchange.",
     "blurb": "Workshop connected to Bangladesh.",
+    "body": null,
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-bangladesh-screening",
@@ -206,15 +354,18 @@
       "cinema"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "A screening connected to Bangladesh, part of Memory Library's international exchange.",
     "blurb": "Screening connected to Bangladesh.",
+    "body": null,
     "bookingStatus": "FREE",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-egypt-workshop",
@@ -225,15 +376,18 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "A workshop connected to Egypt, part of Memory Library's international exchange.",
     "blurb": "Workshop connected to Egypt.",
+    "body": null,
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-lebanon-workshop",
@@ -244,15 +398,18 @@
       "main"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "A workshop connected to Lebanon, part of Memory Library's international exchange.",
     "blurb": "Workshop connected to Lebanon.",
+    "body": null,
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": true
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   },
   {
     "id": "ev-we-shine-lates",
@@ -265,14 +422,17 @@
       "exterior"
     ],
     "artistIds": [],
-    "projectIds": [],
     "summary": "Boathouse 5 stays open into the evening as part of We Shine, with the exhibition continuing and the exterior projection running after dark.",
     "blurb": "Evening opening for We Shine.",
+    "body": null,
     "bookingStatus": "FREE",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",
-    "confirmed": false
+    "confirmed": false,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
   }
 ]
