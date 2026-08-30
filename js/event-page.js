@@ -1,9 +1,15 @@
 import { loadData, plateImg, vtName, resolveRefs } from "./data.js";
 import { expandOccurrences, dateLabel } from "./programme.js";
 
-function ongoingRunNote(event) {
-  if (!event.dateStart || !event.dateEnd) return "Part of the continuous programme — see Programme for opening hours.";
-  return `Showing daily, ${dateLabel(event.dateStart)} – ${dateLabel(event.dateEnd)} — see Programme for opening hours.`;
+// Ongoing events (exhibitions, installations) don't have discrete
+// occurrence rows — they're just open whenever the venue is. Rather than
+// a single vague sentence, build the same day-by-day list a timed event
+// gets, deriving each row from the real published opening hours instead
+// of occurrences — so an ongoing exhibition and a scheduled thing like
+// People Library read the same way on their own pages.
+function openDaysFor(event, data) {
+  if (!event.dateStart || !event.dateEnd) return [];
+  return data.openingHours.filter((h) => h.date >= event.dateStart && h.date <= event.dateEnd);
 }
 
 async function main() {
@@ -17,6 +23,7 @@ async function main() {
   const place = event.placeId ? data.byId.place[event.placeId] : null;
   const strand = data.byId.strand[event.strandId];
   const expanded = expandOccurrences(data).filter((x) => x.event.id === event.id);
+  const openDays = expanded.length ? [] : openDaysFor(event, data);
   const related = data.events.filter((e) => e.id !== event.id && e.strandId === event.strandId).slice(0, 2);
 
   host.innerHTML = `
@@ -55,11 +62,18 @@ async function main() {
       <div class="wrap grid">
         <div style="grid-column: 1 / span 6;">
           <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-4);">On the programme</p>
-          ${expanded.length ? `<div class="related-list">${expanded.map((x) => `
+          ${(expanded.length || openDays.length) ? `<div class="related-list">
+            ${expanded.map((x) => `
             <a class="related-item" href="programme.html?date=${x.occ.date}">
               <span>${x.event.title}</span>
               <span class="t-meta" style="opacity:.6;">${dateLabel(x.occ.date)} · ${x.occ.startTime}</span>
-            </a>`).join("")}</div>` : `<p class="t-small" style="opacity:.6;">${ongoingRunNote(event)}</p>`}
+            </a>`).join("")}
+            ${openDays.map((h) => `
+            <a class="related-item" href="programme.html?date=${h.date}">
+              <span>${event.title}</span>
+              <span class="t-meta" style="opacity:.6;">${dateLabel(h.date)} · ${h.open}–${h.close}${h.note ? " · " + h.note : ""}</span>
+            </a>`).join("")}
+          </div>` : `<p class="t-small" style="opacity:.6;">Part of the continuous programme — see Programme for opening hours.</p>`}
         </div>
       </div>
     </section>
