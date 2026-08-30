@@ -1,5 +1,5 @@
 import { loadData, plateImg, vtName, resolveRefs } from "./data.js";
-import { expandOccurrences, dateLabel } from "./programme.js";
+import { expandOccurrences, dateLabel, timeRange } from "./programme.js";
 
 // Ongoing events (exhibitions, installations) don't have discrete
 // occurrence rows — they're just open whenever the venue is. Rather than
@@ -59,22 +59,21 @@ async function main() {
     </section>
 
     <section class="section-pad-sm tone-paper reveal">
-      <div class="wrap grid">
-        <div style="grid-column: 1 / span 6;">
-          <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-4);">On the programme</p>
-          ${(expanded.length || openDays.length) ? `<div class="related-list">
-            ${expanded.map((x) => `
-            <a class="related-item" href="programme.html?date=${x.occ.date}">
-              <span>${x.event.title}</span>
-              <span class="t-meta" style="opacity:.6;">${dateLabel(x.occ.date)} · ${x.occ.startTime}</span>
-            </a>`).join("")}
-            ${openDays.map((h) => `
-            <a class="related-item" href="programme.html?date=${h.date}">
-              <span>${event.title}</span>
-              <span class="t-meta" style="opacity:.6;">${dateLabel(h.date)} · ${h.open}–${h.close}${h.note ? " · " + h.note : ""}</span>
-            </a>`).join("")}
-          </div>` : `<p class="t-small" style="opacity:.6;">Part of the continuous programme — see Programme for opening hours.</p>`}
-        </div>
+      <div class="wrap">
+        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">On the programme</p>
+        ${(expanded.length || openDays.length) ? `<div class="open-days-grid">
+          ${expanded.map((x) => `
+          <a href="programme.html?date=${x.occ.date}">
+            <span class="open-day__date">${dateLabel(x.occ.date, { short: true })}</span>
+            <span class="open-day__time">${timeRange(x.occ)}</span>
+          </a>`).join("")}
+          ${openDays.map((h) => `
+          <a href="programme.html?date=${h.date}">
+            <span class="open-day__date">${dateLabel(h.date, { short: true })}</span>
+            <span class="open-day__time">${h.open}–${h.close}</span>
+            ${h.note ? `<span class="open-day__note">${h.note}</span>` : ""}
+          </a>`).join("")}
+        </div>` : `<p class="t-small" style="opacity:.6;">Part of the continuous programme — see Programme for opening hours.</p>`}
       </div>
     </section>
 

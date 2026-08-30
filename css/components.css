@@ -560,6 +560,42 @@
 }
 .related-item:first-child { border-top: none; }
 
+/* A compact, reflowing grid of open days — used on an event's own page
+   where every cell is that same event, so there's no need to repeat its
+   title per row the way .related-list does when cross-referencing
+   several different events. Reads left-to-right across the available
+   width and only wraps to a new row once it runs out of room. */
+.open-days-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: var(--space-5) var(--space-4);
+}
+.open-day__date {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: var(--space-1);
+}
+.open-day__time {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  letter-spacing: var(--tracking-meta);
+  opacity: 0.55;
+}
+.open-day__note {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-top: 2px;
+}
+
 /* ================= AGENDA (Past Makes Future / Pageant running order) ================= */
 .agenda-row {
   display: grid;
