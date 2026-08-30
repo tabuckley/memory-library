@@ -1,9 +1,27 @@
 import { loadData, getNow, plateImg, vtName } from "./data.js";
-import { computeNowNext, dateLabel, timeRange } from "./programme.js";
+import { computeNowNext, dateLabel, timeRange, festivalDates } from "./programme.js";
 
 function occTeaser(x) {
   const place = x.location ? x.location.name : "";
   return `${dateLabel(x.occ.date)} · ${x.occ.startTime} · ${place}`;
+}
+
+function ordinal(n) {
+  const j = n % 10, k = n % 100;
+  if (j === 1 && k !== 11) return `${n}st`;
+  if (j === 2 && k !== 12) return `${n}nd`;
+  if (j === 3 && k !== 13) return `${n}rd`;
+  return `${n}th`;
+}
+
+// "13th–21st November 2026" — derived from the actual festival dates
+// rather than hardcoded, so this can't drift out of sync if they change.
+function festivalRunLabel(data) {
+  const dates = festivalDates(data);
+  const start = new Date(`${dates[0]}T00:00:00`);
+  const end = new Date(`${dates[dates.length - 1]}T00:00:00`);
+  const month = end.toLocaleDateString("en-GB", { month: "long" });
+  return `${ordinal(start.getDate())}–${ordinal(end.getDate())} ${month} ${end.getFullYear()}`;
 }
 
 function renderLive(data, now) {
@@ -12,9 +30,9 @@ function renderLive(data, now) {
   let cellA, cellB;
 
   if (result.phase === "before") {
-    cellA = { label: "Opens", title: "13 November 2026", body: "Boathouse 5, Portsmouth Historic Dockyard." };
+    cellA = { label: "Open", title: festivalRunLabel(data), body: "Boathouse 5, Portsmouth Historic Dockyard." };
     cellB = result.next
-      ? { label: "First on the programme", title: result.next.event.title, body: occTeaser(result.next) }
+      ? { label: "What's next", title: result.next.event.title, body: occTeaser(result.next) }
       : { label: "Programme", title: "Coming soon", body: "" };
   } else if (result.phase === "during") {
     const nowItem = (result.now && result.now[0]) || (result.ongoing && result.ongoing[0] && { event: result.ongoing[0].event, isOngoing: true });
@@ -54,7 +72,7 @@ function renderSelectedWork(data) {
 
   host.innerHTML = `
     <div class="wrap">
-      <p class="t-meta reveal" style="opacity:.55; margin-bottom: var(--space-8);">02 — Selected work</p>
+      <p class="t-meta reveal" style="opacity:.55; margin-bottom: var(--space-8);">Selected work</p>
       <a href="event.html?slug=${feature.id}" class="grid reveal" style="align-items:center; text-decoration:none;">
         <div style="grid-column: 1 / span 7;">
           <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("event", feature.id)};">
