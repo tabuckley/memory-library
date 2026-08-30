@@ -49,7 +49,7 @@ function renderSelectedWork(data) {
   const feature = data.byId.project["queer-at-sea"];
   if (!feature) { host.innerHTML = ""; return; }
 
-  const artistName = (p) => (p.artistIds || []).map((id) => data.byId.artist[id]?.name).join(", ");
+  const artistName = (p) => (p.artistIds || []).map((id) => data.byId.artist[id]?.name).filter(Boolean).join(", ");
   const placeName = (p) => data.byId.place[p.placeId]?.name || "";
 
   host.innerHTML = `

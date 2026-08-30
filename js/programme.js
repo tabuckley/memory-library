@@ -3,6 +3,7 @@
 // (What's On list + Timetable). Occurrences are the schedulable unit;
 // Events carry the descriptive content; Ongoing events (exhibitions,
 // installations) are not exploded into repeated occurrences.
+import { resolveRefs } from "./data.js";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -38,14 +39,21 @@ export function timeRange(occ) {
   return `${occ.startTime}–${occ.endTime}`;
 }
 
-// Merge occurrences with their parent event + resolved refs.
+// Merge occurrences with their parent event + resolved refs. An occurrence
+// or event carrying a hand-typed id that doesn't resolve (wrong table,
+// typo, since-deleted record) is dropped rather than crashing every page
+// that calls this — see resolveRefs in data.js for the same philosophy
+// applied to list fields.
 export function expandOccurrences(data) {
   return data.occurrences.map((occ) => {
     const event = data.byId.event[occ.eventId];
+    if (!event) { console.warn(`[programme] occurrence "${occ.id}" references missing event id "${occ.eventId}" — skipping.`); return null; }
     const location = data.byId.location[occ.locationId];
+    if (!location) { console.warn(`[programme] occurrence "${occ.id}" references missing location id "${occ.locationId}" — skipping.`); return null; }
     const strand = data.byId.strand[event.strandId];
-    const artists = (event.artistIds || []).map((id) => data.byId.artist[id]);
-    const projects = (event.projectIds || []).map((id) => data.byId.project[id]);
+    if (!strand) { console.warn(`[programme] event "${event.id}" references missing strand id "${event.strandId}" — skipping its occurrence "${occ.id}".`); return null; }
+    const artists = resolveRefs(event.artistIds, data.byId.artist, "artist");
+    const projects = resolveRefs(event.projectIds, data.byId.project, "project");
     return {
       occ, event, location, strand, artists, projects,
       start: new Date(`${occ.date}T${occ.startTime}:00`),
@@ -53,18 +61,23 @@ export function expandOccurrences(data) {
       doors: occ.doorsTime ? new Date(`${occ.date}T${occ.doorsTime}:00`) : null,
       status: occ.bookingStatusOverride || event.bookingStatus,
     };
-  }).sort((a, b) => a.start - b.start);
+  }).filter(Boolean).sort((a, b) => a.start - b.start);
 }
 
 export function ongoingForDate(data, dateStr) {
   return data.events
     .filter((e) => e.mode === "ongoing" && dateStr >= e.dateStart && dateStr <= e.dateEnd)
-    .map((event) => ({
-      event,
-      strand: data.byId.strand[event.strandId],
-      locations: (event.locationIds || []).map((id) => data.byId.location[id]),
-      projects: (event.projectIds || []).map((id) => data.byId.project[id]),
-    }));
+    .map((event) => {
+      const strand = data.byId.strand[event.strandId];
+      if (!strand) { console.warn(`[programme] event "${event.id}" references missing strand id "${event.strandId}" — skipping.`); return null; }
+      return {
+        event,
+        strand,
+        locations: resolveRefs(event.locationIds, data.byId.location, "location"),
+        projects: resolveRefs(event.projectIds, data.byId.project, "project"),
+      };
+    })
+    .filter(Boolean);
 }
 
 export function occurrencesForDate(expanded, dateStr) {

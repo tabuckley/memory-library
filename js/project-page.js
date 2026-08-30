@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName } from "./data.js";
+import { loadData, plateImg, vtName, resolveRefs } from "./data.js";
 import { expandOccurrences, dateLabel } from "./programme.js";
 
 async function main() {
@@ -8,7 +8,7 @@ async function main() {
   const host = document.getElementById("project-content");
   document.title = `${project.title} — Memory Library`;
 
-  const artists = (project.artistIds || []).map((id) => data.byId.artist[id]);
+  const artists = resolveRefs(project.artistIds, data.byId.artist, "artist");
   const place = data.byId.place[project.placeId];
   const strand = data.byId.strand[project.strandId];
   const expanded = expandOccurrences(data).filter((x) => x.projects.some((p) => p.id === project.id));

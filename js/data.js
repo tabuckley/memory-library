@@ -229,6 +229,23 @@ export function occurrenceDateTime(date, time) {
   return new Date(`${date}T${time}:00`);
 }
 
+// Resolves a list of ids (e.g. an event's artistIds) against a byId map,
+// dropping — rather than crashing on — any id that doesn't match a real
+// record. Sheet-entered ids are hand-typed, so a typo or a reference to
+// the wrong table (an event id pasted into a projectIds cell, say) is
+// expected to happen occasionally; that should quietly omit the broken
+// reference, not take down the whole page. Logs a console warning so it's
+// still easy to spot and fix in the sheet.
+export function resolveRefs(ids, map, kind) {
+  return (ids || [])
+    .map((id) => {
+      const item = map[id];
+      if (!item) console.warn(`[data] ${kind} id "${id}" not found — check the sheet for a typo, or a reference to the wrong table.`);
+      return item;
+    })
+    .filter(Boolean);
+}
+
 // Deterministic placeholder photography. Real photography is limited to a
 // handful of documentary images (see assets/img/*.jpg); everywhere else a
 // toned, high-resolution abstract placeholder stands in so scale, crop and
