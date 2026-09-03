@@ -61,7 +61,7 @@
     "body": null,
     "bookingStatus": "FREE",
     "bookingUrl": null,
-    "imageUrl": null,
+    "imageUrl": "assets/img/photos/queer-at-sea.jpg",
     "ageGuidance": null,
     "mode": "ongoing",
     "dateStart": "2026-11-13",
