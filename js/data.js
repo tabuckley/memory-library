@@ -171,7 +171,11 @@ function driveImageUrl(value, size = 1600) {
   if (!url) return null;
   const id = extractDriveFileId(url);
   if (!id) return url;
-  return `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`;
+  // Go straight to lh3, not drive.google.com/thumbnail — that endpoint 302s
+  // to lh3 and Chrome's Opaque Response Blocking kills the redirected image
+  // load, even though the image itself is public. lh3 direct has proper
+  // CORS/CORP headers and loads fine.
+  return `https://lh3.googleusercontent.com/d/${id}=w${size}`;
 }
 
 function normalizeArtist(row) {
@@ -297,7 +301,12 @@ export function placeholderSrc(seed, orientation = "landscape") {
 
 export function plateImg(seed, orientation = "landscape", realUrl = null) {
   const src = realUrl || placeholderSrc(seed, orientation);
-  return `<img class="plate-photo" src="${src}" alt="" loading="lazy" />`;
+  // Drive-hosted photos (realUrl) occasionally fail to load — Drive's image
+  // endpoints throttle hotlinked (cross-site Referer) requests, so a visitor
+  // can hit a broken image even though the link works fine standalone. Fall
+  // back to the placeholder rather than showing a broken-image icon.
+  const fallback = realUrl ? ` onerror="this.onerror=null;this.src='${placeholderSrc(seed, orientation)}'"` : "";
+  return `<img class="plate-photo" src="${src}" alt=""${fallback} loading="lazy" />`;
 }
 
 // A shared name lets the browser's cross-document View Transition morph
