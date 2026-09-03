@@ -22,6 +22,13 @@
 // across two rows that were kept in sync by hand. One row per thing now:
 // link artists via an event's own `artistIds`, and give it `imageUrl`/
 // `body`/`year` if it deserves a fuller page (see event-page.js).
+//
+// Photos specifically aren't sheet-editable — pasting a Drive link into a
+// cell means fighting Drive's hotlink throttling forever (see driveImageUrl
+// below). Real photos get committed straight into assets/img/photos/ and
+// wired up by id in data/photos.json instead, which loadData() applies as
+// an override after fetching everything else. A sheet's imageUrl/photoUrl
+// column, if still present, is still read as a fallback.
 import { parseCSV } from "./csv.js";
 
 // Sheet "Memory Library CMS" — shared as "Anyone with the link: Viewer",
@@ -44,7 +51,7 @@ let _cache = null;
 export async function loadData() {
   if (_cache) return _cache;
 
-  const [artists, events, occurrences, pmfSessions, locations, strands, places, openingHours] = await Promise.all([
+  const [artists, events, occurrences, pmfSessions, locations, strands, places, openingHours, photos] = await Promise.all([
     loadSheetTable("artists", normalizeArtist, "artists", "discipline"),
     loadSheetTable("events", normalizeEvent, "events", "bookingStatus"),
     loadSheetTable("occurrences", normalizeOccurrence, "occurrences", "startTime"),
@@ -53,7 +60,15 @@ export async function loadData() {
     fetchJSON("strands"),
     fetchJSON("places"),
     fetchJSON("opening-hours"),
+    fetchJSON("photos"),
   ]);
+
+  for (const artist of artists) {
+    if (photos[artist.id]) artist.photoUrl = photos[artist.id];
+  }
+  for (const event of events) {
+    if (photos[event.id]) event.imageUrl = photos[event.id];
+  }
 
   _cache = {
     artists, events, occurrences, pmfSessions, locations, strands, places, openingHours,
