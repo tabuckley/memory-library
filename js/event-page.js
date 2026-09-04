@@ -24,7 +24,7 @@ async function main() {
   const params = new URLSearchParams(location.search);
   const event = data.byId.event[params.get("slug")] || data.events[0];
   const host = document.getElementById("event-content");
-  document.title = `${event.title} — Memory Library`;
+  document.title = `${event.title} - Memory Library`;
 
   const artists = resolveRefs(event.artistIds, data.byId.artist, "artist");
   const place = event.placeId ? data.byId.place[event.placeId] : null;
@@ -82,7 +82,7 @@ async function main() {
             <span class="open-day__time">${h.open}–${h.close}</span>
             ${h.note ? `<span class="open-day__note">${h.note}</span>` : ""}
           </a>`).join("")}
-        </div>` : `<p class="t-small" style="opacity:.6;">Part of the continuous programme — see Programme for opening hours.</p>`}
+        </div>` : `<p class="t-small" style="opacity:.6;">Part of the continuous programme - see Programme for opening hours.</p>`}
       </div>
     </section>
 

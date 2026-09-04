@@ -334,7 +334,7 @@ async function main() {
         </div>
         <div class="now-next__cell">
           <p class="now-next__label">Next</p>
-          <p class="now-next__title">${nextItem ? nextItem.event.title : "—"}</p>
+          <p class="now-next__title">${nextItem ? nextItem.event.title : "-"}</p>
         </div>
       </div>`;
   }

@@ -8,7 +8,7 @@ async function main() {
   const host = document.getElementById("artist-content");
 
   if (!artist) {
-    document.title = "Artists — Memory Library";
+    document.title = "Artists - Memory Library";
     host.innerHTML = `
       <section class="section-pad-sm">
         <div class="wrap">
@@ -21,7 +21,7 @@ async function main() {
     return;
   }
 
-  document.title = `${artist.name} — Memory Library`;
+  document.title = `${artist.name} - Memory Library`;
 
   const place = data.byId.place[artist.placeId];
   const meta = [artist.discipline, place?.name].filter(Boolean).join(" · ");
@@ -92,10 +92,10 @@ async function main() {
             </a>`).join("")}
             ${pmfAppearances.map((s) => `
             <a class="related-item" href="past-makes-future.html${s.section === "pageant" ? "#pageant" : ""}">
-              <span>${s.title} — Past Makes Future</span>
+              <span>${s.title} - Past Makes Future</span>
               <span class="t-meta" style="opacity:.6;">Sat 14 Nov · ${s.time}</span>
             </a>`).join("")}
-          </div>` : `<p class="t-small" style="opacity:.6;">No scheduled sessions yet — see the exhibition for this artist's work.</p>`}
+          </div>` : `<p class="t-small" style="opacity:.6;">No scheduled sessions yet - see the exhibition for this artist's work.</p>`}
         </div>
       </div>
     </section>

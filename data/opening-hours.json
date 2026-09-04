@@ -7,5 +7,5 @@
   { "date": "2026-11-18", "open": "10:00", "close": "17:00", "note": null, "confirmed": false },
   { "date": "2026-11-19", "open": "10:00", "close": "21:00", "note": "We Shine", "confirmed": false },
   { "date": "2026-11-20", "open": "10:00", "close": "21:00", "note": "We Shine", "confirmed": false },
-  { "date": "2026-11-21", "open": "10:00", "close": "21:00", "note": "We Shine — closing night", "confirmed": false }
+  { "date": "2026-11-21", "open": "10:00", "close": "21:00", "note": "We Shine - closing night", "confirmed": false }
 ]

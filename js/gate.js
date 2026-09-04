@@ -21,7 +21,7 @@
 
     overlay.innerHTML =
       '<form id="ml-gate-form" style="text-align:center;max-width:22rem;">' +
-      '<p style="margin:0 0 1.25rem;font-size:1.05rem;letter-spacing:.02em;">Memory Library — site not yet public</p>' +
+      '<p style="margin:0 0 1.25rem;font-size:1.05rem;letter-spacing:.02em;">Memory Library - site not yet public</p>' +
       '<div style="display:flex;gap:.5rem;justify-content:center;">' +
       '<input id="ml-gate-input" type="password" placeholder="Password" autofocus ' +
       'style="padding:.55em .7em;font-size:1em;border:1px solid #6b6459;background:#1c1a17;color:#f4efe6;border-radius:3px;" />' +
