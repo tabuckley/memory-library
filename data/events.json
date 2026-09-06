@@ -173,7 +173,7 @@
     "body": null,
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
-    "imageUrl": null,
+    "imageUrl": "assets/img/photos/pageant.jpg",
     "ageGuidance": "18+",
     "mode": "timed",
     "confirmed": true,
