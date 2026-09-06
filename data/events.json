@@ -195,7 +195,7 @@
     "body": null,
     "bookingStatus": "DROP IN",
     "bookingUrl": null,
-    "imageUrl": null,
+    "imageUrl": "assets/img/photos/people-library.jpg",
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true,
