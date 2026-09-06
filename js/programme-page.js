@@ -1,4 +1,4 @@
-import { loadData, getNow, plateImg } from "./data.js";
+import { loadData, getNow } from "./data.js";
 import {
   expandOccurrences, ongoingForDate, occurrencesForDate, festivalDates,
   dateLabel, timeRange, computeNowNext, toDateStr, EVENT_TYPES,
@@ -189,29 +189,25 @@ async function main() {
           <span class="prog-row__time t-meta">All day</span>
           <span class="prog-row__body">
             <span class="prog-row__title">${rowTitle(o.event)}</span>
-            <span class="prog-row__desc">${o.event.blurb}</span>
+            <span class="prog-row__desc"><span class="prog-row__desc-text">${o.event.blurb}</span> <a class="link-underline" href="${href}">More info →</a></span>
             <span class="prog-row__sub">${o.event.type} · ${o.locations.map((l) => l.shortName).join(" · ")}</span>
           </span>
           <span class="prog-row__status"><span class="status">${o.event.bookingStatus}</span></span>`;
+      const hasDetail = Boolean(o.event.bookingUrl);
       return `
       <div class="prog-row prog-row--ongoing">
-        <button class="prog-row__trigger" type="button" aria-expanded="false" aria-controls="detail-${id}">
+        <div class="prog-row__trigger">
           ${body}
-          <span class="prog-row__chevron" aria-hidden="true">⌄</span>
-        </button>
+          ${hasDetail ? `<button class="prog-row__chevron-btn" type="button" aria-expanded="false" aria-controls="detail-${id}" aria-label="Show more"><span class="prog-row__chevron" aria-hidden="true">⌄</span></button>` : ""}
+        </div>
+        ${hasDetail ? `
         <div class="prog-row__detail" id="detail-${id}">
           <div class="prog-row__detail-inner">
             <div class="prog-row__detail-content">
-              ${o.event.imageUrl || o.event.summary ? `
-              <div style="display:flex; flex-wrap:wrap; gap: var(--space-4); align-items:flex-start; margin-bottom: var(--space-3);">
-                ${o.event.imageUrl ? `<div class="media-plate" style="--plate-ratio: 16/10; width: 200px; flex: none;">${plateImg(o.event.id, "landscape", o.event.imageUrl)}</div>` : ""}
-                ${o.event.summary ? `<p class="t-body" style="opacity:.85; margin:0; flex: 1 1 200px;">${o.event.summary}</p>` : ""}
-              </div>` : ""}
-              <p style="margin-top: 0;"><a class="btn-line" href="${href}">More detail →</a></p>
-              ${o.event.bookingUrl ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${o.event.bookingUrl}" target="_blank" rel="noopener">Book →</a></p>` : ""}
+              <p style="margin-top: 0;"><a class="btn-line" href="${o.event.bookingUrl}" target="_blank" rel="noopener">Book →</a></p>
             </div>
           </div>
-        </div>
+        </div>` : ""}
       </div>`;
     }).join("");
 
@@ -219,33 +215,29 @@ async function main() {
       const id = `timed-${i}`;
       const href = detailHref(x);
       const isPast = x.end < now;
+      const hasDetail = Boolean(x.occ.note || x.artists.length || x.event.bookingUrl);
       return `
       <div class="prog-row${isPast ? " prog-row--past" : ""}">
-        <button class="prog-row__trigger" type="button" aria-expanded="false" aria-controls="detail-${id}">
+        <div class="prog-row__trigger">
           <span class="prog-row__time t-meta">${x.occ.startTime}</span>
           <span class="prog-row__body">
             <span class="prog-row__title">${rowTitle(x.event)}</span>
-            <span class="prog-row__desc">${x.event.blurb}</span>
+            <span class="prog-row__desc"><span class="prog-row__desc-text">${x.event.blurb}</span>${href ? ` <a class="link-underline" href="${href}">More info →</a>` : ""}</span>
             <span class="prog-row__sub">${x.event.type} · ${timeRange(x.occ)} · ${x.location.shortName}${x.event.ageGuidance ? " · " + x.event.ageGuidance : ""}</span>
           </span>
           <span class="prog-row__status"><span class="status ${statusClass(x.status)}">${x.status}</span></span>
-          <span class="prog-row__chevron" aria-hidden="true">⌄</span>
-        </button>
+          ${hasDetail ? `<button class="prog-row__chevron-btn" type="button" aria-expanded="false" aria-controls="detail-${id}" aria-label="Show more"><span class="prog-row__chevron" aria-hidden="true">⌄</span></button>` : ""}
+        </div>
+        ${hasDetail ? `
         <div class="prog-row__detail" id="detail-${id}">
           <div class="prog-row__detail-inner">
             <div class="prog-row__detail-content">
-              ${x.event.imageUrl || x.event.summary ? `
-              <div style="display:flex; flex-wrap:wrap; gap: var(--space-4); align-items:flex-start; margin-bottom: var(--space-3);">
-                ${x.event.imageUrl ? `<div class="media-plate" style="--plate-ratio: 16/10; width: 200px; flex: none;">${plateImg(x.event.id, "landscape", x.event.imageUrl)}</div>` : ""}
-                ${x.event.summary ? `<p class="t-body" style="opacity:.85; margin:0; flex: 1 1 200px;">${x.event.summary}</p>` : ""}
-              </div>` : ""}
               ${x.occ.note ? `<p class="t-meta" style="opacity:.6;">${x.occ.note}</p>` : ""}
               ${x.artists.length ? `<p class="t-meta" style="opacity:.6; margin-top: var(--space-3);">${x.artists.map((a) => a.name).join(", ")}</p>` : ""}
-              ${href ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${href}">More detail →</a></p>` : ""}
               ${x.event.bookingUrl ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${x.event.bookingUrl}" target="_blank" rel="noopener">Book →</a></p>` : ""}
             </div>
           </div>
-        </div>
+        </div>` : ""}
       </div>`;
     }).join("");
 
@@ -256,7 +248,7 @@ async function main() {
     // Event delegation: rows are re-rendered wholesale on every filter or
     // date change, so a single listener on the container avoids re-binding.
     document.getElementById("view-list").addEventListener("click", (e) => {
-      const trigger = e.target.closest(".prog-row__trigger");
+      const trigger = e.target.closest(".prog-row__chevron-btn");
       if (!trigger) return;
       const row = trigger.closest(".prog-row");
       const open = row.classList.toggle("is-open");

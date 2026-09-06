@@ -310,7 +310,6 @@ a.now-next__cell:hover { opacity: 0.7; }
   width: 100%;
   padding-block: var(--space-6);
   text-align: left;
-  cursor: pointer;
 }
 .prog-row__time { grid-area: time; font-family: var(--font-mono); font-size: var(--size-small); letter-spacing: var(--tracking-meta); }
 .prog-row__body { grid-area: body; display: block; }
@@ -326,10 +325,10 @@ a.now-next__cell:hover { opacity: 0.7; }
   font-family: var(--font-editorial);
   font-size: var(--size-small);
   line-height: 1.45;
-  opacity: 0.65;
   margin-bottom: var(--space-1);
   max-width: 38em;
 }
+.prog-row__desc-text { opacity: 0.65; }
 .prog-row__sub {
   display: block;
   font-family: var(--font-mono);
@@ -339,10 +338,14 @@ a.now-next__cell:hover { opacity: 0.7; }
   opacity: 0.6;
 }
 .prog-row__status { grid-area: status; justify-self: end; align-self: start; }
-.prog-row__chevron {
+.prog-row__chevron-btn {
   grid-area: chevron;
   justify-self: end;
   align-self: start;
+  cursor: pointer;
+}
+.prog-row__chevron {
+  display: block;
   opacity: 0.4;
   transition: transform var(--dur-base) var(--ease);
 }
