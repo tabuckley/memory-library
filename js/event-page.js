@@ -45,7 +45,10 @@ async function main() {
             ${artists.length ? `
             <p style="opacity:.55; margin-bottom: var(--space-1);">Artist</p>
             <p style="margin-bottom: var(--space-4);">${artists.map((a) => `<a class="link-underline" href="artist.html?slug=${a.id}">${a.name}</a>`).join(", ")}</p>` : ""}
-            ${event.year ? `<p style="opacity:.55; margin-bottom: var(--space-1);">Year</p><p>${event.year}</p>` : ""}
+            ${event.year ? `<p style="opacity:.55; margin-bottom: var(--space-1);">Year</p><p style="margin-bottom: var(--space-4);">${event.year}</p>` : ""}
+            <p style="opacity:.55; margin-bottom: var(--space-1);">Booking</p>
+            <p>${event.bookingStatus}</p>
+            ${event.bookingUrl ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${event.bookingUrl}" target="_blank" rel="noopener">Book &rarr;</a></p>` : ""}
           </div>
         </div>
       </div>

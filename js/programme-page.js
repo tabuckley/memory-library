@@ -74,7 +74,6 @@ async function main() {
   renderFilters();
   applyView();
   renderAll();
-  wireExpansion();
 
   function syncUrl() {
     const p = new URLSearchParams();
@@ -182,78 +181,36 @@ async function main() {
       return;
     }
 
-    const ongoingHtml = ongoing.map((o, i) => {
-      const id = `ongoing-${i}`;
+    const ongoingHtml = ongoing.map((o) => {
       const href = `event.html?slug=${o.event.id}`;
-      const body = `
-          <span class="prog-row__time t-meta">All day</span>
-          <span class="prog-row__body">
-            <span class="prog-row__title">${rowTitle(o.event)}</span>
-            <span class="prog-row__desc"><span class="prog-row__desc-text">${o.event.blurb}</span> <a class="link-underline" href="${href}">More info →</a></span>
-            <span class="prog-row__sub">${o.event.type} · ${o.locations.map((l) => l.shortName).join(" · ")}</span>
-          </span>
-          <span class="prog-row__status"><span class="status">${o.event.bookingStatus}</span></span>`;
-      const hasDetail = Boolean(o.event.bookingUrl);
       return `
-      <div class="prog-row prog-row--ongoing">
-        <div class="prog-row__trigger">
-          ${body}
-          ${hasDetail ? `<button class="prog-row__chevron-btn" type="button" aria-expanded="false" aria-controls="detail-${id}" aria-label="Show more"><span class="prog-row__chevron" aria-hidden="true">⌄</span></button>` : ""}
-        </div>
-        ${hasDetail ? `
-        <div class="prog-row__detail" id="detail-${id}">
-          <div class="prog-row__detail-inner">
-            <div class="prog-row__detail-content">
-              <p style="margin-top: 0;"><a class="btn-line" href="${o.event.bookingUrl}" target="_blank" rel="noopener">Book →</a></p>
-            </div>
-          </div>
-        </div>` : ""}
-      </div>`;
+      <a class="prog-row prog-row--ongoing" href="${href}">
+        <span class="prog-row__time t-meta">All day</span>
+        <span class="prog-row__body">
+          <span class="prog-row__title">${rowTitle(o.event)}</span>
+          <span class="prog-row__desc">${o.event.blurb}</span>
+          <span class="prog-row__sub">${o.event.type} · ${o.locations.map((l) => l.shortName).join(" · ")}</span>
+        </span>
+        <span class="prog-row__status"><span class="status">${o.event.bookingStatus}</span></span>
+      </a>`;
     }).join("");
 
-    const timedHtml = timed.map((x, i) => {
-      const id = `timed-${i}`;
+    const timedHtml = timed.map((x) => {
       const href = detailHref(x);
       const isPast = x.end < now;
-      const hasDetail = Boolean(x.occ.note || x.artists.length || x.event.bookingUrl);
       return `
-      <div class="prog-row${isPast ? " prog-row--past" : ""}">
-        <div class="prog-row__trigger">
-          <span class="prog-row__time t-meta">${x.occ.startTime}</span>
-          <span class="prog-row__body">
-            <span class="prog-row__title">${rowTitle(x.event)}</span>
-            <span class="prog-row__desc"><span class="prog-row__desc-text">${x.event.blurb}</span>${href ? ` <a class="link-underline" href="${href}">More info →</a>` : ""}</span>
-            <span class="prog-row__sub">${x.event.type} · ${timeRange(x.occ)} · ${x.location.shortName}${x.event.ageGuidance ? " · " + x.event.ageGuidance : ""}</span>
-          </span>
-          <span class="prog-row__status"><span class="status ${statusClass(x.status)}">${x.status}</span></span>
-          ${hasDetail ? `<button class="prog-row__chevron-btn" type="button" aria-expanded="false" aria-controls="detail-${id}" aria-label="Show more"><span class="prog-row__chevron" aria-hidden="true">⌄</span></button>` : ""}
-        </div>
-        ${hasDetail ? `
-        <div class="prog-row__detail" id="detail-${id}">
-          <div class="prog-row__detail-inner">
-            <div class="prog-row__detail-content">
-              ${x.occ.note ? `<p class="t-meta" style="opacity:.6;">${x.occ.note}</p>` : ""}
-              ${x.artists.length ? `<p class="t-meta" style="opacity:.6; margin-top: var(--space-3);">${x.artists.map((a) => a.name).join(", ")}</p>` : ""}
-              ${x.event.bookingUrl ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${x.event.bookingUrl}" target="_blank" rel="noopener">Book →</a></p>` : ""}
-            </div>
-          </div>
-        </div>` : ""}
-      </div>`;
+      <a class="prog-row${isPast ? " prog-row--past" : ""}" href="${href}">
+        <span class="prog-row__time t-meta">${x.occ.startTime}</span>
+        <span class="prog-row__body">
+          <span class="prog-row__title">${rowTitle(x.event)}</span>
+          <span class="prog-row__desc">${x.event.blurb}</span>
+          <span class="prog-row__sub">${x.event.type} · ${timeRange(x.occ)} · ${x.location.shortName}${x.event.ageGuidance ? " · " + x.event.ageGuidance : ""}</span>
+        </span>
+        <span class="prog-row__status"><span class="status ${statusClass(x.status)}">${x.status}</span></span>
+      </a>`;
     }).join("");
 
     host.innerHTML = ongoingHtml + timedHtml;
-  }
-
-  function wireExpansion() {
-    // Event delegation: rows are re-rendered wholesale on every filter or
-    // date change, so a single listener on the container avoids re-binding.
-    document.getElementById("view-list").addEventListener("click", (e) => {
-      const trigger = e.target.closest(".prog-row__chevron-btn");
-      if (!trigger) return;
-      const row = trigger.closest(".prog-row");
-      const open = row.classList.toggle("is-open");
-      trigger.setAttribute("aria-expanded", String(open));
-    });
   }
 
   function renderTimetable() {
