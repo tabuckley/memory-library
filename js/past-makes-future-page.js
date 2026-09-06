@@ -1,4 +1,4 @@
-import { loadData, resolveIfAllIds } from "./data.js";
+import { loadData, resolveIfAllIds, plateImg, vtName } from "./data.js";
 
 // The "who" column is normally free text (a name, "TB hosts", "Judges: CP,
 // Mistly & TBC"). It can also carry real artist ids instead — if every
@@ -73,10 +73,21 @@ async function main() {
 
     <section class="section-pad tone-black reveal" id="pageant">
       <div class="wrap">
-        <div class="grid" style="align-items:baseline; margin-bottom: var(--space-6);">
-          <p class="t-title" style="grid-column: 1 / span 6;"><img src="assets/logo/pmf-star-white.png" alt="" style="display:inline-block; height:0.75em; width:auto; margin-right:0.3em; vertical-align:baseline;" />Pageant</p>
-          <p class="t-meta" style="grid-column: 8 / span 5; opacity:.6; justify-self:end;">${pageantEvent.bookingStatus}${pageantEvent.ageGuidance ? " · " + pageantEvent.ageGuidance : ""} · Doors 19:30${pageantEvent.bookingUrl ? ` · <a class="link-underline" href="${pageantEvent.bookingUrl}" target="_blank" rel="noopener">Book →</a>` : ""}</p>
+        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-8);">Following the Conference &middot; Separate booking required</p>
+        <div class="grid" style="align-items:center; margin-bottom: var(--space-12);">
+          <div style="grid-column: 1 / span 7;">
+            <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("event", pageantEvent.id)};">
+              ${plateImg(pageantEvent.id, "landscape", pageantEvent.imageUrl)}
+            </div>
+          </div>
+          <div style="grid-column: 9 / span 4;">
+            <p class="t-title" style="margin-bottom: var(--space-3);"><img src="assets/logo/pmf-star-white.png" alt="" style="display:inline-block; height:0.75em; width:auto; margin-right:0.3em; vertical-align:baseline;" />Pageant</p>
+            <p class="t-body" style="opacity:.8; margin-bottom: var(--space-4);">${pageantEvent.summary}</p>
+            <p class="t-meta" style="opacity:.6;">${pageantEvent.bookingStatus}${pageantEvent.ageGuidance ? " · " + pageantEvent.ageGuidance : ""} · Doors 19:30</p>
+            ${pageantEvent.bookingUrl ? `<p style="margin-top: var(--space-4);"><a class="btn-line" href="${pageantEvent.bookingUrl}" target="_blank" rel="noopener">Book &rarr;</a></p>` : ""}
+          </div>
         </div>
+        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">Running order</p>
         <div>${pageantSessions.map((s) => agendaRow(s, data)).join("")}</div>
       </div>
     </section>

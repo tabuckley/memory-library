@@ -146,7 +146,7 @@
   font-size: var(--size-small);
   letter-spacing: var(--tracking-meta);
   text-transform: uppercase;
-  border-bottom: 1px solid var(--c-fg);
+  border-bottom: 1px solid currentColor;
   padding-bottom: 0.2em;
   transition: gap var(--dur-base) var(--ease);
 }
