@@ -190,8 +190,8 @@
       "main"
     ],
     "artistIds": [],
-    "summary": "People, not books, as a browsable living collection. Drop in and borrow a person for twenty minutes.",
-    "blurb": "Borrow a person, not a book.",
+    "summary": "A collection of sculptures, like the sofa, that you can sit and chat at or use to leave a memory. Drop in, no need to book.",
+    "blurb": "Sculptures to chat at or leave a memory.",
     "body": null,
     "bookingStatus": "DROP IN",
     "bookingUrl": null,
@@ -201,7 +201,7 @@
     "confirmed": true,
     "placeId": null,
     "year": null,
-    "mediaCaption": null
+    "mediaCaption": "Concept image - sculptures still in development"
   },
   {
     "id": "ev-bangladesh-workshop",
