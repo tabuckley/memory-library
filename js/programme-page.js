@@ -202,8 +202,11 @@ async function main() {
         <div class="prog-row__detail" id="detail-${id}">
           <div class="prog-row__detail-inner">
             <div class="prog-row__detail-content">
-              ${o.event.imageUrl ? `<div class="media-plate" style="--plate-ratio: 16/10; max-width: 320px; margin-bottom: var(--space-3);">${plateImg(o.event.id, "landscape", o.event.imageUrl)}</div>` : ""}
-              ${o.event.body ? `<p class="t-body" style="opacity:.85; margin-bottom: var(--space-3);">${o.event.body}</p>` : ""}
+              ${o.event.imageUrl || o.event.summary ? `
+              <div style="display:flex; flex-wrap:wrap; gap: var(--space-4); align-items:flex-start; margin-bottom: var(--space-3);">
+                ${o.event.imageUrl ? `<div class="media-plate" style="--plate-ratio: 16/10; width: 200px; flex: none;">${plateImg(o.event.id, "landscape", o.event.imageUrl)}</div>` : ""}
+                ${o.event.summary ? `<p class="t-body" style="opacity:.85; margin:0; flex: 1 1 200px;">${o.event.summary}</p>` : ""}
+              </div>` : ""}
               <p style="margin-top: 0;"><a class="btn-line" href="${href}">More detail →</a></p>
               ${o.event.bookingUrl ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${o.event.bookingUrl}" target="_blank" rel="noopener">Book →</a></p>` : ""}
             </div>
@@ -231,8 +234,11 @@ async function main() {
         <div class="prog-row__detail" id="detail-${id}">
           <div class="prog-row__detail-inner">
             <div class="prog-row__detail-content">
-              ${x.event.imageUrl ? `<div class="media-plate" style="--plate-ratio: 16/10; max-width: 320px; margin-bottom: var(--space-3);">${plateImg(x.event.id, "landscape", x.event.imageUrl)}</div>` : ""}
-              ${x.event.body ? `<p class="t-body" style="opacity:.85; margin-bottom: var(--space-3);">${x.event.body}</p>` : ""}
+              ${x.event.imageUrl || x.event.summary ? `
+              <div style="display:flex; flex-wrap:wrap; gap: var(--space-4); align-items:flex-start; margin-bottom: var(--space-3);">
+                ${x.event.imageUrl ? `<div class="media-plate" style="--plate-ratio: 16/10; width: 200px; flex: none;">${plateImg(x.event.id, "landscape", x.event.imageUrl)}</div>` : ""}
+                ${x.event.summary ? `<p class="t-body" style="opacity:.85; margin:0; flex: 1 1 200px;">${x.event.summary}</p>` : ""}
+              </div>` : ""}
               ${x.occ.note ? `<p class="t-meta" style="opacity:.6;">${x.occ.note}</p>` : ""}
               ${x.artists.length ? `<p class="t-meta" style="opacity:.6; margin-top: var(--space-3);">${x.artists.map((a) => a.name).join(", ")}</p>` : ""}
               ${href ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${href}">More detail →</a></p>` : ""}
