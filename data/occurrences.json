@@ -19,29 +19,11 @@
     "confirmed": true
   },
   {
-    "id": "occ-bangladesh",
-    "eventId": "ev-bangladesh-presentation",
-    "date": "2026-11-14",
-    "startTime": "14:15",
-    "endTime": "14:45",
-    "locationId": "main",
-    "confirmed": true
-  },
-  {
     "id": "occ-cairo",
     "eventId": "ev-cairo-presentation",
     "date": "2026-11-14",
     "startTime": "14:45",
     "endTime": "15:15",
-    "locationId": "main",
-    "confirmed": true
-  },
-  {
-    "id": "occ-engine-creativity",
-    "eventId": "ev-engine-creativity",
-    "date": "2026-11-14",
-    "startTime": "17:30",
-    "endTime": "18:15",
     "locationId": "main",
     "confirmed": true
   },
