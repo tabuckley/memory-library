@@ -152,6 +152,28 @@
 }
 .btn-line:hover { gap: var(--space-3); }
 
+/* ================= PRIMARY (BOOKING) BUTTON =================
+   A filled, high-contrast button reserved for the one action that
+   actually matters on an event page — booking. Everything else on the
+   site (nav links, "read more" links) stays as the quieter .btn-line
+   style; this one is deliberately the loudest thing on the page. */
+a.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--size-body);
+  font-weight: 500;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  background: var(--c-library-black);
+  color: var(--c-archive-white);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius);
+  transition: gap var(--dur-base) var(--ease), opacity var(--dur-base) var(--ease);
+}
+a.btn-primary:hover { gap: var(--space-4); opacity: 0.85; }
+
 /* ================= NOW / NEXT BANNER ================= */
 .now-next {
   display: grid;

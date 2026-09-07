@@ -76,7 +76,6 @@ async function main() {
             ${event.year ? `<p style="opacity:.55; margin-bottom: var(--space-1);">Year</p><p style="margin-bottom: var(--space-4);">${event.year}</p>` : ""}
             <p style="opacity:.55; margin-bottom: var(--space-1);">Booking</p>
             <p>${event.bookingStatus}</p>
-            ${event.bookingUrl ? `<p style="margin-top: var(--space-3);"><a class="btn-line" href="${event.bookingUrl}" target="_blank" rel="noopener">Book &rarr;</a></p>` : ""}
           </div>
         </div>
       </div>
@@ -97,6 +96,13 @@ async function main() {
         ${event.body ? `<p class="t-body measure" style="grid-column: 7 / span 6; opacity:.85;">${event.body}</p>` : ""}
       </div>
     </section>
+
+    ${event.bookingUrl ? `
+    <section class="section-pad-sm reveal">
+      <div class="wrap">
+        <a class="btn-primary" href="${event.bookingUrl}" target="_blank" rel="noopener">Book now &rarr;</a>
+      </div>
+    </section>` : ""}
 
     ${runningOrder.length ? `
     <section class="section-pad-sm reveal">
