@@ -48,7 +48,10 @@ async function main() {
       <div class="wrap">
         <div class="grid" style="align-items:baseline; margin-bottom: var(--space-6);">
           <p class="t-title" style="grid-column: 1 / span 6;">Conference</p>
-          <p class="t-meta" style="grid-column: 8 / span 5; opacity:.6; justify-self:end;">${confEvent.bookingStatus} · 13:00–18:00</p>
+          <div style="grid-column: 8 / span 5; text-align:right;">
+            <p class="t-meta" style="opacity:.6;">${confEvent.bookingStatus} · 13:00–18:00</p>
+            ${confEvent.bookingUrl ? `<a class="link-underline" href="${confEvent.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
+          </div>
         </div>
         <div>${conferenceSessions.map((s) => agendaRow(s, data)).join("")}</div>
       </div>

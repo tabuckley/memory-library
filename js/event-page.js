@@ -76,6 +76,7 @@ async function main() {
             ${event.year ? `<p style="opacity:.55; margin-bottom: var(--space-1);">Year</p><p style="margin-bottom: var(--space-4);">${event.year}</p>` : ""}
             <p style="opacity:.55; margin-bottom: var(--space-1);">Booking</p>
             <p>${event.bookingStatus}</p>
+            ${event.bookingUrl ? `<a class="link-underline" href="${event.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
           </div>
         </div>
       </div>
