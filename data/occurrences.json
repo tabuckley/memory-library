@@ -28,6 +28,16 @@
     "confirmed": true
   },
   {
+    "id": "occ-pageant",
+    "eventId": "ev-pageant",
+    "date": "2026-11-14",
+    "startTime": "20:00",
+    "endTime": "22:30",
+    "doorsTime": "19:30",
+    "locationId": "main",
+    "confirmed": true
+  },
+  {
     "id": "occ-people-library-2",
     "eventId": "ev-people-library",
     "date": "2026-11-15",
