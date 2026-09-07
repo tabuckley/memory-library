@@ -1,5 +1,5 @@
 import { loadData, plateImg, vtName, resolveRefs } from "./data.js";
-import { expandOccurrences, dateLabel, timeRange } from "./programme.js";
+import { expandOccurrences, dateLabel, timeRange, agendaRow } from "./programme.js";
 
 // Ongoing events (exhibitions, installations) don't have discrete
 // occurrence rows — they're just open whenever the venue is. Rather than
@@ -19,6 +19,29 @@ const EVENT_LOGOS = {
   "ev-exhibition": "assets/logo/resonate-logo-black.png",
 };
 
+// A small inline mark before the title, same touch the Programme rows and
+// the Past Makes Future page already give these two linked events.
+const EVENT_TITLE_MARKS = {
+  "ev-pageant": `<img src="assets/logo/pmf-star-black.png" alt="" style="display:inline-block; height:0.6em; width:auto; margin-right:0.25em; vertical-align:baseline;" />`,
+};
+
+// Pageant's own running order lives in pmf-sessions rather than as a
+// property of the event row itself — this is the one place outside the
+// Past Makes Future page itself that needs to know how to find it.
+const PMF_SECTION_FOR_EVENT = {
+  "ev-pageant": "pageant",
+};
+
+// Pageant and the Conference are a deliberate pair (same day, same strand)
+// — rather than leaving it to chance which strand-mates the generic
+// "also in this strand" pick turns up, make sure Pageant's page always
+// links straight back to the Conference, and via its real URL rather than
+// the generic event.html route it doesn't actually live at.
+function relatedHref(e) {
+  if (e.id === "ev-past-makes-future") return "past-makes-future.html";
+  return `event.html?slug=${e.id}`;
+}
+
 async function main() {
   const data = await loadData();
   const params = new URLSearchParams(location.search);
@@ -31,7 +54,11 @@ async function main() {
   const strand = data.byId.strand[event.strandId];
   const expanded = expandOccurrences(data).filter((x) => x.event.id === event.id);
   const openDays = expanded.length ? [] : openDaysFor(event, data);
-  const related = data.events.filter((e) => e.id !== event.id && e.strandId === event.strandId).slice(0, 2);
+  const pmfSection = PMF_SECTION_FOR_EVENT[event.id];
+  const runningOrder = pmfSection ? data.pmfSessions.filter((s) => s.section === pmfSection) : [];
+  const related = event.id === "ev-pageant" && data.byId.event["ev-past-makes-future"]
+    ? [data.byId.event["ev-past-makes-future"]]
+    : data.events.filter((e) => e.id !== event.id && e.strandId === event.strandId).slice(0, 2);
 
   host.innerHTML = `
     <section class="section-pad-sm">
@@ -39,7 +66,7 @@ async function main() {
         <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-4);">${event.type}${strand ? ` · ${strand.name}` : ""}${place ? ` · ${place.name}` : ""}</p>
         <div class="grid" style="align-items:start;">
           <h1 class="t-display" style="grid-column: 1 / span 9; font-size: clamp(2.25rem, 1.5rem + 4.5vw, 6rem); margin-bottom: var(--space-6);">
-            ${EVENT_LOGOS[event.id] ? `<img src="${EVENT_LOGOS[event.id]}" alt="${event.title}" style="width: 100%; max-width: 320px; height: auto; display: block;" />` : event.title}
+            ${EVENT_LOGOS[event.id] ? `<img src="${EVENT_LOGOS[event.id]}" alt="${event.title}" style="width: 100%; max-width: 320px; height: auto; display: block;" />` : `${EVENT_TITLE_MARKS[event.id] || ""}${event.title}`}
           </h1>
           <div style="grid-column: 10 / span 3;" class="t-meta">
             ${artists.length ? `
@@ -70,6 +97,14 @@ async function main() {
       </div>
     </section>
 
+    ${runningOrder.length ? `
+    <section class="section-pad-sm reveal">
+      <div class="wrap">
+        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">Running order</p>
+        <div>${runningOrder.map((s) => agendaRow(s, data)).join("")}</div>
+      </div>
+    </section>` : ""}
+
     <section class="section-pad-sm tone-paper reveal">
       <div class="wrap">
         <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">On the programme</p>
@@ -95,7 +130,7 @@ async function main() {
         <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">Also in ${strand.name}</p>
         <div class="grid">
           ${related.map((e, i) => `
-            <a href="event.html?slug=${e.id}" style="grid-column: ${i === 0 ? "1 / span 5" : "7 / span 5"};">
+            <a href="${relatedHref(e)}" style="grid-column: ${i === 0 ? "1 / span 5" : "7 / span 5"};">
               <div class="media-plate" style="--plate-ratio: 4/3;">
                 ${plateImg(e.id, "landscape", e.imageUrl)}
                 ${e.mediaCaption ? `<span class="plate-caption">${e.mediaCaption}</span>` : ""}

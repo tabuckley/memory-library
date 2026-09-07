@@ -1,33 +1,9 @@
-import { loadData, resolveIfAllIds, plateImg, vtName } from "./data.js";
-
-// The "who" column is normally free text (a name, "TB hosts", "Judges: CP,
-// Mistly & TBC"). It can also carry real artist ids instead — if every
-// token in the cell resolves to a confirmed artist, show them as linked
-// names; otherwise the cell is shown exactly as typed, so nothing breaks
-// for the many rows that are legitimately just plain text.
-function whoDisplay(who, data) {
-  const artists = resolveIfAllIds(who, data.byId.artist);
-  if (!artists) return who || "";
-  return artists.map((a) => `<a class="link-underline" href="artist.html?slug=${a.id}">${a.name}</a>`).join(" &amp; ");
-}
-
-function agendaRow(s, data) {
-  const isBreak = /break/i.test(s.title);
-  return `
-    <div class="agenda-row${isBreak ? " agenda-row--break" : ""}">
-      <span class="agenda-row__time">${s.time}</span>
-      <span>
-        <span class="agenda-row__title" style="display:block;">${s.title}</span>
-        ${s.purpose ? `<span class="agenda-row__purpose" style="display:block;">${s.purpose}</span>` : ""}
-      </span>
-      <span class="agenda-row__who">${whoDisplay(s.who, data)}</span>
-    </div>`;
-}
+import { loadData, plateImg, vtName } from "./data.js";
+import { agendaRow } from "./programme.js";
 
 async function main() {
   const data = await loadData();
   const conferenceSessions = data.pmfSessions.filter((s) => s.section === "conference");
-  const pageantSessions = data.pmfSessions.filter((s) => s.section === "pageant");
 
   const strand = data.byId.strand["past-makes-future"];
   const confEvent = data.byId.event["ev-past-makes-future"];
@@ -71,26 +47,20 @@ async function main() {
       </div>
     </section>
 
-    <section class="section-pad tone-black reveal" id="pageant">
+    ${pageantEvent ? `
+    <section class="section-pad-sm reveal">
       <div class="wrap">
-        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-8);">Following the Conference &middot; Separate booking required</p>
-        <div class="grid" style="align-items:center; margin-bottom: var(--space-12);">
-          <div style="grid-column: 1 / span 7;">
-            <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("event", pageantEvent.id)};">
+        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">Also in Past Makes Future</p>
+        <div class="grid">
+          <a href="event.html?slug=${pageantEvent.id}" style="grid-column: 1 / span 5;">
+            <div class="media-plate" style="--plate-ratio: 4/3; view-transition-name: ${vtName("event", pageantEvent.id)};">
               ${plateImg(pageantEvent.id, "landscape", pageantEvent.imageUrl)}
             </div>
-          </div>
-          <div style="grid-column: 9 / span 4;">
-            <p class="t-title" style="margin-bottom: var(--space-3);"><img src="assets/logo/pmf-star-white.png" alt="" style="display:inline-block; height:0.75em; width:auto; margin-right:0.3em; vertical-align:baseline;" />Pageant</p>
-            <p class="t-body" style="opacity:.8; margin-bottom: var(--space-4);">${pageantEvent.summary}</p>
-            <p class="t-meta" style="opacity:.6;">${pageantEvent.bookingStatus}${pageantEvent.ageGuidance ? " · " + pageantEvent.ageGuidance : ""} · Doors 19:30</p>
-            ${pageantEvent.bookingUrl ? `<p style="margin-top: var(--space-4);"><a class="btn-line" href="${pageantEvent.bookingUrl}" target="_blank" rel="noopener">Book &rarr;</a></p>` : ""}
-          </div>
+            <p class="t-intro" style="margin-top: var(--space-3);"><img src="assets/logo/pmf-star-black.png" alt="" style="display:inline-block; height:0.75em; width:auto; margin-right:0.3em; vertical-align:baseline;" />${pageantEvent.title}</p>
+          </a>
         </div>
-        <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">Running order</p>
-        <div>${pageantSessions.map((s) => agendaRow(s, data)).join("")}</div>
       </div>
-    </section>
+    </section>` : ""}
 
     <section class="section-pad-sm">
       <div class="wrap">

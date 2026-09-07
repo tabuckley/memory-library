@@ -167,7 +167,6 @@ async function main() {
 
   function detailHref(x) {
     if (x.event.id === "ev-past-makes-future") return "past-makes-future.html";
-    if (x.event.id === "ev-pageant") return "past-makes-future.html#pageant";
     return `event.html?slug=${x.event.id}`;
   }
 

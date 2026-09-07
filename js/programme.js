@@ -3,7 +3,7 @@
 // (What's On list + Timetable). Occurrences are the schedulable unit;
 // Events carry the descriptive content; Ongoing events (exhibitions,
 // installations) are not exploded into repeated occurrences.
-import { resolveRefs } from "./data.js";
+import { resolveRefs, resolveIfAllIds } from "./data.js";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -125,3 +125,27 @@ export const EVENT_TYPES = [
   "Exhibition", "Talk", "Workshop", "Screening",
   "Performance", "Participatory", "Social", "Special Event",
 ];
+
+// The "who" column on a pmf-sessions row is normally free text (a name, "TB
+// hosts", "Judges: CP, Mistly & TBC"). It can also carry real artist ids
+// instead — if every token in the cell resolves to a confirmed artist, show
+// them as linked names; otherwise the cell is shown exactly as typed, so
+// nothing breaks for the many rows that are legitimately just plain text.
+export function whoDisplay(who, data) {
+  const artists = resolveIfAllIds(who, data.byId.artist);
+  if (!artists) return who || "";
+  return artists.map((a) => `<a class="link-underline" href="artist.html?slug=${a.id}">${a.name}</a>`).join(" &amp; ");
+}
+
+export function agendaRow(s, data) {
+  const isBreak = /break/i.test(s.title);
+  return `
+    <div class="agenda-row${isBreak ? " agenda-row--break" : ""}">
+      <span class="agenda-row__time">${s.time}</span>
+      <span>
+        <span class="agenda-row__title" style="display:block;">${s.title}</span>
+        ${s.purpose ? `<span class="agenda-row__purpose" style="display:block;">${s.purpose}</span>` : ""}
+      </span>
+      <span class="agenda-row__who">${whoDisplay(s.who, data)}</span>
+    </div>`;
+}

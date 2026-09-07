@@ -24,13 +24,13 @@ function festivalRunLabel(data) {
   return `${ordinal(start.getDate())}–${ordinal(end.getDate())} ${month} ${end.getFullYear()}`;
 }
 
-// Past Makes Future's conference and pageant share a page rather than
-// getting their own event.html entries — same routing programme-page.js
-// uses for these two ids.
+// The Conference has its own dedicated page rather than a generic
+// event.html entry — same routing programme-page.js uses for this id.
+// Pageant gets a real event.html page like everything else, linked to the
+// Conference (and vice versa) via the "also in this strand" mechanism.
 function eventHref(event) {
   if (!event) return null;
   if (event.id === "ev-past-makes-future") return "past-makes-future.html";
-  if (event.id === "ev-pageant") return "past-makes-future.html#pageant";
   return `event.html?slug=${event.id}`;
 }
 

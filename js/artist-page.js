@@ -91,7 +91,7 @@ async function main() {
               <span class="t-meta" style="opacity:.6;">${dateLabel(x.occ.date)} · ${x.occ.startTime}</span>
             </a>`).join("")}
             ${pmfAppearances.map((s) => `
-            <a class="related-item" href="past-makes-future.html${s.section === "pageant" ? "#pageant" : ""}">
+            <a class="related-item" href="${s.section === "pageant" ? "event.html?slug=ev-pageant" : "past-makes-future.html"}">
               <span>${s.title} - Past Makes Future</span>
               <span class="t-meta" style="opacity:.6;">Sat 14 Nov · ${s.time}</span>
             </a>`).join("")}
