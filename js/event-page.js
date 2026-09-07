@@ -28,9 +28,10 @@ const EVENT_TITLE_MARKS = {
 // Pageant's own running order lives in pmf-sessions rather than as a
 // property of the event row itself — this is the one place outside the
 // Past Makes Future page itself that needs to know how to find it.
-const PMF_SECTION_FOR_EVENT = {
-  "ev-pageant": "pageant",
-};
+// Empty for now: Pageant's exact timings aren't settled, so its page
+// shows no schedule at all (same treatment as an event like Queer at
+// Sea) until there's a real running order to publish.
+const PMF_SECTION_FOR_EVENT = {};
 
 // Pageant and the Conference are a deliberate pair (same day, same strand)
 // — rather than leaving it to chance which strand-mates the generic
