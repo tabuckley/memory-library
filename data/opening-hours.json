@@ -1,5 +1,5 @@
 [
-  { "date": "2026-11-13", "open": "10:00", "close": "22:00", "note": null, "confirmed": false },
+  { "date": "2026-11-13", "open": "18:00", "close": "22:00", "note": "Launch event - not open during the day", "confirmed": false },
   { "date": "2026-11-14", "open": "10:00", "close": "23:00", "note": "Past Makes Future", "confirmed": false },
   { "date": "2026-11-15", "open": "10:00", "close": "17:00", "note": null, "confirmed": false },
   { "date": "2026-11-16", "open": "10:00", "close": "17:00", "note": null, "confirmed": false },

@@ -47,15 +47,6 @@
     "confirmed": true
   },
   {
-    "id": "occ-bangladesh-workshop",
-    "eventId": "ev-bangladesh-workshop",
-    "date": "2026-11-15",
-    "startTime": "14:00",
-    "endTime": "15:30",
-    "locationId": "main",
-    "confirmed": false
-  },
-  {
     "id": "occ-bangladesh-screening",
     "eventId": "ev-bangladesh-screening",
     "date": "2026-11-15",
@@ -119,15 +110,6 @@
     "confirmed": true
   },
   {
-    "id": "occ-egypt-workshop",
-    "eventId": "ev-egypt-workshop",
-    "date": "2026-11-20",
-    "startTime": "14:00",
-    "endTime": "15:30",
-    "locationId": "main",
-    "confirmed": false
-  },
-  {
     "id": "occ-we-shine-2",
     "eventId": "ev-we-shine-lates",
     "date": "2026-11-20",
@@ -144,15 +126,6 @@
     "endTime": "13:00",
     "locationId": "main",
     "confirmed": true
-  },
-  {
-    "id": "occ-lebanon-workshop",
-    "eventId": "ev-lebanon-workshop",
-    "date": "2026-11-21",
-    "startTime": "14:00",
-    "endTime": "15:30",
-    "locationId": "main",
-    "confirmed": false
   },
   {
     "id": "occ-we-shine-3",
