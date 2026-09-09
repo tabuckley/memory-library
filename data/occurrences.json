@@ -1,7 +1,7 @@
 [
   {
     "id": "occ-people-library-1",
-    "eventId": "ev-people-library",
+    "eventId": "ev-people-library-hosted",
     "date": "2026-11-13",
     "startTime": "18:00",
     "endTime": "22:00",
@@ -39,7 +39,7 @@
   },
   {
     "id": "occ-people-library-2",
-    "eventId": "ev-people-library",
+    "eventId": "ev-people-library-hosted",
     "date": "2026-11-15",
     "startTime": "11:00",
     "endTime": "13:00",
@@ -66,7 +66,7 @@
   },
   {
     "id": "occ-people-library-16",
-    "eventId": "ev-people-library",
+    "eventId": "ev-people-library-hosted",
     "date": "2026-11-16",
     "startTime": "11:00",
     "endTime": "13:00",
@@ -75,7 +75,7 @@
   },
   {
     "id": "occ-people-library-17",
-    "eventId": "ev-people-library",
+    "eventId": "ev-people-library-hosted",
     "date": "2026-11-17",
     "startTime": "11:00",
     "endTime": "13:00",
@@ -84,7 +84,7 @@
   },
   {
     "id": "occ-people-library-18",
-    "eventId": "ev-people-library",
+    "eventId": "ev-people-library-hosted",
     "date": "2026-11-18",
     "startTime": "11:00",
     "endTime": "13:00",
@@ -93,7 +93,7 @@
   },
   {
     "id": "occ-people-library-3",
-    "eventId": "ev-people-library",
+    "eventId": "ev-people-library-hosted",
     "date": "2026-11-19",
     "startTime": "11:00",
     "endTime": "13:00",
@@ -111,7 +111,7 @@
   },
   {
     "id": "occ-people-library-4",
-    "eventId": "ev-people-library",
+    "eventId": "ev-people-library-hosted",
     "date": "2026-11-20",
     "startTime": "11:00",
     "endTime": "13:00",
@@ -138,7 +138,7 @@
   },
   {
     "id": "occ-people-library-5",
-    "eventId": "ev-people-library",
+    "eventId": "ev-people-library-hosted",
     "date": "2026-11-21",
     "startTime": "11:00",
     "endTime": "13:00",
