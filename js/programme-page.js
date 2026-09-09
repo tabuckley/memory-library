@@ -1,5 +1,5 @@
 import { loadData, plateImg } from "./data.js";
-import { expandOccurrences, dateLabel, timeRange } from "./programme.js";
+import { expandOccurrences, dateLabel, timeRange, toDateStr } from "./programme.js";
 
 // Past Makes Future's individual conference talks have their own running
 // order on the Past Makes Future page rather than becoming separate
@@ -62,7 +62,15 @@ function dateTextForGroup(group) {
   if (group.length === 1) return `${dateLabel(first.occ.date)} · ${timeRange(first.occ)}`;
   const sameTime = group.every((x) => x.occ.startTime === first.occ.startTime && x.occ.endTime === first.occ.endTime);
   if (group.length >= 5) return `Most days · ${timeRange(mostCommonOcc(group).occ)}`;
-  if (sameTime) return `${dateLabel(first.occ.date, { short: true })}–${dateLabel(last.occ.date, { short: true })} · ${timeRange(first.occ)}`;
+  // A "13–15 Nov" range reads as every day in between - only true it if the
+  // dates are actually back to back (e.g. We Shine's Thu-Fri-Sat run).
+  // A same-time event with gaps (e.g. a workshop repeated on two separate
+  // dates) needs each date spelled out instead, or it implies days it
+  // doesn't actually run on.
+  const oneDayMs = 24 * 60 * 60 * 1000;
+  const isContiguous = group.every((x, i) => i === 0 || x.occ.date === toDateStr(new Date(new Date(`${group[i - 1].occ.date}T00:00:00`).getTime() + oneDayMs)));
+  if (sameTime && isContiguous) return `${dateLabel(first.occ.date, { short: true })}–${dateLabel(last.occ.date, { short: true })} · ${timeRange(first.occ)}`;
+  if (sameTime) return `${group.map((x) => dateLabel(x.occ.date, { short: true })).join(", ")} · ${timeRange(first.occ)}`;
   return group.map((x) => dateLabel(x.occ.date, { short: true })).join(", ");
 }
 

@@ -188,6 +188,28 @@
     "mediaCaption": null
   },
   {
+    "id": "ev-bangladesh-workshop",
+    "title": "Bangladesh Workshop",
+    "type": "Workshop",
+    "strandId": "past-makes-future",
+    "locationIds": [
+      "play-office"
+    ],
+    "artistIds": [],
+    "summary": "A workshop connected to Bangladesh, part of Memory Library's international exchange. Held at Play Office, not Boathouse 5.",
+    "blurb": "Workshop connected to Bangladesh. Held at Play Office.",
+    "body": "This workshop is connected to Bangladesh and forms part of Memory Library's international exchange. It offers visitors a chance to take part in activity linked to the wider programme of visiting artists and international collaboration. It runs twice, at Play Office rather than Boathouse 5 - check the venue before you travel.",
+    "bookingStatus": "BOOKING REQUIRED",
+    "bookingUrl": null,
+    "imageUrl": null,
+    "ageGuidance": null,
+    "mode": "timed",
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
+  },
+  {
     "id": "ev-bangladesh-screening",
     "title": "Bangladesh Screening",
     "type": "Screening",
@@ -200,6 +222,50 @@
     "blurb": "Screening connected to Bangladesh.",
     "body": "This screening is connected to Bangladesh and forms part of Memory Library's international exchange. It brings work connected to the exchange into the Cinema as part of the wider programme. The screening sits alongside artist presentations, workshops and exhibitions taking place at Boathouse 5.",
     "bookingStatus": "FREE",
+    "bookingUrl": null,
+    "imageUrl": null,
+    "ageGuidance": null,
+    "mode": "timed",
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
+  },
+  {
+    "id": "ev-egypt-workshop",
+    "title": "Egypt Workshop",
+    "type": "Workshop",
+    "strandId": "we-shine",
+    "locationIds": [
+      "play-office"
+    ],
+    "artistIds": [],
+    "summary": "A workshop connected to Egypt, part of Memory Library's international exchange. Held at Play Office, not Boathouse 5.",
+    "blurb": "Workshop connected to Egypt. Held at Play Office.",
+    "body": "This workshop is connected to Egypt and forms part of Memory Library's international exchange. It offers visitors a chance to take part in activity linked to the wider programme of visiting artists and international collaboration. It takes place at Play Office rather than Boathouse 5 - check the venue before you travel.",
+    "bookingStatus": "BOOKING REQUIRED",
+    "bookingUrl": null,
+    "imageUrl": null,
+    "ageGuidance": null,
+    "mode": "timed",
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
+  },
+  {
+    "id": "ev-lebanon-workshop",
+    "title": "Lebanon Workshop",
+    "type": "Workshop",
+    "strandId": "we-shine",
+    "locationIds": [
+      "play-office"
+    ],
+    "artistIds": [],
+    "summary": "A workshop connected to Lebanon, part of Memory Library's international exchange. Held at Play Office, not Boathouse 5.",
+    "blurb": "Workshop connected to Lebanon. Held at Play Office.",
+    "body": "This workshop is connected to Lebanon and forms part of Memory Library's international exchange. It offers visitors a chance to take part in activity linked to the wider programme of visiting artists and international collaboration. It takes place at Play Office rather than Boathouse 5 - check the venue before you travel.",
+    "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
     "imageUrl": null,
     "ageGuidance": null,

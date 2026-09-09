@@ -26,5 +26,12 @@
     "shortName": "Exterior",
     "description": "The dock frontage outside Boathouse 5 - evening projection and We Shine activity.",
     "confirmed": false
+  },
+  {
+    "id": "play-office",
+    "name": "Play Office",
+    "shortName": "Play Office",
+    "description": "Play Office's own space, not inside Boathouse 5 - see the workshop's own page for how to find it.",
+    "confirmed": false
   }
 ]
