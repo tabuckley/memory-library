@@ -1,4 +1,4 @@
-import { loadData, getNow, plateImg, vtName } from "./data.js";
+import { loadData, getNow } from "./data.js";
 import { computeNowNext, dateLabel, timeRange, festivalDates } from "./programme.js";
 
 function occTeaser(x) {
@@ -71,38 +71,9 @@ function renderLive(data, now) {
   host.innerHTML = `<div class="now-next">${cell(cellA)}${cell(cellB)}</div>`;
 }
 
-function renderSelectedWork(data) {
-  const host = document.getElementById("selected-work");
-  const feature = data.byId.event["ev-queer-at-sea"];
-  if (!feature) { host.innerHTML = ""; return; }
-
-  const artistName = (e) => (e.artistIds || []).map((id) => data.byId.artist[id]?.name).filter(Boolean).join(", ");
-  const placeName = (e) => (e.placeId && data.byId.place[e.placeId]?.name) || "";
-
-  host.innerHTML = `
-    <div class="wrap">
-      <p class="t-meta reveal" style="opacity:.55; margin-bottom: var(--space-8);">Selected work</p>
-      <a href="event.html?slug=${feature.id}" class="grid reveal" style="align-items:center; text-decoration:none;">
-        <div style="grid-column: 1 / span 7;">
-          <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("event", feature.id)};">
-            ${plateImg(feature.id, "landscape", feature.imageUrl)}
-            ${feature.mediaCaption ? `<span class="plate-caption">${feature.mediaCaption}</span>` : ""}
-          </div>
-        </div>
-        <div style="grid-column: 9 / span 4;">
-          <p class="t-meta" style="opacity:.6; margin-bottom: var(--space-2);">${feature.type}${placeName(feature) ? " · " + placeName(feature) : ""}</p>
-          <p class="t-title" style="margin-bottom: var(--space-3);">${feature.title}</p>
-          <p class="t-body" style="opacity:.8;">${feature.summary}</p>
-          ${artistName(feature) ? `<p class="t-meta" style="margin-top: var(--space-4); opacity:.6;">${artistName(feature)}</p>` : ""}
-        </div>
-      </a>
-    </div>`;
-}
-
 (async function initHome() {
   const data = await loadData();
   const now = getNow();
   renderLive(data, now);
-  renderSelectedWork(data);
   document.dispatchEvent(new CustomEvent("content:rendered"));
 })();
