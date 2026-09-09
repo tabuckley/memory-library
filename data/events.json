@@ -1,5 +1,27 @@
 [
   {
+    "id": "ev-launch",
+    "title": "Launch",
+    "type": "Special Event",
+    "strandId": "memory-library",
+    "locationIds": [
+      "main"
+    ],
+    "artistIds": [],
+    "summary": "Memory Library's opening night: the exhibitions, Remembering Place and the Film Programme all open at once, 18:00-22:00.",
+    "blurb": "Opening night for Memory Library.",
+    "body": "Launch is the opening night of Memory Library. Resonate, Queer at Sea, Remembering Place and the Film Programme all open together, with a bar and the first chance to see the whole programme in one evening. Boathouse 5 isn't open during the day on the 13th - Launch is the only way in that day.",
+    "bookingStatus": "BOOKING REQUIRED",
+    "bookingUrl": null,
+    "imageUrl": "assets/img/photos/launch.jpg",
+    "ageGuidance": null,
+    "mode": "timed",
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
+  },
+  {
     "id": "ev-exhibition",
     "title": "Resonate",
     "type": "Exhibition",

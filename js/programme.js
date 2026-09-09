@@ -92,6 +92,21 @@ export function groupByDate(expanded) {
   return map;
 }
 
+// The 13th also carries an earlier, more specialist session (the
+// Bangladesh Workshop at Play Office) that starts before Launch does -
+// chronologically first, but Launch is the evening's actual headline
+// moment and what the homepage should tease as "next" for that whole
+// day, not just whichever session happens to start earliest. Once the
+// 13th has passed this never matches, so no override is needed for any
+// later date - the real next occurrence just falls out naturally.
+const LAUNCH_EVENT_ID = "ev-launch";
+function preferLaunch(candidate, expanded) {
+  if (!candidate || candidate.event.id === LAUNCH_EVENT_ID) return candidate;
+  const launch = expanded.find((x) => x.event.id === LAUNCH_EVENT_ID);
+  if (!launch || candidate.occ.date !== launch.occ.date) return candidate;
+  return launch;
+}
+
 // Determine festival phase + Now/Next for a given instant.
 export function computeNowNext(data, now) {
   const expanded = expandOccurrences(data);
@@ -100,7 +115,7 @@ export function computeNowNext(data, now) {
   const last = new Date(`${dates[dates.length - 1]}T23:59:59`);
 
   if (now < first) {
-    const next = expanded.find((x) => x.start >= now) || expanded[0];
+    const next = preferLaunch(expanded.find((x) => x.start >= now) || expanded[0], expanded);
     return { phase: "before", now: null, next };
   }
   if (now > last) {
@@ -116,7 +131,7 @@ export function computeNowNext(data, now) {
     .sort((a, b) => b.start - a.start);
   const dateStr = toDateStr(now);
   const ongoingToday = ongoingForDate(data, dateStr);
-  const next = expanded.find((x) => x.start > now) || null;
+  const next = preferLaunch(expanded.find((x) => x.start > now) || null, expanded);
 
   return { phase: "during", now: happening, ongoing: ongoingToday, next };
 }
