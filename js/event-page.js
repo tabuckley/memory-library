@@ -19,11 +19,10 @@ const EVENT_LOGOS = {
   "ev-exhibition": "assets/logo/resonate-logo-black.png",
 };
 
-// A small inline mark before the title, same touch the Programme rows and
-// the Past Makes Future page already give these two linked events.
-const EVENT_TITLE_MARKS = {
-  "ev-pageant": `<img src="assets/logo/pmf-star-black.png" alt="" style="display:inline-block; height:0.6em; width:auto; margin-right:0.25em; vertical-align:baseline;" />`,
-};
+// A small inline mark before the title, for events that carry one (e.g.
+// Past Makes Future's own page uses its wordmark via EVENT_LOGOS instead -
+// this is for events that just need a small icon rather than a full logo).
+const EVENT_TITLE_MARKS = {};
 
 // Pageant's own running order lives in pmf-sessions rather than as a
 // property of the event row itself — this is the one place outside the

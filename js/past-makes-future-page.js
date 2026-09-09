@@ -66,7 +66,7 @@ async function main() {
             <div class="media-plate" style="--plate-ratio: 4/3; view-transition-name: ${vtName("event", pageantEvent.id)};">
               ${plateImg(pageantEvent.id, "landscape", pageantEvent.imageUrl)}
             </div>
-            <p class="t-intro" style="margin-top: var(--space-3);"><img src="assets/logo/pmf-star-black.png" alt="" style="display:inline-block; height:0.75em; width:auto; margin-right:0.3em; vertical-align:baseline;" />${pageantEvent.title}</p>
+            <p class="t-intro" style="margin-top: var(--space-3);">${pageantEvent.title}</p>
           </a>
         </div>
       </div>

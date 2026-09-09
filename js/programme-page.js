@@ -9,9 +9,9 @@ const CONFERENCE_SUB_EVENT_IDS = new Set([
   "ev-bangladesh-presentation", "ev-cairo-presentation", "ev-engine-creativity",
 ]);
 
-// Past Makes Future and Pageant carry their own small mark inline, so the
-// pair reads as one linked identity in an otherwise plain card grid.
-const PMF_MARK_EVENT_IDS = new Set(["ev-past-makes-future", "ev-pageant"]);
+// Past Makes Future carries its own small mark inline; Pageant is linked
+// to it (via "Also in Past Makes Future") but doesn't repeat the mark.
+const PMF_MARK_EVENT_IDS = new Set(["ev-past-makes-future"]);
 const pmfMark = () => `<img src="assets/logo/pmf-star-black.png" alt="" style="display:inline-block; height:0.9em; width:auto; margin-right:0.4em; vertical-align:baseline; transform:translateY(0.08em);" />`;
 const resonateMark = () => `<img src="assets/logo/resonate-blob-black.png" alt="" style="display:inline-block; height:0.85em; width:auto; margin-right:0.4em; vertical-align:baseline; transform:translateY(0.08em);" />`;
 const weShineMark = () => `<img src="assets/logo/partners/we-shine-star.png" alt="" style="display:inline-block; height:0.9em; width:auto; margin-right:0.4em; vertical-align:baseline; transform:translateY(0.08em);" />`;
