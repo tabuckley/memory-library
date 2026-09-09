@@ -16,11 +16,11 @@
     "confirmed": true
   },
   {
-    "id": "cairo",
-    "name": "Cairo",
+    "id": "egypt",
+    "name": "Egypt",
     "country": "Egypt",
     "role": "Exchange",
-    "description": "International exchange partner city, connected through artist presentation and collaboration.",
+    "description": "International exchange partner, connected through artist presentation and collaboration.",
     "confirmed": true
   },
   {

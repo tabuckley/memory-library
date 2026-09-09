@@ -22,7 +22,6 @@ async function main() {
         </span>
         <span class="index-row__thumb media-plate" style="--plate-ratio: 4/5; view-transition-name: ${vtName("artist", a.id)};">
           ${plateImg(a.id, "portrait", a.photoUrl)}
-          ${a.portraitCaption ? `<span class="plate-caption">${a.portraitCaption}</span>` : ""}
         </span>
       </a>`;
   }).join("");
