@@ -29,38 +29,28 @@
       </div>
     </section>
 
-    <div id="live-strip"></div>
-
-    <nav class="date-nav" id="date-nav" aria-label="Select date">
-      <div class="date-nav__inner" id="date-nav-inner"></div>
-    </nav>
-
-    <section class="section-pad-sm">
+    <section class="section-pad-sm reveal">
       <div class="wrap">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: var(--space-4); margin-bottom: var(--space-6);">
-          <div class="view-toggle" id="view-toggle" role="tablist" aria-label="Programme view">
-            <button type="button" role="tab" data-view="list" aria-pressed="true">What's On</button>
-            <button type="button" role="tab" data-view="timetable" aria-pressed="false">Timetable</button>
+        <p class="t-meta programme-section-label">On throughout the festival</p>
+        <div class="programme-grid" id="programme-ongoing"></div>
+      </div>
+    </section>
+
+    <section class="section-pad-sm tone-paper reveal">
+      <div class="wrap">
+        <p class="t-meta programme-section-label">The programme</p>
+        <div class="programme-grid" id="programme-dated"></div>
+      </div>
+    </section>
+
+    <section class="section-pad-sm reveal">
+      <div class="wrap">
+        <div class="grid">
+          <div style="grid-column: 1 / span 6;">
+            <p class="t-meta programme-section-label">Opening hours</p>
+            <div id="opening-hours-list" class="opening-hours-list"></div>
           </div>
-          <details id="filters-disclosure">
-            <summary class="btn-line" style="cursor:pointer;">Filters</summary>
-            <div class="grid" style="margin-top: var(--space-4); gap: var(--space-6);">
-              <div class="filter-group" style="grid-column: 1 / span 6;">
-                <span class="filter-group__label">Type</span>
-                <div class="filter-bar" id="filter-type"></div>
-              </div>
-              <div class="filter-group" style="grid-column: 7 / span 6;">
-                <span class="filter-group__label">Strand</span>
-                <div class="filter-bar" id="filter-strand"></div>
-              </div>
-            </div>
-          </details>
         </div>
-
-        <div id="opening-hours-note" class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);"></div>
-
-        <div id="view-list"></div>
-        <div id="view-timetable" hidden></div>
       </div>
     </section>
   </main>

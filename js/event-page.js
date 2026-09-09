@@ -118,12 +118,12 @@ async function main() {
         <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-6);">On the programme</p>
         ${(expanded.length || openDays.length) ? `<div class="open-days-grid">
           ${expanded.map((x) => `
-          <a href="programme.html?date=${x.occ.date}">
+          <a href="programme.html">
             <span class="open-day__date">${dateLabel(x.occ.date, { short: true })}</span>
             <span class="open-day__time">${timeRange(x.occ)}</span>
           </a>`).join("")}
           ${openDays.map((h) => `
-          <a href="programme.html?date=${h.date}">
+          <a href="programme.html">
             <span class="open-day__date">${dateLabel(h.date, { short: true })}</span>
             <span class="open-day__time">${h.open}–${h.close}</span>
             ${h.note ? `<span class="open-day__note">${h.note}</span>` : ""}

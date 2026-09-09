@@ -74,7 +74,7 @@ async function main() {
 
     <section class="section-pad-sm">
       <div class="wrap">
-        <a class="btn-line" href="programme.html?date=2026-11-14">← Back to Programme</a>
+        <a class="btn-line" href="programme.html">← Back to Programme</a>
       </div>
     </section>`;
 

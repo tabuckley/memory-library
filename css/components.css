@@ -209,229 +209,41 @@ a.now-next__cell:hover { opacity: 0.7; }
   .now-next__cell:first-child { border-top: none; }
 }
 
-/* ================= DATE NAV ================= */
-.date-nav {
-  position: sticky;
-  top: 4.75rem;
-  z-index: 40;
-  background: var(--c-bg);
+/* ================= PROGRAMME CARDS (flat curated grid) =================
+   Replaces the old date-tab/timetable/filter-chip apparatus, which was
+   built for a dense, many-track schedule. With the international-exchange
+   workshops folded back in as plain cards alongside everything else, a
+   single sorted grid (image, title, blurb, date/status) reads more like a
+   curated programme and less like scheduling software — closer to how
+   AND Festival and similar arts programmes present their listings. */
+.programme-section-label {
+  opacity: 0.55;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--c-line);
-  overflow-x: auto;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
 }
-.date-nav__inner {
-  position: relative;
-  display: flex;
-  padding-inline: var(--margin);
+.programme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-8) var(--space-6);
 }
-.date-nav button {
-  flex: none;
-  padding: var(--space-4) var(--space-4);
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-  border-bottom: 2px solid transparent;
-  white-space: nowrap;
-  opacity: 0.55;
-}
-.date-nav button .d-day { display: block; font-size: 1.1em; margin-top: 2px; opacity: 1; }
-.date-nav button[aria-pressed="true"] {
-  opacity: 1;
-  border-bottom-color: var(--c-fg);
-}
-.date-nav button:hover { opacity: 0.85; }
+.programme-card { display: block; color: inherit; text-decoration: none; }
+.programme-card__body { padding-top: var(--space-4); }
+.programme-card__meta { opacity: 0.55; margin-bottom: var(--space-2); }
+.programme-card__title { margin-bottom: var(--space-2); }
+.programme-card__blurb { opacity: 0.8; margin-bottom: var(--space-3); max-width: 32em; }
+.programme-card__status { opacity: 0.55; }
 
-/* A single moving indicator (JS-positioned) replaces the instant
-   underline swap — before JS runs, or if it fails, the static
-   border-bottom above already gives a correct (just non-animated)
-   result, so this is a pure enhancement. */
-.slide-indicator {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  background: var(--c-fg);
-  transition: transform 280ms var(--ease), width 280ms var(--ease);
-  pointer-events: none;
-}
-.has-slider button[aria-pressed="true"] { border-bottom-color: transparent; }
-@media (prefers-reduced-motion: reduce) {
-  .slide-indicator { transition: none; }
-}
-
-/* ================= VIEW TOGGLE ================= */
-.view-toggle {
-  position: relative;
+/* ================= OPENING HOURS ================= */
+.opening-hours-list { display: flex; flex-direction: column; }
+.opening-hours-row {
   display: flex;
+  justify-content: space-between;
   gap: var(--space-4);
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-}
-.view-toggle button { opacity: 0.5; padding-block: var(--space-1); border-bottom: 1px solid transparent; }
-.view-toggle button[aria-pressed="true"] { opacity: 1; border-bottom-color: var(--c-fg); }
-
-/* ================= FILTER BAR ================= */
-.filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-6);
-}
-/* Filter state as quiet inline type — the same selection language as
-   the primary nav (dim by default, underline + full opacity when
-   active) rather than a pill/button component. */
-.filter-chip {
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-  padding-bottom: 0.2em;
-  border-bottom: 1px solid transparent;
-  opacity: 0.55;
-  transition: opacity var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
-}
-.filter-chip[aria-pressed="true"] {
-  opacity: 1;
-  border-bottom-color: var(--c-fg);
-}
-.filter-chip:hover { opacity: 1; }
-
-.filter-group { display: flex; flex-direction: column; gap: var(--space-2); }
-.filter-group__label {
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-  opacity: 0.5;
-}
-
-/* ================= PROGRAMME LIST (What's On) ================= */
-.prog-day-heading {
-  font-family: var(--font-display);
-  font-size: var(--size-title);
-  text-transform: uppercase;
-  padding-block: var(--space-8) var(--space-4);
-  border-top: 1px solid var(--c-line-strong);
-}
-.prog-day-heading:first-of-type { border-top: none; }
-
-.prog-row {
-  display: grid;
-  grid-template-columns: 6rem 1fr auto;
-  grid-template-areas: "time body status";
-  gap: var(--space-6);
-  align-items: baseline;
-  width: 100%;
-  padding-block: var(--space-6);
-  text-align: left;
+  padding-block: var(--space-3);
   border-top: 1px solid var(--c-line);
-  text-decoration: none;
-  color: inherit;
-  transition: opacity 150ms var(--ease);
 }
-.prog-row:first-child { border-top: none; }
-.prog-row:hover, .prog-row:focus-visible { opacity: 0.7; }
-.prog-row__time { grid-area: time; font-family: var(--font-mono); font-size: var(--size-small); letter-spacing: var(--tracking-meta); }
-.prog-row__body { grid-area: body; display: block; }
-.prog-row__title {
-  display: block;
-  font-family: var(--font-editorial);
-  font-weight: 600;
-  font-size: var(--size-intro);
-  margin-bottom: var(--space-1);
-}
-.prog-row__desc {
-  display: block;
-  font-family: var(--font-editorial);
-  font-size: var(--size-small);
-  line-height: 1.45;
-  opacity: 0.65;
-  margin-bottom: var(--space-1);
-  max-width: 38em;
-}
-.prog-row__sub {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-  opacity: 0.6;
-}
-.prog-row__status { grid-area: status; justify-self: end; align-self: start; }
-
-@media (max-width: 700px) {
-  .prog-row {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "time"
-      "body"
-      "status";
-    gap: var(--space-2);
-  }
-  .prog-row__status { justify-self: start; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .prog-row { transition: none; }
-}
-
-.prog-row--ongoing { opacity: 0.9; }
-.prog-row--past { opacity: 0.4; }
-
-#view-list, #view-timetable {
-  transition: opacity 160ms var(--ease);
-}
-#view-list.is-updating, #view-timetable.is-updating { opacity: 0; }
-@media (prefers-reduced-motion: reduce) {
-  #view-list, #view-timetable { transition: none; }
-}
-
-/* ================= TIMETABLE ================= */
-.timetable-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.timetable {
-  display: grid;
-  min-width: 760px;
-  border-top: 1px solid var(--c-line-strong);
-  border-left: 1px solid var(--c-line-strong);
-}
-.timetable__head, .timetable__time, .timetable__cell {
-  border-right: 1px solid var(--c-line-strong);
-  border-bottom: 1px solid var(--c-line-strong);
-  padding: var(--space-3);
-}
-.timetable__head {
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
-  background: var(--c-paper-white);
-}
-.timetable__time {
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  background: var(--c-paper-white);
-  display: flex;
-  align-items: flex-start;
-}
-.timetable__cell {
-  min-height: 3.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-.timetable__block {
-  background: var(--c-bg);
-  border: 1px solid var(--c-line-strong);
-  padding: var(--space-2) var(--space-3);
-  transition: background var(--dur-base) var(--ease);
-}
-.timetable__block:hover { background: var(--c-foxed-paper); }
-.timetable__block .t-meta { opacity: 0.6; display: block; margin-top: 2px; }
-.timetable__block-title { font-size: var(--size-small); font-weight: 600; }
-.timetable__block.is-linked { border-color: var(--c-fg); }
+.opening-hours-row:first-child { border-top: none; }
 
 /* ================= INDEX ROWS (artists) ================= */
 .index-row {

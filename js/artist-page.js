@@ -86,7 +86,7 @@ async function main() {
           <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-4);">On the programme</p>
           ${(expanded.length || pmfAppearances.length) ? `<div class="related-list">
             ${expanded.map((x) => `
-            <a class="related-item" href="programme.html?date=${x.occ.date}">
+            <a class="related-item" href="event.html?slug=${x.event.id}">
               <span>${x.event.title}</span>
               <span class="t-meta" style="opacity:.6;">${dateLabel(x.occ.date)} · ${x.occ.startTime}</span>
             </a>`).join("")}
