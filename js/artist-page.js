@@ -67,7 +67,6 @@ async function main() {
               <div style="grid-column: 1 / span 4;">
                 <div class="media-plate" style="--plate-ratio: 16/10; view-transition-name: ${vtName("event", e.id)};">
                   ${plateImg(e.id, "landscape", e.imageUrl)}
-                  ${e.mediaCaption ? `<span class="plate-caption">${e.mediaCaption}</span>` : ""}
                 </div>
               </div>
               <div style="grid-column: 6 / span 7;">
@@ -80,11 +79,12 @@ async function main() {
       </div>
     </section>` : ""}
 
+    ${(expanded.length || pmfAppearances.length) ? `
     <section class="section-pad-sm reveal">
       <div class="wrap grid">
         <div style="grid-column: 1 / span 6;">
           <p class="t-meta" style="opacity:.55; margin-bottom: var(--space-4);">On the programme</p>
-          ${(expanded.length || pmfAppearances.length) ? `<div class="related-list">
+          <div class="related-list">
             ${expanded.map((x) => `
             <a class="related-item" href="event.html?slug=${x.event.id}">
               <span>${x.event.title}</span>
@@ -95,10 +95,10 @@ async function main() {
               <span>${s.title} - Past Makes Future</span>
               <span class="t-meta" style="opacity:.6;">Sat 14 Nov · ${s.time}</span>
             </a>`).join("")}
-          </div>` : `<p class="t-small" style="opacity:.6;">No scheduled sessions yet - see the exhibition for this artist's work.</p>`}
+          </div>
         </div>
       </div>
-    </section>
+    </section>` : ""}
 
     <section class="section-pad-sm">
       <div class="wrap">

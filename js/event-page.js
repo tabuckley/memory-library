@@ -140,7 +140,6 @@ async function main() {
             <a href="${relatedHref(e)}" style="grid-column: ${i === 0 ? "1 / span 5" : "7 / span 5"};">
               <div class="media-plate" style="--plate-ratio: 4/3;">
                 ${plateImg(e.id, "landscape", e.imageUrl)}
-                ${e.mediaCaption ? `<span class="plate-caption">${e.mediaCaption}</span>` : ""}
               </div>
               <p class="t-intro" style="margin-top: var(--space-3);">${e.title}</p>
             </a>`).join("")}
