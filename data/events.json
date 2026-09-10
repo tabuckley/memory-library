@@ -210,7 +210,7 @@
     "mediaCaption": null
   },
   {
-    "id": "ev-bangladesh-workshop",
+    "id": "ev-bangladesh-workshop-1",
     "title": "Bangladesh Workshop",
     "type": "Workshop",
     "strandId": "past-makes-future",
@@ -220,10 +220,32 @@
     "artistIds": [],
     "summary": "A workshop connected to Bangladesh, part of Memory Library's international exchange. Held at Play Office, next door to Boathouse 5.",
     "blurb": "Workshop connected to Bangladesh. Held next door at Play Office.",
-    "body": "This workshop is connected to Bangladesh and forms part of Memory Library's international exchange. It offers visitors a chance to take part in activity linked to the wider programme of visiting artists and international collaboration. It runs twice, at Play Office (The Old Pay Office, Victory Gate, HM Naval Base) next door to Boathouse 5.",
+    "body": "This workshop is connected to Bangladesh and forms part of Memory Library's international exchange. It offers visitors a chance to take part in activity linked to the wider programme of visiting artists and international collaboration. It runs twice - this is the first session, at Play Office (The Old Pay Office, Victory Gate, HM Naval Base) next door to Boathouse 5.",
     "bookingStatus": "BOOKING REQUIRED",
     "bookingUrl": null,
-    "imageUrl": null,
+    "imageUrl": "assets/img/photos/bangladesh-workshop-1.jpg",
+    "ageGuidance": null,
+    "mode": "timed",
+    "confirmed": true,
+    "placeId": null,
+    "year": null,
+    "mediaCaption": null
+  },
+  {
+    "id": "ev-bangladesh-workshop-2",
+    "title": "Bangladesh Workshop",
+    "type": "Workshop",
+    "strandId": "past-makes-future",
+    "locationIds": [
+      "play-office"
+    ],
+    "artistIds": [],
+    "summary": "A workshop connected to Bangladesh, part of Memory Library's international exchange. Held at Play Office, next door to Boathouse 5.",
+    "blurb": "Workshop connected to Bangladesh. Held next door at Play Office.",
+    "body": "This workshop is connected to Bangladesh and forms part of Memory Library's international exchange. It offers visitors a chance to take part in activity linked to the wider programme of visiting artists and international collaboration. It runs twice - this is the second session, at Play Office (The Old Pay Office, Victory Gate, HM Naval Base) next door to Boathouse 5.",
+    "bookingStatus": "BOOKING REQUIRED",
+    "bookingUrl": null,
+    "imageUrl": "assets/img/photos/bangladesh-workshop-2.jpg",
     "ageGuidance": null,
     "mode": "timed",
     "confirmed": true,
