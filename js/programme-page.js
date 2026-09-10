@@ -89,10 +89,6 @@ function card(event, strand, dateText, location, status) {
   </a>`;
 }
 
-// See the comment on .programme-grid in components.css - these pad an
-// under-full last row so it doesn't gap or misalign with the rows above.
-const GRID_FILLERS = `<div class="programme-grid__filler" aria-hidden="true"></div>`.repeat(6);
-
 async function main() {
   const data = await loadData();
   const expanded = expandOccurrences(data);
@@ -113,7 +109,7 @@ async function main() {
   document.getElementById("programme-ongoing").innerHTML = ongoingEvents.map((event) => {
     const strand = data.byId.strand[event.strandId];
     return card(event, strand, dateTextForOngoing(event), null, event.bookingStatus);
-  }).join("") + GRID_FILLERS;
+  }).join("");
 
   document.getElementById("programme-dated").innerHTML = datedGroups.map((group) => {
     const event = group[0].event;
@@ -121,7 +117,7 @@ async function main() {
     const location = [...new Set(group.map((x) => x.location.shortName))].join(" / ");
     const status = mostCommonOcc(group).status;
     return card(event, strand, dateTextForGroup(group), location, status);
-  }).join("") + GRID_FILLERS;
+  }).join("");
 
   document.getElementById("opening-hours-list").innerHTML = data.openingHours.map((h) => `
     <div class="opening-hours-row">
