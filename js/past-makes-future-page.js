@@ -32,7 +32,7 @@ async function main() {
     <section class="section-pad-sm">
       <div class="wrap">
         <div class="media-plate media-plate--hero" style="--plate-ratio: 21/9; view-transition-name: pmf-hero;">
-          <img class="plate-photo" src="assets/img/past-makes-future.jpg" alt="Audience members listening intently at a past Play Office artist development conference." loading="lazy" />
+          <img class="plate-photo" src="assets/img/photos/past-makes-future_audience-2025.jpg" alt="Audience members listening intently at a past Play Office artist development conference." loading="lazy" />
         </div>
       </div>
     </section>
