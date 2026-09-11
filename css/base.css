@@ -236,9 +236,10 @@ section { position: relative; }
 .media-plate--hero-caption {
   margin-top: var(--space-3);
   font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  letter-spacing: var(--tracking-meta);
-  text-transform: uppercase;
+  font-size: calc(var(--size-meta) * 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   opacity: 0.6;
 }
 
