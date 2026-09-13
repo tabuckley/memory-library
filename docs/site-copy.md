@@ -62,9 +62,9 @@ One sentence, ~19 words / 115 characters, sits beside a photo at roughly a 4:3 r
 One sentence, ~24 words / 155 characters.
 
 **Leave a Memory teaser** (on a black background section)
-> Have a memory, object or photograph connected to Portsmouth?
-Heading phrased as a question, ~9 words. This exact sentence is reused verbatim on the About page too — if you change it, change both (see below), they're currently kept identical on purpose.
-> Memory Library is built from the everyday stories of the people who make up this city. Bring yours with you, or get in touch ahead of time.
+> Have a memory connected to Portsmouth?
+Heading phrased as a question, ~6 words. This exact sentence is reused verbatim on the About page too — if you change it, change both (see below), they're currently kept identical on purpose.
+> Memory Library is built from the everyday stories of the people who make up this city. Come and share yours, or get in touch ahead of time.
 Two sentences, ~26 words / 155 characters.
 
 **Supported by** — logo strip, one alt-text label per logo, not really "copy" to rewrite. Currently: Arts Council England (has a required funding-credit alt text, see About page section below for the exact wording), British Council, Portsmouth Creates, Portsmouth Historic Quarter.
@@ -109,7 +109,7 @@ Small print, two sentences, ~30 words / 185 characters.
 
 **Partners & funders** — logo strips only. One alt text is a required funding-credit line, keep this one close to exact wording since funders often require specific phrasing: "Arts Council England - Supported using public funding by Arts Council England, Lottery Funded."
 
-**Contribute / Leave a Memory teaser** — same two blocks as the homepage's version (see above); currently identical wording on purpose.
+**Contribute / Leave a Memory teaser** — same heading question as the homepage's version (see above), kept identical on purpose; the body line underneath is page-specific, currently "Memory Library is built from contributions from the public - a memory, a story, a moment worth sharing. We'd like to hear from you."
 
 ---
 
