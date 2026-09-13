@@ -165,7 +165,7 @@ No hardcoded body copy on this page — everything (the conference agenda, Pagea
 - Visit: address block (Boathouse 5 / Portsmouth Historic Dockyard / Portsmouth, PO1 3LJ) - factual, don't touch unless the address changes.
 - Programme: What's On / Timetable / Artists (links, 1-2 words each)
 - About: About Memory Library / Play Office / Access (links, 1-3 words each)
-- Take part: "Have a memory, object or photograph connected to Portsmouth? We'd like to hear from you." (~14 words) + "Leave a memory →" link
+- Take part: "Have a memory connected to Portsmouth? We'd love to hear it." (~11 words) + "Leave a memory →" link
 
 **Footer bottom line:**
 > Memory Library · Produced by Play Office · Curated by Thomas Buckley
