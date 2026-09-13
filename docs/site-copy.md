@@ -162,7 +162,7 @@ No hardcoded body copy on this page — everything (the conference agenda, Pagea
 **Nav labels** (site header): Programme / Artists / About / Leave a Memory — 1-2 words each, these are also URLs' visual identity, changing them changes what every page's nav says.
 
 **Footer columns:**
-- Visit: address block (Boathouse 5 / Portsmouth Historic Dockyard / Portsmouth, PO1 3LJ) - factual, don't touch unless the address changes.
+- Visit: address block (Boathouse 5 / Portsmouth Historic Dockyard / Portsmouth, PO1 3LJ) plus a contact email (mailto:Thomas@Thomas-buckley.com) - factual, don't touch unless the address or contact email changes.
 - Programme: What's On / Timetable / Artists (links, 1-2 words each)
 - About: About Memory Library / Play Office / Access (links, 1-3 words each)
 - Take part: "Have a memory connected to Portsmouth? We'd love to hear it." (~11 words) + "Leave a memory →" link
