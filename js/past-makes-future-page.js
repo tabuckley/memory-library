@@ -1,9 +1,7 @@
 import { loadData, plateImg, vtName } from "./data.js";
-import { agendaRow } from "./programme.js";
 
 async function main() {
   const data = await loadData();
-  const conferenceSessions = data.pmfSessions.filter((s) => s.section === "conference");
 
   const strand = data.byId.strand["past-makes-future"];
   const confEvent = data.byId.event["ev-past-makes-future"];
@@ -53,7 +51,6 @@ async function main() {
             ${confEvent.bookingUrl ? `<a class="link-underline" href="${confEvent.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
           </div>
         </div>
-        <div>${conferenceSessions.map((s) => agendaRow(s, data)).join("")}</div>
       </div>
     </section>
 
