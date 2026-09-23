@@ -32,4 +32,5 @@ convention):
 | `tyler-jones.jpg` | (none yet) |
 | `shohrab-jahan.jpg` | Credit: Kauser Haider |
 | `keith-baker.jpg` | (none yet) |
+| `megan-hack.jpg` | (none yet) |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
