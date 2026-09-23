@@ -87,7 +87,7 @@ Two sentences, ~44 words / 270 characters.
 > Play Office artist development session
 ~5 words, describes the photo directly above the About page's "At a glance" section.
 
-**At a glance** — six short fact fields in one row (Location / Dates / Format / Lead organisation / Curated by / Public context). Each value is 2-3 words max, e.g. "10-day public pop-up", "We Shine, Portsmouth's light festival". These are facts, not sentences — don't turn any of them into a sentence, the layout only has room for a short phrase.
+**At a glance** — six short fact fields in one row (Location / Dates / Format / Lead organisation / Curated by / Public context). Each value is 2-3 words max, e.g. "10-day public pop-up", "We Shine Community, Portsmouth's light festival". These are facts, not sentences — don't turn any of them into a sentence, the layout only has room for a short phrase.
 
 **Play Office section** (heading "Play Office", labelled "Produced by")
 > Play Office works across immersive technology, digital art, participation, heritage and artist development. Memory Library builds on Play Office's existing programmes, bringing years of artist development, public engagement and international exchange into one visible, ambitious public programme at Boathouse 5.
@@ -180,7 +180,7 @@ Fixed-format credit lines, mono font, very tight — don't extend these into sen
 - Memory Library (umbrella): "The full programme: exhibitions, artworks, talks, workshops, screenings, performances and exchange exploring memory, place, heritage, technology and connection." (~20 words)
 - Resonate: "Play Office's artist development programme. Work made through Resonate runs throughout Memory Library." (~13 words)
 - Past Makes Future: "An international artist conference and gathering, plus Pageant, a separate evening event on the same day." (~18 words)
-- We Shine: "Memory Library becomes a new hub within We Shine, Portsmouth's light festival, the daytime exhibition continues while Boathouse 5 opens into the evening." (~24 words)
+- We Shine Community: "Memory Library becomes a new hub within We Shine Community, Portsmouth's light festival, the daytime exhibition continues while Boathouse 5 opens into the evening." (~24 words)
 - People Library: "A recurring participatory strand: sculptures, like the sofa, where you can sit and chat or leave a memory. Drop in and explore." (~22 words)
 All one or two sentences, ~15-25 words each — these appear as small supporting text, not headlines.
 
@@ -188,7 +188,7 @@ All one or two sentences, ~15-25 words each — these appear as small supporting
 - Entrance & Bar: "Arrival, ticketing, bar and the first encounter with the programme." (~11 words)
 - Main Space: "Boathouse 5's main hall - exhibition, talks, presentations and performance." (~10 words)
 - Cinema: "Screenings and moving-image work." (~4 words)
-- Exterior: "The dock frontage outside Boathouse 5 - evening projection and We Shine activity." (~13 words)
+- Exterior: "The dock frontage outside Boathouse 5 - evening projection and We Shine Community activity." (~13 words)
 Very short, fragment-style descriptions (not full sentences) — keep that style, ~4-13 words each.
 
 **Place descriptions** (`data/places.json`, the international exchange partners):
@@ -197,4 +197,4 @@ Very short, fragment-style descriptions (not full sentences) — keep that style
 - Lebanon / Malta / Jersey: "International exchange partner, part of Memory Library's wider network of places." (~11 words, identical wording for all three currently)
 These three are currently generic/repeated placeholders (Bangladesh and Cairo share one sentence, Lebanon/Malta/Jersey share another) — genuinely good candidates for real, distinct copy about each place's actual connection to the programme if you have that information to give ChatGPT.
 
-**Opening hours notes** (`data/opening-hours.json`) — short labels only, e.g. "Past Makes Future", "We Shine", "We Shine - closing night". 1-4 words, not sentences.
+**Opening hours notes** (`data/opening-hours.json`) — short labels only, e.g. "Past Makes Future", "We Shine Community", "We Shine Community - closing night". 1-4 words, not sentences.

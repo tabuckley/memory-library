@@ -63,7 +63,7 @@ Artists/Programme/Explore).
 Content model (`/data/*.json`, consumed client-side — see §6):
 
 ```
-Programme Strand (Memory Library, Resonate, Past Makes Future, We Shine, People Library)
+Programme Strand (Memory Library, Resonate, Past Makes Future, We Shine Community, People Library)
   └─ Event (title, type, strand, artists, projects, booking status, mode: ongoing|timed)
        └─ Occurrence (date, start/end time, location, status override)  — timed events only
 Artist ── Project ── Place
@@ -142,8 +142,9 @@ given directly. Nothing invented beyond that is left in `/data/*.json`.
   real activities from the schedule; exact times aren't given so the
   occurrence times are marked `"confirmed": false` while the event's
   existence is `true`.
-- **We Shine** (renamed from "We Shine Lates") — the Thu–Sat 19–21 Nov
-  evening extension shown in the schedule.
+- **We Shine Community** (renamed from "We Shine", itself renamed from "We
+  Shine Lates") — the Thu–Sat 19–21 Nov evening extension shown in the
+  schedule.
 - Three photographs (`assets/img/boathouse-*.jpg`,
   `resonate-session.jpg`) are real, cropped from the brief deck.
 - The Resonate and Past Makes Future logos (`assets/logo/resonate-*.png`,

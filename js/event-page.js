@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName, resolveRefs } from "./data.js";
+import { loadData, plateImg, vtName, resolveRefs, richText } from "./data.js";
 import { expandOccurrences, dateLabel, timeRange, agendaRow } from "./programme.js";
 
 // Ongoing events (exhibitions, installations) don't have discrete
@@ -93,7 +93,7 @@ async function main() {
     <section class="section-pad-sm reveal">
       <div class="wrap grid">
         <p class="t-intro measure" style="grid-column: 1 / span 6;">${event.summary}</p>
-        ${event.body ? `<p class="t-body measure" style="grid-column: 7 / span 6; opacity:.85;">${event.body}</p>` : ""}
+        ${event.body ? `<div class="t-body measure" style="grid-column: 7 / span 6; opacity:.85;">${richText(event.body)}</div>` : ""}
       </div>
     </section>
 

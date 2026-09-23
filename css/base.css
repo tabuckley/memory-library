@@ -126,6 +126,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .measure { max-width: var(--measure); }
 
+.t-intro p + p,
+.t-body p + p { margin-top: var(--space-4); }
+
 /* ---- layout ---- */
 .wrap {
   max-width: var(--content-max);

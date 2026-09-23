@@ -321,7 +321,7 @@
   },
   {
     "id": "ev-we-shine-lates",
-    "title": "We Shine",
+    "title": "We Shine Community",
     "type": "Special Event",
     "strandId": "we-shine",
     "locationIds": [
@@ -330,9 +330,9 @@
       "exterior"
     ],
     "artistIds": [],
-    "summary": "Boathouse 5 stays open into the evening as part of We Shine, with the exhibition continuing and the exterior projection running after dark.",
-    "blurb": "Evening opening for We Shine.",
-    "body": "Boathouse 5 stays open into the evening as part of We Shine. Visitors can continue exploring the Memory Library exhibition after dark, while the exterior projection runs outside the building. The later opening offers a different way to experience the programme as the Historic Dockyard moves into the evening.",
+    "summary": "Boathouse 5 stays open into the evening as part of We Shine Community, with the exhibition continuing and the exterior projection running after dark.",
+    "blurb": "Evening opening for We Shine Community.",
+    "body": "Boathouse 5 stays open into the evening as part of We Shine Community. Visitors can continue exploring the Memory Library exhibition after dark, while the exterior projection runs outside the building. The later opening offers a different way to experience the programme as the Historic Dockyard moves into the evening.",
     "bookingStatus": "FREE",
     "bookingUrl": null,
     "imageUrl": null,

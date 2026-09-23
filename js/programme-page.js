@@ -63,7 +63,7 @@ function dateTextForGroup(group) {
   const sameTime = group.every((x) => x.occ.startTime === first.occ.startTime && x.occ.endTime === first.occ.endTime);
   if (group.length >= 5) return `Most days · ${timeRange(mostCommonOcc(group).occ)}`;
   // A "13–15 Nov" range reads as every day in between - only true it if the
-  // dates are actually back to back (e.g. We Shine's Thu-Fri-Sat run).
+  // dates are actually back to back (e.g. We Shine Community's Thu-Fri-Sat run).
   // A same-time event with gaps (e.g. a workshop repeated on two separate
   // dates) needs each date spelled out instead, or it implies days it
   // doesn't actually run on.

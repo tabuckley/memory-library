@@ -294,6 +294,20 @@ export function resolveRefs(ids, map, kind) {
     .filter(Boolean);
 }
 
+// A sheet editor writes paragraph breaks into a bio/body cell with Alt+Enter,
+// which the CSV export preserves as literal newlines (see csv.js) — but HTML
+// collapses those into a single space inside one <p>, so the break vanishes
+// on the page. Split on each newline and render one <p> per line instead.
+export function richText(text) {
+  if (!text) return "";
+  return text
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => `<p>${line}</p>`)
+    .join("");
+}
+
 // Deterministic placeholder photography. Real photography is limited to a
 // handful of documentary images (see assets/img/*.jpg); everywhere else a
 // toned, high-resolution abstract placeholder stands in so scale, crop and

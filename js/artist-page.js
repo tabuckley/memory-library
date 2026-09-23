@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName, resolveIfAllIds } from "./data.js";
+import { loadData, plateImg, vtName, resolveIfAllIds, richText } from "./data.js";
 import { expandOccurrences, dateLabel, timeRange } from "./programme.js";
 
 async function main() {
@@ -45,7 +45,7 @@ async function main() {
           <div style="grid-column: 6 / span 7;">
             ${meta ? `<p class="t-meta" style="opacity:.55; margin-bottom: var(--space-3);">${meta}</p>` : ""}
             <h1 class="t-display" style="font-size: clamp(2.25rem, 1.6rem + 4vw, 5.5rem); margin-bottom: var(--space-6);">${artist.name}</h1>
-            <p class="t-intro measure" style="opacity:.85;">${artist.bio}</p>
+            <div class="t-intro measure" style="opacity:.85;">${richText(artist.bio)}</div>
             ${artist.portfolioUrl || artist.instagramUrl ? `
             <p class="t-meta" style="margin-top: var(--space-4);">
               ${artist.portfolioUrl ? `<a class="link-underline" href="${artist.portfolioUrl}" target="_blank" rel="noopener">Portfolio →</a>` : ""}
