@@ -1,5 +1,5 @@
 import { loadData, plateImg, vtName, resolveRefs, richText } from "./data.js";
-import { expandOccurrences, dateLabel, timeRange, agendaRow } from "./programme.js";
+import { expandOccurrences, dateLabel, timeRange, agendaRow, dateTextForOngoing, dateTextForGroup } from "./programme.js";
 
 // Ongoing events (exhibitions, installations) don't have discrete
 // occurrence rows — they're just open whenever the venue is. Rather than
@@ -54,6 +54,9 @@ async function main() {
   const strand = data.byId.strand[event.strandId];
   const expanded = expandOccurrences(data).filter((x) => x.event.id === event.id);
   const openDays = expanded.length ? [] : openDaysFor(event, data);
+  const whenText = expanded.length
+    ? dateTextForGroup(expanded)
+    : (event.mode === "ongoing" && event.dateStart && event.dateEnd ? dateTextForOngoing(event) : null);
   const pmfSection = PMF_SECTION_FOR_EVENT[event.id];
   const runningOrder = pmfSection ? data.pmfSessions.filter((s) => s.section === pmfSection) : [];
   const related = event.id === "ev-pageant" && data.byId.event["ev-past-makes-future"]
@@ -73,6 +76,7 @@ async function main() {
             <p style="opacity:.55; margin-bottom: var(--space-1);">Artist</p>
             <p style="margin-bottom: var(--space-4);">${artists.map((a) => `<a class="link-underline" href="artist.html?slug=${a.id}">${a.name}</a>`).join(", ")}</p>` : ""}
             ${event.year ? `<p style="opacity:.55; margin-bottom: var(--space-1);">Year</p><p style="margin-bottom: var(--space-4);">${event.year}</p>` : ""}
+            ${whenText ? `<p style="opacity:.55; margin-bottom: var(--space-1);">When</p><p style="margin-bottom: var(--space-4);">${whenText}</p>` : ""}
             <p style="opacity:.55; margin-bottom: var(--space-1);">Booking</p>
             <p>${event.bookingStatus}</p>
             ${event.bookingUrl ? `<a class="link-underline" href="${event.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}

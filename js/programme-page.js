@@ -1,5 +1,5 @@
 import { loadData, plateImg } from "./data.js";
-import { expandOccurrences, dateLabel, timeRange, toDateStr } from "./programme.js";
+import { expandOccurrences, dateLabel, timeRange, dateTextForOngoing, dateTextForGroup, mostCommonOcc } from "./programme.js";
 
 // Past Makes Future's individual conference talks have their own running
 // order on the Past Makes Future page rather than becoming separate
@@ -31,47 +31,6 @@ function statusClass(status) {
 function hrefFor(event) {
   if (event.id === "ev-past-makes-future") return "past-makes-future.html";
   return `event.html?slug=${event.id}`;
-}
-
-// A daily/near-daily strand (e.g. People Library) shouldn't read as a wall
-// of near-identical occurrences — pick the time range most of its
-// occurrences actually share, so the card gives an honest "usually this
-// time" summary and leaves exact per-day times to the event's own page.
-function mostCommonOcc(group) {
-  const counts = new Map();
-  for (const x of group) {
-    const key = `${x.occ.startTime}-${x.occ.endTime}`;
-    counts.set(key, (counts.get(key) || 0) + 1);
-  }
-  let best = group[0], bestCount = 0;
-  for (const x of group) {
-    const key = `${x.occ.startTime}-${x.occ.endTime}`;
-    const c = counts.get(key);
-    if (c > bestCount) { bestCount = c; best = x; }
-  }
-  return best;
-}
-
-function dateTextForOngoing(event) {
-  return `Daily · ${dateLabel(event.dateStart, { short: true })}–${dateLabel(event.dateEnd, { short: true })}`;
-}
-
-function dateTextForGroup(group) {
-  const first = group[0];
-  const last = group[group.length - 1];
-  if (group.length === 1) return `${dateLabel(first.occ.date)} · ${timeRange(first.occ)}`;
-  const sameTime = group.every((x) => x.occ.startTime === first.occ.startTime && x.occ.endTime === first.occ.endTime);
-  if (group.length >= 5) return `Most days · ${timeRange(mostCommonOcc(group).occ)}`;
-  // A "13–15 Nov" range reads as every day in between - only true it if the
-  // dates are actually back to back (e.g. We Shine Community's Thu-Fri-Sat run).
-  // A same-time event with gaps (e.g. a workshop repeated on two separate
-  // dates) needs each date spelled out instead, or it implies days it
-  // doesn't actually run on.
-  const oneDayMs = 24 * 60 * 60 * 1000;
-  const isContiguous = group.every((x, i) => i === 0 || x.occ.date === toDateStr(new Date(new Date(`${group[i - 1].occ.date}T00:00:00`).getTime() + oneDayMs)));
-  if (sameTime && isContiguous) return `${dateLabel(first.occ.date, { short: true })}–${dateLabel(last.occ.date, { short: true })} · ${timeRange(first.occ)}`;
-  if (sameTime) return `${group.map((x) => dateLabel(x.occ.date, { short: true })).join(", ")} · ${timeRange(first.occ)}`;
-  return group.map((x) => dateLabel(x.occ.date, { short: true })).join(", ");
 }
 
 function card(event, strand, dateText, location, status) {
