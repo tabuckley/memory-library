@@ -196,6 +196,13 @@ section { position: relative; }
 .media-plate:focus-within .plate-photo {
   transform: scale(1.018);
 }
+/* Participant headshots come from wildly mismatched sources (phone
+   selfies, studio shoots, different lighting and backgrounds) — greyscale
+   unifies them into one consistent look rather than a mismatched grid
+   of colours. */
+.plate-photo--portrait {
+  filter: grayscale(1);
+}
 .media-plate::after {
   content: "";
   position: absolute;

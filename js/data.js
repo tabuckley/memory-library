@@ -335,7 +335,8 @@ export function plateImg(seed, orientation = "landscape", realUrl = null) {
   // can hit a broken image even though the link works fine standalone. Fall
   // back to the placeholder rather than showing a broken-image icon.
   const fallback = realUrl ? ` onerror="this.onerror=null;this.src='${placeholderSrc(seed, orientation)}'"` : "";
-  return `<img class="plate-photo" src="${src}" alt=""${fallback} loading="lazy" />`;
+  const modifier = orientation === "portrait" ? " plate-photo--portrait" : "";
+  return `<img class="plate-photo${modifier}" src="${src}" alt=""${fallback} loading="lazy" />`;
 }
 
 // A shared name lets the browser's cross-document View Transition morph
