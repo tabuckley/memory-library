@@ -31,4 +31,5 @@ convention):
 | `toby-boddy.jpg` | (none yet) |
 | `tyler-jones.jpg` | (none yet) |
 | `shohrab-jahan.jpg` | Credit: Kauser Haider |
+| `keith-baker.jpg` | (none yet) |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
