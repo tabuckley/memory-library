@@ -317,9 +317,9 @@ export function richText(text) {
 // handler swaps the form for a thank-you message immediately after.
 // TODO: replace these once docs/chatgpt-notify-form-setup.md comes back
 // with the real form + field ids.
-const NOTIFY_FORM_ID = "REPLACE-WITH-GOOGLE-FORM-ID";
-const NOTIFY_EMAIL_ENTRY = "REPLACE-WITH-EMAIL-ENTRY-ID";
-const NOTIFY_EVENT_ENTRY = "REPLACE-WITH-EVENT-ENTRY-ID";
+const NOTIFY_FORM_ID = "1FAIpQLSejCnGcFrckgQ4b5d0wLuaBx8iVNPQDcAGMnqdlOfCQCtXSjQ";
+const NOTIFY_EMAIL_ENTRY = "996563940";
+const NOTIFY_EVENT_ENTRY = "366878892";
 
 export function notifyForm(eventId) {
   const iframeName = `notify-frame-${eventId}`;
