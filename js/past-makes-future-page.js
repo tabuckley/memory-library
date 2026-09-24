@@ -35,15 +35,15 @@ async function main() {
       </div>
     </section>
 
-    ${confEvent.bookingUrl ? `
-    <section class="section-pad-sm">
-      <div class="wrap">
-        <a class="btn-primary" href="${confEvent.bookingUrl}" target="_blank" rel="noopener">Book now &rarr;</a>
-      </div>
-    </section>` : confEvent.bookingStatus === "BOOKING REQUIRED" ? `
+    ${confEvent.bookingStatus === "BOOKING REQUIRED" ? `
     <section class="section-pad-sm">
       <div class="wrap">
         ${notifyForm(confEvent.id)}
+      </div>
+    </section>` : confEvent.bookingUrl ? `
+    <section class="section-pad-sm">
+      <div class="wrap">
+        <a class="btn-primary" href="${confEvent.bookingUrl}" target="_blank" rel="noopener">Book now &rarr;</a>
       </div>
     </section>` : ""}
 
@@ -53,7 +53,7 @@ async function main() {
           <p class="t-title" style="grid-column: 1 / span 6;">Conference</p>
           <div style="grid-column: 8 / span 5; text-align:right;">
             <p class="t-meta" style="opacity:.6;">${confEvent.bookingStatus} · 13:00–18:00</p>
-            ${confEvent.bookingUrl ? `<a class="link-underline" href="${confEvent.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
+            ${confEvent.bookingStatus !== "BOOKING REQUIRED" && confEvent.bookingUrl ? `<a class="link-underline" href="${confEvent.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
           </div>
         </div>
       </div>

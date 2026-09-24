@@ -79,7 +79,7 @@ async function main() {
             ${whenText ? `<p style="opacity:.55; margin-bottom: var(--space-1);">When</p><p style="margin-bottom: var(--space-4);">${whenText}</p>` : ""}
             <p style="opacity:.55; margin-bottom: var(--space-1);">Booking</p>
             <p>${event.bookingStatus}</p>
-            ${event.bookingUrl ? `<a class="link-underline" href="${event.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
+            ${event.bookingStatus !== "BOOKING REQUIRED" && event.bookingUrl ? `<a class="link-underline" href="${event.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
           </div>
         </div>
       </div>
@@ -101,15 +101,15 @@ async function main() {
       </div>
     </section>
 
-    ${event.bookingUrl ? `
-    <section class="section-pad-sm reveal">
-      <div class="wrap">
-        <a class="btn-primary" href="${event.bookingUrl}" target="_blank" rel="noopener">Book now &rarr;</a>
-      </div>
-    </section>` : event.bookingStatus === "BOOKING REQUIRED" ? `
+    ${event.bookingStatus === "BOOKING REQUIRED" ? `
     <section class="section-pad-sm reveal">
       <div class="wrap">
         ${notifyForm(event.id)}
+      </div>
+    </section>` : event.bookingUrl ? `
+    <section class="section-pad-sm reveal">
+      <div class="wrap">
+        <a class="btn-primary" href="${event.bookingUrl}" target="_blank" rel="noopener">Book now &rarr;</a>
       </div>
     </section>` : ""}
 
