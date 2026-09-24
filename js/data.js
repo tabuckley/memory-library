@@ -332,9 +332,9 @@ export function notifyForm(eventId) {
           <input type="hidden" name="entry.${NOTIFY_EVENT_ENTRY}" value="${eventId}" />
           <button class="btn-primary" type="submit">Notify me &rarr;</button>
         </form>
-        <p class="t-small" style="opacity:.6; margin-top: var(--space-2);">Booking isn't open yet — we'll email you when it is.</p>
+        <p class="t-small" style="opacity:.6; margin-top: var(--space-2);">Booking isn't open yet - we'll email you when it is.</p>
       </div>
-      <p class="t-body notify-form__thanks" style="display:none;">Thanks — we'll email you when tickets are available.</p>
+      <p class="t-body notify-form__thanks" style="display:none;">Thanks - we'll email you when tickets are available.</p>
     </div>`;
 }
 
