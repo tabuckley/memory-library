@@ -309,21 +309,33 @@ export function richText(text) {
 }
 
 // Waitlist signup for events that need booking but don't have a booking
-// link yet. Buttondown's public subscribe form is a plain HTML POST — no
-// API key or JS SDK needed, so it's safe to embed directly in static
-// markup. Each signup is tagged with the event's id so subscribers *could*
-// be segmented later, even if the plan for now is one blanket email once
-// the full programme (and real booking links) is out.
-const NOTIFY_LIST_USERNAME = "ThomasBuckley";
+// link yet, submitted to a Google Form (see docs/chatgpt-notify-form-setup.md)
+// so responses land in a Sheet like the rest of this site's content.
+// Submitting straight to Google's formResponse endpoint can't be read via
+// fetch (no readable CORS response), so instead the form posts into a
+// hidden same-page iframe — the browser never navigates, and the submit
+// handler swaps the form for a thank-you message immediately after.
+// TODO: replace these once docs/chatgpt-notify-form-setup.md comes back
+// with the real form + field ids.
+const NOTIFY_FORM_ID = "REPLACE-WITH-GOOGLE-FORM-ID";
+const NOTIFY_EMAIL_ENTRY = "REPLACE-WITH-EMAIL-ENTRY-ID";
+const NOTIFY_EVENT_ENTRY = "REPLACE-WITH-EVENT-ENTRY-ID";
 
 export function notifyForm(eventId) {
+  const iframeName = `notify-frame-${eventId}`;
   return `
-    <form class="notify-form" action="https://buttondown.com/api/emails/embed-subscribe/${NOTIFY_LIST_USERNAME}" method="post" target="_blank" rel="noopener">
-      <input class="notify-form__input" type="email" name="email" placeholder="Email address" required aria-label="Email address" />
-      <input type="hidden" name="tag" value="${eventId}" />
-      <input type="hidden" name="embed" value="1" />
-      <button class="btn-primary" type="submit">Notify me &rarr;</button>
-    </form>`;
+    <div class="notify-form-wrap">
+      <iframe name="${iframeName}" style="display:none;" aria-hidden="true" tabindex="-1"></iframe>
+      <div class="notify-form-pending">
+        <form class="notify-form" action="https://docs.google.com/forms/d/e/${NOTIFY_FORM_ID}/formResponse" method="post" target="${iframeName}" onsubmit="this.closest('.notify-form-pending').style.display='none'; this.closest('.notify-form-wrap').querySelector('.notify-form__thanks').style.display='block';">
+          <input class="notify-form__input" type="email" name="entry.${NOTIFY_EMAIL_ENTRY}" placeholder="Email address" required aria-label="Email address" />
+          <input type="hidden" name="entry.${NOTIFY_EVENT_ENTRY}" value="${eventId}" />
+          <button class="btn-primary" type="submit">Notify me &rarr;</button>
+        </form>
+        <p class="t-small" style="opacity:.6; margin-top: var(--space-2);">Booking isn't open yet — we'll email you when it is.</p>
+      </div>
+      <p class="t-body notify-form__thanks" style="display:none;">Thanks — we'll email you when tickets are available.</p>
+    </div>`;
 }
 
 // Deterministic placeholder photography. Real photography is limited to a

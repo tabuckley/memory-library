@@ -44,7 +44,6 @@ async function main() {
     <section class="section-pad-sm">
       <div class="wrap">
         ${notifyForm(confEvent.id)}
-        <p class="t-small" style="opacity:.6; margin-top: var(--space-2);">Booking isn't open yet — we'll email you when it is.</p>
       </div>
     </section>` : ""}
 
