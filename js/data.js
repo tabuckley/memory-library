@@ -314,8 +314,7 @@ export function richText(text) {
 // markup. Each signup is tagged with the event's id so subscribers *could*
 // be segmented later, even if the plan for now is one blanket email once
 // the full programme (and real booking links) is out.
-// TODO: replace with the real Buttondown username once that account exists.
-const NOTIFY_LIST_USERNAME = "REPLACE-WITH-BUTTONDOWN-USERNAME";
+const NOTIFY_LIST_USERNAME = "ThomasBuckley";
 
 export function notifyForm(eventId) {
   return `
