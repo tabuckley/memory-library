@@ -157,7 +157,8 @@
    actually matters on an event page — booking. Everything else on the
    site (nav links, "read more" links) stays as the quieter .btn-line
    style; this one is deliberately the loudest thing on the page. */
-a.btn-primary {
+a.btn-primary,
+button.btn-primary {
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
@@ -170,9 +171,33 @@ a.btn-primary {
   color: var(--c-archive-white);
   padding: var(--space-4) var(--space-8);
   border-radius: var(--radius);
+  border: 0;
+  cursor: pointer;
   transition: gap var(--dur-base) var(--ease), opacity var(--dur-base) var(--ease);
 }
-a.btn-primary:hover { gap: var(--space-4); opacity: 0.85; }
+a.btn-primary:hover,
+button.btn-primary:hover { gap: var(--space-4); opacity: 0.85; }
+
+/* ================= NOTIFY-ME FORM =================
+   Fallback for an event that needs booking but doesn't have a booking
+   link yet - a lightweight waitlist signup instead of a dead-end. */
+.notify-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+.notify-form__input {
+  flex: 1 1 16rem;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-editorial);
+  font-size: var(--size-body);
+  background: none;
+  color: inherit;
+}
+.notify-form__input::placeholder { color: var(--c-line-strong); }
 
 /* ================= NOW / NEXT BANNER ================= */
 .now-next {

@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName } from "./data.js";
+import { loadData, plateImg, vtName, notifyForm } from "./data.js";
 
 async function main() {
   const data = await loadData();
@@ -39,6 +39,12 @@ async function main() {
     <section class="section-pad-sm">
       <div class="wrap">
         <a class="btn-primary" href="${confEvent.bookingUrl}" target="_blank" rel="noopener">Book now &rarr;</a>
+      </div>
+    </section>` : confEvent.bookingStatus === "BOOKING REQUIRED" ? `
+    <section class="section-pad-sm">
+      <div class="wrap">
+        ${notifyForm(confEvent.id)}
+        <p class="t-small" style="opacity:.6; margin-top: var(--space-2);">Booking isn't open yet — we'll email you when it is.</p>
       </div>
     </section>` : ""}
 

@@ -308,6 +308,25 @@ export function richText(text) {
     .join("");
 }
 
+// Waitlist signup for events that need booking but don't have a booking
+// link yet. Buttondown's public subscribe form is a plain HTML POST — no
+// API key or JS SDK needed, so it's safe to embed directly in static
+// markup. Each signup is tagged with the event's id so subscribers *could*
+// be segmented later, even if the plan for now is one blanket email once
+// the full programme (and real booking links) is out.
+// TODO: replace with the real Buttondown username once that account exists.
+const NOTIFY_LIST_USERNAME = "REPLACE-WITH-BUTTONDOWN-USERNAME";
+
+export function notifyForm(eventId) {
+  return `
+    <form class="notify-form" action="https://buttondown.com/api/emails/embed-subscribe/${NOTIFY_LIST_USERNAME}" method="post" target="_blank" rel="noopener">
+      <input class="notify-form__input" type="email" name="email" placeholder="Email address" required aria-label="Email address" />
+      <input type="hidden" name="tag" value="${eventId}" />
+      <input type="hidden" name="embed" value="1" />
+      <button class="btn-primary" type="submit">Notify me &rarr;</button>
+    </form>`;
+}
+
 // Deterministic placeholder photography. Real photography is limited to a
 // handful of documentary images (see assets/img/*.jpg); everywhere else a
 // toned, high-resolution abstract placeholder stands in so scale, crop and

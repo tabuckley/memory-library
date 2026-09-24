@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName, resolveRefs, richText } from "./data.js";
+import { loadData, plateImg, vtName, resolveRefs, richText, notifyForm } from "./data.js";
 import { expandOccurrences, dateLabel, timeRange, agendaRow, dateTextForOngoing, dateTextForGroup } from "./programme.js";
 
 // Ongoing events (exhibitions, installations) don't have discrete
@@ -105,6 +105,12 @@ async function main() {
     <section class="section-pad-sm reveal">
       <div class="wrap">
         <a class="btn-primary" href="${event.bookingUrl}" target="_blank" rel="noopener">Book now &rarr;</a>
+      </div>
+    </section>` : event.bookingStatus === "BOOKING REQUIRED" ? `
+    <section class="section-pad-sm reveal">
+      <div class="wrap">
+        ${notifyForm(event.id)}
+        <p class="t-small" style="opacity:.6; margin-top: var(--space-2);">Booking isn't open yet — we'll email you when it is.</p>
       </div>
     </section>` : ""}
 
