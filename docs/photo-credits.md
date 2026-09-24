@@ -17,7 +17,8 @@ as a plain list for quick copy-paste.
 | `bangladesh-workshop-1_aperture-still_credit-zihan-karim.jpg` | Aperture filmmaking still by Zihan Karim |
 | `bangladesh-workshop-2_how-to-scan-love-still_credit-shohrab-jahan.jpg` | Still from *How to Scan Love* ('কিভাবে ভালোবাসা স্ক্যান করা যায়') by Shohrab Jahan |
 | `bangladesh-screening_memory-screening-pmf-2024_credit-riyadh-haque.jpg` | Screening of *Memory* ('স্মৃতি') by Riyadh Haque at Past Makes Future 2024 |
-| `egypt-workshop_fragmented-fantasy-2023_credit-ahmed-nader.jpg` | Still of *Fragmented Fantasy* by Ahmed Nader, 2023 |
+| `egypt-workshop_fragmented-fantasy-2023_credit-ahmed-nader.jpg` | Still of *Fragmented Fantasy* by Ahmed Nader, 2023 (superseded — kept on disk, no longer used) |
+| `egypt-workshop_credit-ahmed-nader.png` | Artwork by Ahmed Nader (current Egypt Workshop image) |
 | `lebanon-workshop_play-office-workshop-2025_credit-alice-fois.jpg` | Play Office Workshop, 2025, photographed by Alice Fois |
 | `we-shine_a-hand-held_credit-thomas-buckley-tom-hobden.jpg` | *A Hand Held* by Thomas Buckley and Tom Hobden for Sudbury Arts Centre |
 
