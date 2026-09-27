@@ -46,12 +46,19 @@ const SHEET_CSV_URLS = {
 
 const FETCH_TIMEOUT_MS = 6000;
 
+// Temporarily pulled from the live site (CMS data is untouched) - remove an
+// id from this set to bring it back. Filtered at the data layer so it
+// disappears everywhere at once: programme listings, Now/Next, artist "on
+// the programme" sections and related-event lists all read from this same
+// cache.
+const HIDDEN_EVENT_IDS = new Set(["ev-lebanon-workshop"]);
+
 let _cache = null;
 
 export async function loadData() {
   if (_cache) return _cache;
 
-  const [artists, events, occurrences, pmfSessions, locations, strands, places, openingHours, photos] = await Promise.all([
+  const [artists, eventsRaw, occurrencesRaw, pmfSessions, locations, strands, places, openingHours, photos] = await Promise.all([
     loadSheetTable("artists", normalizeArtist, "artists", "discipline"),
     loadSheetTable("events", normalizeEvent, "events", "bookingStatus"),
     loadSheetTable("occurrences", normalizeOccurrence, "occurrences", "startTime"),
@@ -62,6 +69,9 @@ export async function loadData() {
     fetchJSON("opening-hours"),
     fetchJSON("photos"),
   ]);
+
+  const events = eventsRaw.filter((e) => !HIDDEN_EVENT_IDS.has(e.id));
+  const occurrences = occurrencesRaw.filter((o) => !HIDDEN_EVENT_IDS.has(o.eventId));
 
   for (const artist of artists) {
     if (photos[artist.id]) artist.photoUrl = photos[artist.id];
