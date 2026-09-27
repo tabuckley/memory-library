@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName, notifyForm, hasRealBooking } from "./data.js";
+import { loadData, plateImg, vtName, notifyForm, requestInvitationForm, hasRealBooking } from "./data.js";
 
 async function main() {
   const data = await loadData();
@@ -35,7 +35,12 @@ async function main() {
       </div>
     </section>
 
-    ${hasRealBooking(confEvent) ? `
+    ${confEvent.bookingStatus === "INVITATION ONLY" ? `
+    <section class="section-pad-sm">
+      <div class="wrap">
+        ${requestInvitationForm(confEvent.id)}
+      </div>
+    </section>` : hasRealBooking(confEvent) ? `
     <section class="section-pad-sm">
       <div class="wrap">
         <a class="btn-primary" href="${confEvent.bookingUrl}" target="_blank" rel="noopener">Book now &rarr;</a>
@@ -53,7 +58,7 @@ async function main() {
           <p class="t-title" style="grid-column: 1 / span 6;">Conference</p>
           <div style="grid-column: 8 / span 5; text-align:right;">
             <p class="t-meta" style="opacity:.6;">${confEvent.bookingStatus} · 13:00–18:00</p>
-            ${hasRealBooking(confEvent) ? `<a class="link-underline" href="${confEvent.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
+            ${confEvent.bookingStatus !== "INVITATION ONLY" && hasRealBooking(confEvent) ? `<a class="link-underline" href="${confEvent.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
           </div>
         </div>
       </div>

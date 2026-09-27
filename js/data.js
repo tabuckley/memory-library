@@ -341,7 +341,7 @@ const NOTIFY_FORM_ID = "1FAIpQLSejCnGcFrckgQ4b5d0wLuaBx8iVNPQDcAGMnqdlOfCQCtXSjQ
 const NOTIFY_EMAIL_ENTRY = "996563940";
 const NOTIFY_EVENT_ENTRY = "366878892";
 
-export function notifyForm(eventId) {
+function bookingContactForm(eventId, { buttonLabel, pendingNote, thanksText }) {
   const iframeName = `notify-frame-${eventId}`;
   return `
     <div class="notify-form-wrap">
@@ -350,12 +350,31 @@ export function notifyForm(eventId) {
         <form class="notify-form" action="https://docs.google.com/forms/d/e/${NOTIFY_FORM_ID}/formResponse" method="post" target="${iframeName}" onsubmit="this.closest('.notify-form-pending').style.display='none'; this.closest('.notify-form-wrap').querySelector('.notify-form__thanks').style.display='block';">
           <input class="notify-form__input" type="email" name="entry.${NOTIFY_EMAIL_ENTRY}" placeholder="Email address" required aria-label="Email address" />
           <input type="hidden" name="entry.${NOTIFY_EVENT_ENTRY}" value="${eventId}" />
-          <button class="btn-primary" type="submit">Notify me &rarr;</button>
+          <button class="btn-primary" type="submit">${buttonLabel} &rarr;</button>
         </form>
-        <p class="t-small" style="opacity:.6; margin-top: var(--space-2);">Booking isn't open yet - we'll email you when it is.</p>
+        <p class="t-small" style="opacity:.6; margin-top: var(--space-2);">${pendingNote}</p>
       </div>
-      <p class="t-body notify-form__thanks" style="display:none;">Thanks - we'll email you when tickets are available.</p>
+      <p class="t-body notify-form__thanks" style="display:none;">${thanksText}</p>
     </div>`;
+}
+
+export function notifyForm(eventId) {
+  return bookingContactForm(eventId, {
+    buttonLabel: "Notify me",
+    pendingNote: "Booking isn't open yet - we'll email you when it is.",
+    thanksText: "Thanks - we'll email you when tickets are available.",
+  });
+}
+
+// Invitation-only events (e.g. Launch) aren't bookable in the normal sense -
+// this collects a request to be added to the guest list rather than a
+// confirmed place, and the copy is careful not to imply entry is guaranteed.
+export function requestInvitationForm(eventId) {
+  return bookingContactForm(eventId, {
+    buttonLabel: "Request an invitation",
+    pendingNote: "This event is primarily for invited guests, with a limited number of additional places available.",
+    thanksText: "Thanks - your request has been received. We'll be in touch if a place is available.",
+  });
 }
 
 // Deterministic placeholder photography. Real photography is limited to a
