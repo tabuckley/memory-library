@@ -51,7 +51,7 @@ const FETCH_TIMEOUT_MS = 6000;
 // disappears everywhere at once: programme listings, Now/Next, artist "on
 // the programme" sections and related-event lists all read from this same
 // cache.
-const HIDDEN_EVENT_IDS = new Set(["ev-lebanon-workshop"]);
+const HIDDEN_EVENT_IDS = new Set([]);
 
 let _cache = null;
 
