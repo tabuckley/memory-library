@@ -656,6 +656,18 @@ a.now-next__cell:hover { opacity: 0.7; }
   filter: grayscale(1);
   opacity: 0.85;
 }
+
+/* Local/international partners get a short description under the logo
+   rather than sitting bare in a strip - the funders above stay logo-only. */
+.partner-card img {
+  height: 56px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.85;
+  margin-bottom: var(--space-3);
+}
 .tone-black .partner-strip img {
   filter: grayscale(1) invert(1);
 }
