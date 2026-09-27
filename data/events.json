@@ -211,18 +211,18 @@
   },
   {
     "id": "ev-bangladesh-workshop-1",
-    "title": "Bangladesh Workshop",
+    "title": "A Moment, Framed",
     "type": "Workshop",
     "strandId": "past-makes-future",
     "locationIds": [
       "play-office"
     ],
     "artistIds": [],
-    "summary": "A workshop connected to Bangladesh, part of Memory Library's international exchange. Held at Play Office, next door to Boathouse 5.",
-    "blurb": "Workshop connected to Bangladesh. Held next door at Play Office.",
-    "body": "This workshop is connected to Bangladesh and forms part of Memory Library's international exchange. It offers visitors a chance to take part in activity linked to the wider programme of visiting artists and international collaboration. It runs twice - this is the first session, at Play Office (The Old Pay Office, Victory Gate, HM Naval Base) next door to Boathouse 5.",
+    "summary": "Led by Zihan Karim at Play Office, this hands-on mobile filmmaking workshop explores framing, perception and looking at familiar surroundings in new ways. Material created in the workshop will contribute to a new experimental artwork premiering at We Shine Community.",
+    "blurb": "Create a short mobile film using handmade frames for a new We Shine Community artwork.",
+    "body": "What happens when we change the way we look?\n\nLed by Zihan Karim, this hands-on workshop invites participants to use mobile video as a simple and intuitive way of observing and reimagining the world around them.\n\nEach participant will be given a prompt word and invited to respond by making a short video using their mobile phone. Handmade paper cut-outs, including circles, squares, triangles and other shapes, will be used as physical frames or filters, creating small windows through which familiar surroundings can be seen differently.\n\nThe workshop is not about making a technically perfect film. Instead, it is an invitation to slow down, notice small details and experiment with framing, movement, light, texture and everyday objects.\n\nParticipants will move through the space creating their own responses to the same prompts. A single word might produce completely different images and interpretations, turning the workshop into a collective exploration of perception, memory and personal experience.\n\nMaterial created during the workshop will then be used as part of an experimental new artwork, which will premiere at We Shine Community.\n\nNo previous filmmaking or artistic experience is required.\n\nPlease bring a mobile phone with a working camera. A laptop is optional if you would like to transfer or share your video files during the session.",
     "bookingStatus": "BOOKING REQUIRED",
-    "bookingUrl": null,
+    "bookingUrl": "https://www.eventbrite.com/e/a-moment-framed-tickets-2002293328245?aff=oddtdtcreator",
     "imageUrl": "assets/img/photos/bangladesh-workshop-1_aperture-still_credit-zihan-karim.jpg",
     "ageGuidance": null,
     "mode": "timed",
@@ -280,18 +280,20 @@
   },
   {
     "id": "ev-egypt-workshop",
-    "title": "Egypt Workshop",
+    "title": "Eponymous Forms: Digital Avatar Creation",
     "type": "Workshop",
     "strandId": "we-shine",
     "locationIds": [
       "play-office"
     ],
-    "artistIds": [],
+    "artistIds": [
+      "ahmed-nader"
+    ],
     "summary": "A workshop connected to Egypt, part of Memory Library's international exchange. Held at Play Office, next door to Boathouse 5.",
-    "blurb": "Workshop connected to Egypt. Held next door at Play Office.",
+    "blurb": "Workshop connected to Egypt.",
     "body": "This workshop is connected to Egypt and forms part of Memory Library's international exchange. It offers visitors a chance to take part in activity linked to the wider programme of visiting artists and international collaboration. It takes place at Play Office (The Old Pay Office, Victory Gate, HM Naval Base) next door to Boathouse 5.",
     "bookingStatus": "BOOKING REQUIRED",
-    "bookingUrl": null,
+    "bookingUrl": "https://www.eventbrite.co.uk/e/eponymous-forms-digital-avatar-creation-tickets-2002295278077?aff=oddtdtcreator&keep_tld=true",
     "imageUrl": null,
     "ageGuidance": null,
     "mode": "timed",

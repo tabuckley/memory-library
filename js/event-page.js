@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName, resolveRefs, richText, notifyForm } from "./data.js";
+import { loadData, plateImg, vtName, resolveRefs, richText, notifyForm, hasRealBooking } from "./data.js";
 import { expandOccurrences, dateLabel, timeRange, agendaRow, dateTextForOngoing, dateTextForGroup } from "./programme.js";
 
 // Ongoing events (exhibitions, installations) don't have discrete
@@ -79,7 +79,7 @@ async function main() {
             ${whenText ? `<p style="opacity:.55; margin-bottom: var(--space-1);">When</p><p style="margin-bottom: var(--space-4);">${whenText}</p>` : ""}
             <p style="opacity:.55; margin-bottom: var(--space-1);">Booking</p>
             <p>${event.bookingStatus}</p>
-            ${event.bookingStatus !== "BOOKING REQUIRED" && event.bookingUrl ? `<a class="link-underline" href="${event.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
+            ${hasRealBooking(event) ? `<a class="link-underline" href="${event.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block; margin-top: var(--space-1);">Book &rarr;</a>` : ""}
           </div>
         </div>
       </div>
@@ -101,15 +101,15 @@ async function main() {
       </div>
     </section>
 
-    ${event.bookingStatus === "BOOKING REQUIRED" ? `
-    <section class="section-pad-sm reveal">
-      <div class="wrap">
-        ${notifyForm(event.id)}
-      </div>
-    </section>` : event.bookingUrl ? `
+    ${hasRealBooking(event) ? `
     <section class="section-pad-sm reveal">
       <div class="wrap">
         <a class="btn-primary" href="${event.bookingUrl}" target="_blank" rel="noopener">Book now &rarr;</a>
+      </div>
+    </section>` : event.bookingStatus === "BOOKING REQUIRED" ? `
+    <section class="section-pad-sm reveal">
+      <div class="wrap">
+        ${notifyForm(event.id)}
       </div>
     </section>` : ""}
 

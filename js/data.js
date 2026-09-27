@@ -308,6 +308,16 @@ export function richText(text) {
     .join("");
 }
 
+// Several BOOKING REQUIRED events were seeded with this same placeholder
+// bookingUrl in the sheet before real ticket links existed — a non-empty
+// cell isn't enough to tell a real booking link apart from that leftover
+// placeholder, so treat this one value as "no real link yet" too.
+const PLACEHOLDER_BOOKING_URL = "https://www.thomas-buckley.com/";
+
+export function hasRealBooking(event) {
+  return Boolean(event.bookingUrl) && event.bookingUrl !== PLACEHOLDER_BOOKING_URL;
+}
+
 // Waitlist signup for events that need booking but don't have a booking
 // link yet, submitted to a Google Form (see docs/chatgpt-notify-form-setup.md)
 // so responses land in a Sheet like the rest of this site's content.
