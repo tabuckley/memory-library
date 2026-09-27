@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName, notifyForm, requestInvitationForm, hasRealBooking } from "./data.js";
+import { loadData, plateImg, vtName, notifyForm, requestInvitationForm, hasRealBooking, richText } from "./data.js";
 
 async function main() {
   const data = await loadData();
@@ -32,6 +32,13 @@ async function main() {
         <div class="media-plate media-plate--hero" style="--plate-ratio: 21/9; view-transition-name: pmf-hero;">
           <img class="plate-photo" src="assets/img/photos/past-makes-future_audience-2025.jpg" alt="Audience members listening intently at a past Play Office artist development conference." loading="lazy" />
         </div>
+      </div>
+    </section>
+
+    <section class="section-pad-sm reveal">
+      <div class="wrap grid">
+        <p class="t-intro measure" style="grid-column: 1 / span 6;">${confEvent.summary}</p>
+        ${confEvent.body ? `<div class="t-body measure" style="grid-column: 7 / span 6; opacity:.85;">${richText(confEvent.body)}</div>` : ""}
       </div>
     </section>
 
