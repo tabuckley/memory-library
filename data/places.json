@@ -38,13 +38,5 @@
     "role": "Exchange",
     "description": "International exchange partner, part of Memory Library's wider network of places.",
     "confirmed": true
-  },
-  {
-    "id": "jersey",
-    "name": "Jersey",
-    "country": "Channel Islands",
-    "role": "Exchange",
-    "description": "International exchange partner, part of Memory Library's wider network of places.",
-    "confirmed": true
   }
 ]

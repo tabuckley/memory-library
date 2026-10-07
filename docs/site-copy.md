@@ -58,7 +58,7 @@ One sentence, ~19 words / 115 characters, sits beside a photo at roughly a 4:3 r
 
 **Artists & exchange teaser**
 > Artists & exchange (heading, ~3 words)
-> Memory Library brings together artists and collaborators from Portsmouth, Bangladesh, Cairo, Lebanon, Malta and Jersey through Resonate, Play Office's artist development programme.
+> Memory Library brings together artists and collaborators from Portsmouth, Bangladesh, Cairo, Lebanon and Malta through Resonate, Play Office's artist development programme.
 One sentence, ~24 words / 155 characters.
 
 **Leave a Memory teaser** (on a black background section)
@@ -98,7 +98,7 @@ One sentence, ~28 words / 180 characters.
 **International exchange**
 > Memory Library connects Portsmouth to a wider network of places through artist exchange and collaboration.
 One sentence, ~15 words / 95 characters — this is a `.t-intro` size line so keep it short, it's meant to read almost like a subheading.
-Below it: Portsmouth, Bangladesh, Cairo, Lebanon, Malta, Jersey as a row of place names (1-2 words each, not sentences).
+Below it: Portsmouth, Bangladesh, Cairo, Lebanon, Malta as a row of place names (1-2 words each, not sentences).
 
 **Audience & access**
 > Memory Library is for a broad public - residents, families, young people, artists and people who may not usually engage with digital art. It aims to make emerging technology tactile, social and accessible.
@@ -148,7 +148,7 @@ One short sentence, ~11 words / 80 characters — sits in a narrow side column n
 
 **Page intro**
 > Artists (h1, fixed)
-> Artists and collaborators from Portsmouth and Memory Library's international exchange - Bangladesh, Cairo, Lebanon, Malta and Jersey.
+> Artists and collaborators from Portsmouth and Memory Library's international exchange - Bangladesh, Cairo, Lebanon and Malta.
 One sentence, ~16 words / 105 characters, same narrow-column constraint as Programme's intro above.
 
 ## past-makes-future.html
@@ -194,7 +194,7 @@ Very short, fragment-style descriptions (not full sentences) — keep that style
 **Place descriptions** (`data/places.json`, the international exchange partners):
 - Portsmouth: "Home of Play Office and Boathouse 5. Memory Library begins from Portsmouth's own overlooked and everyday heritage." (~17 words)
 - Bangladesh / Cairo: "International exchange partner city, connected through artist presentation and collaboration." (~10 words, identical wording for both currently)
-- Lebanon / Malta / Jersey: "International exchange partner, part of Memory Library's wider network of places." (~11 words, identical wording for all three currently)
-These three are currently generic/repeated placeholders (Bangladesh and Cairo share one sentence, Lebanon/Malta/Jersey share another) — genuinely good candidates for real, distinct copy about each place's actual connection to the programme if you have that information to give ChatGPT.
+- Lebanon / Malta: "International exchange partner, part of Memory Library's wider network of places." (~11 words, identical wording for both currently)
+These are currently generic/repeated placeholders (Bangladesh and Cairo share one sentence, Lebanon/Malta share another) — genuinely good candidates for real, distinct copy about each place's actual connection to the programme if you have that information to give ChatGPT.
 
 **Opening hours notes** (`data/opening-hours.json`) — short labels only, e.g. "Past Makes Future", "We Shine Community", "We Shine Community - closing night". 1-4 words, not sentences.
