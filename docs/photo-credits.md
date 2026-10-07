@@ -37,4 +37,8 @@ convention):
 | `megan-willow-hack.jpg` | (none yet) |
 | `zihan-karim.jpg` | (none yet) |
 | `raneem-elhaddad.jpg` | (none yet) |
+| `arlo-bolger.jpg` | (none yet) |
+| `maria-de-la-o-garrido.jpg` | (none yet) |
+| `owain-davies.jpg` | (none yet) |
+| `hannah-matthews.jpg` | (none yet) |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
