@@ -42,4 +42,5 @@ convention):
 | `owain-davies.jpg` | (none yet) |
 | `hannah-matthews.jpg` | (none yet) |
 | `harry-payne.jpg` | (none yet) |
+| `yasmina-hilal.jpg` | Credit: Mohamad Al-Rifai |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
