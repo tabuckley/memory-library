@@ -308,11 +308,16 @@ export function resolveRefs(ids, map, kind) {
 // which the CSV export preserves as literal newlines (see csv.js) — but HTML
 // collapses those into a single space inside one <p>, so the break vanishes
 // on the page. Split on each newline and render one <p> per line instead.
-export function richText(text) {
+//
+// Artist bios are often pasted in from a PDF or email with hard line wraps
+// every ~90 characters, which turned each wrapped line into its own <p>.
+// Pass { softWrap: true } to treat a single newline as a space and only
+// break paragraphs on a blank line (Alt+Enter twice in the sheet).
+export function richText(text, { softWrap = false } = {}) {
   if (!text) return "";
   return text
-    .split(/\n+/)
-    .map((line) => line.trim())
+    .split(softWrap ? /\n\s*\n/ : /\n+/)
+    .map((line) => line.replace(/\s+/g, " ").trim())
     .filter(Boolean)
     .map((line) => `<p>${line}</p>`)
     .join("");
