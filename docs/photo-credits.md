@@ -41,4 +41,5 @@ convention):
 | `maria-de-la-o-garrido.jpg` | (none yet) |
 | `owain-davies.jpg` | (none yet) |
 | `hannah-matthews.jpg` | (none yet) |
+| `harry-payne.jpg` | (none yet) |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
