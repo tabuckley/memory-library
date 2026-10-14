@@ -43,4 +43,5 @@ convention):
 | `hannah-matthews.jpg` | (none yet) |
 | `harry-payne.jpg` | (none yet) |
 | `yasmina-hilal.jpg` | Credit: Mohamad Al-Rifai |
+| `angela-parks.jpg` | Credit: Hannah Judah |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
