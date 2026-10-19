@@ -45,4 +45,5 @@ convention):
 | `yasmina-hilal.jpg` | Credit: Mohamad Al-Rifai |
 | `angela-parks.jpg` | Credit: Hannah Judah |
 | `gabriel-chetcuti.jpg` | (none yet) |
+| `nick-theuma.jpg` | (none yet) |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
