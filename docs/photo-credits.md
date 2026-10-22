@@ -50,4 +50,5 @@ convention):
 | `laura-simpson.jpg` | Credit: Tally Aslam |
 | `kate-phillips.jpg` | Credit: Kate Phillips |
 | `ioni-bellis.jpg` | Credit: Ioni Bellis |
+| `michelle-rumney.jpg` | Credit: Dr Maruša Levstek |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
