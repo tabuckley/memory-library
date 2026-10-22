@@ -21,7 +21,7 @@ as a plain list for quick copy-paste.
 | `egypt-workshop_credit-ahmed-nader.png` | Artwork by Ahmed Nader (superseded — kept on disk, no longer used) |
 | `egypt-workshop_avatar-as-identity_credit-ahmed-nader.jpg` | *Avatar As Identity* poster art by Ahmed Nader (current Eponymous Forms image) |
 | `lebanon-workshop_play-office-workshop-2025_credit-alice-fois.jpg` | Play Office Workshop, 2025, photographed by Alice Fois (superseded — kept on disk, no longer used) |
-| `lebanon-workshop_archive-scanning-2026.jpg` | Scanning film and photographs on a lightbox, April 2026 — photographer credit TBC (camera metadata lists "sa0") (current Lebanon Workshop image) |
+| `lebanon-workshop_archive-scanning-2026_credit-diriyah-biennale-foundation.jpg` | Scanning film and photographs on a lightbox, April 2026, courtesy of Diriyah Biennale Foundation (current Lebanon Workshop image) |
 | `we-shine_a-hand-held_credit-thomas-buckley-tom-hobden.jpg` | *A Hand Held* by Thomas Buckley and Tom Hobden for Sudbury Arts Centre |
 
 Artist portraits (in `assets/img/photos/`, not yet renamed to match this
