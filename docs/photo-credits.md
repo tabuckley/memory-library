@@ -47,4 +47,6 @@ convention):
 | `angela-parks.jpg` | Credit: Hannah Judah |
 | `gabriel-chetcuti.jpg` | (none yet) |
 | `nick-theuma.jpg` | (none yet) |
+| `laura-simpson.jpg` | Credit: Tally Aslam |
+| `kate-phillips.jpg` | Credit: Kate Phillips |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
