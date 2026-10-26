@@ -52,4 +52,5 @@ convention):
 | `ioni-bellis.jpg` | Credit: Ioni Bellis |
 | `michelle-rumney.jpg` | Credit: Dr Maruša Levstek |
 | `alice-fois.jpg` | (none yet) |
+| `basil-freir.jpg` | (none yet) |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
