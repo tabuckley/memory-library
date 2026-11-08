@@ -36,7 +36,11 @@ import { parseCSV } from "./csv.js";
 // without needing to know its gid, and keeps working if tabs are
 // reordered). Leave a URL empty to use the bundled JSON for that table.
 const SHEET_ID = "1JD9vrjS9WqepJdaBktEzZmq_x4CteULc3xacCfyEuno";
-const sheetTabUrl = (tab) => `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${tab}`;
+// `headers=1` pins the header to row 1. Without it, Google guesses how many
+// rows are headers from the cell types, and one cell of a different type
+// (e.g. a real TRUE checkbox in a column of "TRUE" text) can make it fold
+// the first several data rows into the header, breaking the whole tab.
+const sheetTabUrl = (tab) => `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&headers=1&sheet=${tab}`;
 const SHEET_CSV_URLS = {
   artists: sheetTabUrl("artists"),
   events: sheetTabUrl("events"),

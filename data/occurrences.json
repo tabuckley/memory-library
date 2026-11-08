@@ -69,10 +69,10 @@
     "id": "occ-bangladesh-screening",
     "eventId": "ev-bangladesh-screening",
     "date": "2026-11-15",
-    "startTime": "16:00",
+    "startTime": "15:00",
     "endTime": "17:00",
     "locationId": "cinema",
-    "confirmed": false
+    "confirmed": true
   },
   {
     "id": "occ-people-library-16",
