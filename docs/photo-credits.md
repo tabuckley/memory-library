@@ -53,4 +53,12 @@ convention):
 | `michelle-rumney.jpg` | Credit: Dr Maruša Levstek |
 | `alice-fois.jpg` | (none yet) |
 | `basil-freir.jpg` | (none yet) |
+| `jukta-saha.jpg` | Credit: Jesmin Akter |
+| `jannatun-noor-symum.jpg` | (none yet) |
+| `tanzin-afroz.jpg` | Credit: Tanzin Afroz |
+| `naznin-ahmed.jpg` | Credit: Rikel Chakma |
+| `shariba-tasnim-priya.jpg` | (none yet) |
+| `rikel-chakma.jpg` | Credit: Rikel Chakma |
+| `taznova-alam.jpg` | (none yet) |
+| `sadia-tabassum-ritu.jpg` | Credit: Minhaz uddin Rakib |
 | Thomas Buckley (hosted on Wix, not local) | Credit: Olas Fischer |
