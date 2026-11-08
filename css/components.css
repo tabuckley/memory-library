@@ -312,6 +312,27 @@ a.now-next__cell:hover { opacity: 0.7; }
 }
 .index-row__thumb { aspect-ratio: 4/5; }
 
+/* An artist's name in their own script (Bangla, Arabic…). The brand fonts
+   have no glyphs for these, so use the platform's own script fonts, set
+   smaller and lighter so it reads as a companion to the English name. */
+.name-local {
+  font-family: "Noto Sans Bengali", "Nirmala UI", "Vrinda", "Bangla Sangam MN",
+               "Noto Sans Arabic", "Geeza Pro", "Segoe UI", system-ui, sans-serif;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.6em;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+.index-row__name .name-local { margin-inline-start: 0.4em; }
+.name-local--display {
+  display: inline-block;
+  font-size: 0.38em;
+  line-height: 1.4;
+  margin-top: var(--space-3);
+}
+
 /* The hover-reveal treatment only applies where hover is a real,
    precise interaction (mouse) — touch and reduced-motion contexts keep
    the metadata plainly visible at rest instead. */

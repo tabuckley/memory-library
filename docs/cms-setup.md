@@ -100,7 +100,7 @@ or a tab got renamed (tab names must stay exactly `artists`, `events`,
 
 ## Column reference
 
-**artists** — `id, name, discipline, placeId, bio, portraitCaption, photoUrl, portfolioUrl, instagramUrl`
+**artists** — `id, name, discipline, placeId, bio, portraitCaption, photoUrl, portfolioUrl, instagramUrl, nameLocal` (`nameLocal` is optional: the artist's name in their own script, e.g. Bangla, shown smaller beside the English name)
 
 **events** — `id, title, type, strandId, locationIds, placeId, artistIds, year, summary, blurb, body, mediaCaption, bookingStatus, bookingUrl, imageUrl, ageGuidance, mode, dateStart, dateEnd, confirmed`
 

@@ -1,4 +1,4 @@
-import { loadData, plateImg, vtName } from "./data.js";
+import { loadData, plateImg, vtName, localNameSpan } from "./data.js";
 
 async function main() {
   const data = await loadData();
@@ -17,7 +17,7 @@ async function main() {
       <a class="index-row" href="artist.html?slug=${a.id}">
         <span class="index-row__n t-meta">${String(i + 1).padStart(2, "0")}</span>
         <span>
-          <span class="index-row__name">${a.name}</span>
+          <span class="index-row__name">${a.name}${a.nameLocal ? ` ${localNameSpan(a)}` : ""}</span>
           ${meta ? `<span class="index-row__meta">${meta}</span>` : ""}
         </span>
         <span class="index-row__thumb media-plate" style="--plate-ratio: 4/5; view-transition-name: ${vtName("artist", a.id)};">

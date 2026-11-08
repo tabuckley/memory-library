@@ -215,7 +215,20 @@ function normalizeArtist(row) {
     photoUrl: driveImageUrl(row.photoUrl),
     portfolioUrl: orNull(row.portfolioUrl),
     instagramUrl: orNull(row.instagramUrl),
+    nameLocal: orNull(row.nameLocal),
   };
+}
+
+// Language of an artist's `nameLocal`, guessed from their place, so screen
+// readers pronounce it correctly and Arabic names lay out right-to-left.
+const PLACE_LANG = { bangladesh: "bn", egypt: "ar", lebanon: "ar" };
+
+// The artist's name in their own script (sheet column `nameLocal`), as an
+// inline span to sit beside or under the English name. Empty when unset.
+export function localNameSpan(artist, extraClass = "") {
+  if (!artist.nameLocal) return "";
+  const lang = PLACE_LANG[artist.placeId];
+  return `<span class="name-local ${extraClass}"${lang ? ` lang="${lang}"` : ""} dir="auto">${artist.nameLocal}</span>`;
 }
 
 function normalizeEvent(row) {
