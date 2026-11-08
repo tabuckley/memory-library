@@ -319,6 +319,11 @@ export function richText(text, { softWrap = false } = {}) {
     .split(softWrap ? /\n\s*\n/ : /\n+/)
     .map((line) => line.replace(/\s+/g, " ").trim())
     .filter(Boolean)
+    // Minimal Markdown so sheet editors can write **bold** and *italic*
+    // (e.g. film titles) without typing HTML.
+    .map((line) => line
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.+?)\*/g, "<em>$1</em>"))
     .map((line) => `<p>${line}</p>`)
     .join("");
 }
